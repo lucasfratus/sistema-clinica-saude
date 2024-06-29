@@ -17,7 +17,14 @@ public class Paciente {
     private int telefone;
     private String convenio;
     private Prontuario prontuario;
-    
+    private boolean fuma;
+    private boolean bebe;
+    private boolean colesterolAlto;
+    private boolean diabete;
+    private boolean doencaCardiaca;
+    private String cirurgias;
+    private String alergias;
+      
     public Paciente(){        
     }
     public Paciente(String nome, String email, String dataNascimento, String endereco, int telefone, String convenio){
@@ -31,15 +38,13 @@ public class Paciente {
         this.prontuario = prontuario;
         }
 
-
-    public void setProntuario(Prontuario prontuario) {
-        this.prontuario = prontuario;
-    }
-    
     public Prontuario getProntuario() {
         return prontuario;
     }
 
+    public void setProntuario(Prontuario prontuario) {
+        this.prontuario = prontuario;
+    }
     
     public String getNome() {
         return nome;
@@ -65,7 +70,6 @@ public class Paciente {
         this.cpf = cpf;
     }
 
-    
     public String getDataNascimento() {
         return dataNascimento;
     }
@@ -98,4 +102,60 @@ public class Paciente {
         this.convenio = convenio;
     }
 
+    public boolean isFuma() {
+        return fuma;
+    }
+
+    public void setFuma(boolean fuma) {
+        this.fuma = fuma;
+    }
+
+    public boolean isBebe() {
+        return bebe;
+    }
+
+    public void setBebe(boolean bebe) {
+        this.bebe = bebe;
+    }
+
+    public boolean isColesterolAlto() {
+        return colesterolAlto;
+    }
+
+    public void setColesterolAlto(boolean colesterolAlto) {
+        this.colesterolAlto = colesterolAlto;
+    }
+
+    public boolean isDiabete() {
+        return diabete;
+    }
+
+    public void setDiabete(boolean diabete) {
+        this.diabete = diabete;
+    }
+
+    public boolean isDoencaCardiaca() {
+        return doencaCardiaca;
+    }
+
+    public void setDoencaCardiaca(boolean doencaCardiaca) {
+        this.doencaCardiaca = doencaCardiaca;
+    }
+
+    public String getCirurgias() {
+        return cirurgias;
+    }
+
+    public void setCirurgias(String cirurgias) {
+        this.cirurgias = cirurgias;
+    }
+
+    public String getAlergias() {
+        return alergias;
+    }
+
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
+    }
+    
 }
