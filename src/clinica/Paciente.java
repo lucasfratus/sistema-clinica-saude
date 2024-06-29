@@ -72,11 +72,11 @@ public class Paciente {
         this.email = email;
     }
 
-    public int getCpf(){
+    public String getCpf(){
         return cpf;
     }
 
-    public void setCpf(int cpf){
+    public void setCpf(String cpf){
         this.cpf = cpf;
     }
 
