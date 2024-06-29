@@ -6,7 +6,7 @@ package clinica;
 
 /**
  *
- * @author lucas
+ * @author Giovani
  */
 public class Paciente {
     private String nome;
