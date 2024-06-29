@@ -16,6 +16,7 @@ public class RelatoriosMedicos {
 
     public RelatoriosMedicos(){
     }
+    
     public RelatoriosMedicos(Paciente paciente, String receita, boolean atestado, boolean declaracaoAcompanhamento){
         this.paciente = paciente;
         this.receita = receita;
@@ -23,7 +24,6 @@ public class RelatoriosMedicos {
         this.declaracaoAcompanhamento = declaracaoAcompanhamento;
     }
 
-    
     public Paciente getPaciente() {
         return paciente;
     }
@@ -55,6 +55,5 @@ public class RelatoriosMedicos {
     public void setDeclaracaoAcompanhamento(boolean declaracaoAcompanhamento) {
         this.declaracaoAcompanhamento = declaracaoAcompanhamento;
     }
-    
     
 }

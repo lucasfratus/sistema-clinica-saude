@@ -51,6 +51,9 @@ public class Secretaria {
         this.consulta = consulta;
     }
     
+    public Consultas getConsulta() {
+        return consulta;
+    }
     
    
 }
