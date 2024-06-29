@@ -11,5 +11,5 @@ package clinica;
 public class GerenciadorDeMensagens {
     private Paciente paciente;
     private Consultas consulta;
-    private String Mensagem;
+    private String mensagem;
 }
