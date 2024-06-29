@@ -25,6 +25,9 @@ public class Paciente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.convenio = convenio;
+        this.sintomas = sintomas;
+        this.diagnostico = diagnostico;
+        this.tratamento = tratamento;
         }
     
     public String getNome() {
@@ -74,4 +77,34 @@ public class Paciente {
     public void setConvenio(String convenio) {
         this.convenio = convenio;
     }
+
+// PRONTUÁRIO PACIENTE   
+    private String sintomas;
+    private String diagnostico;
+    private String tratamento;
+
+    public String getSintomas() {
+        return sintomas;
+    }
+
+    public void setSintomas(String sintomas) {
+        this.sintomas = sintomas;
+    }
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
+
+    public String getTratamento() {
+        return tratamento;
+    }
+
+    public void setTratamento(String tratamento) {
+        this.tratamento = tratamento;
+    }
+           
 }
