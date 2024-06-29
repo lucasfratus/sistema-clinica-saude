@@ -9,13 +9,10 @@ package clinica;
  * @author lucas
  */
 public class Medico {
-
     private String nome;
     private String numeroDeRegistro;
     private String especialidade;
     private int numeroDoConsultorio;
-    private String numeroDoTelefone;
-    private boolean atendimentoPorConvenio;
     
     public Medico() {
     }
@@ -41,7 +38,7 @@ public class Medico {
         return numeroDeRegistro;
     }
 
-    public void setNumero_de_registro(String numeroDeRegistro) {
+    public void setNumeroDeRegistro(String numeroDeRegistro) {
         this.numeroDeRegistro = numeroDeRegistro;
     }
 
@@ -61,20 +58,4 @@ public class Medico {
         this.numeroDoConsultorio = numeroDoConsultorio;
     }
 
-    public String getNumeroDoTelefone() {
-        return numeroDoTelefone;
-    }
-
-    public void setNumeroDoTelefone(String numeroDoTelefone) {
-        this.numeroDoTelefone = numeroDoTelefone;
-    }
-
-    public boolean isAtendimento_por_convenio() {
-        return atendimentoPorConvenio;
-    }
-
-    public void setAtendimento_por_convenio(boolean atendimento_por_convenio) {
-        this.atendimentoPorConvenio = atendimentoPorConvenio;
-    }
-    
 }
