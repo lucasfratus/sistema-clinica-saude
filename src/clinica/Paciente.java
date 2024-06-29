@@ -11,6 +11,7 @@ package clinica;
 public class Paciente {
     private String nome;
     private String email;
+    private int cpf;
     private String dataNascimento;
     private String endereco;
     private int telefone;
@@ -21,6 +22,7 @@ public class Paciente {
     public Paciente(String nome, String email, String dataNascimento, String endereco, int telefone, String convenio){
         this.nome = nome;
         this.email = email;
+        this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
         this.telefone = telefone;
@@ -46,6 +48,15 @@ public class Paciente {
         this.email = email;
     }
 
+        public int getCpf(){
+        return cpf;
+    }
+
+    public void setCpf(int cpf){
+        this.cpf = cpf;
+    }
+
+    
     public String getDataNascimento() {
         return dataNascimento;
     }
