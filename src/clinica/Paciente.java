@@ -16,6 +16,7 @@ public class Paciente {
     private String endereco;
     private int telefone;
     private String convenio;
+    private Prontuario prontuario;
     
     public Paciente(){        
     }
@@ -27,10 +28,16 @@ public class Paciente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.convenio = convenio;
-        this.sintomas = sintomas;
-        this.diagnostico = diagnostico;
-        this.tratamento = tratamento;
+        this.prontuario = prontuario;
         }
+
+    public Prontuario getProntuario() {
+        return prontuario;
+    }
+
+    public void setProntuario(Prontuario prontuario) {
+        this.prontuario = prontuario;
+    }
     
     public String getNome() {
         return nome;
@@ -89,33 +96,4 @@ public class Paciente {
         this.convenio = convenio;
     }
 
-// PRONTUÁRIO PACIENTE   
-    private String sintomas;
-    private String diagnostico;
-    private String tratamento;
-
-    public String getSintomas() {
-        return sintomas;
-    }
-
-    public void setSintomas(String sintomas) {
-        this.sintomas = sintomas;
-    }
-
-    public String getDiagnostico() {
-        return diagnostico;
-    }
-
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
-    }
-
-    public String getTratamento() {
-        return tratamento;
-    }
-
-    public void setTratamento(String tratamento) {
-        this.tratamento = tratamento;
-    }
-           
 }
