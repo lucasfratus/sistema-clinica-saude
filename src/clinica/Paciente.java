@@ -31,13 +31,15 @@ public class Paciente {
         this.prontuario = prontuario;
         }
 
-    public Prontuario getProntuario() {
-        return prontuario;
-    }
 
     public void setProntuario(Prontuario prontuario) {
         this.prontuario = prontuario;
     }
+    
+    public Prontuario getProntuario() {
+        return prontuario;
+    }
+
     
     public String getNome() {
         return nome;
@@ -55,7 +57,7 @@ public class Paciente {
         this.email = email;
     }
 
-        public int getCpf(){
+    public int getCpf(){
         return cpf;
     }
 
