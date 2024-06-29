@@ -11,22 +11,22 @@ package clinica;
 public class Medico {
 
     private String nome;
-    private String numero_de_registro;
+    private String numeroDeRegistro;
     private String especialidade;
-    private int numero_consultorio;
-    private String numero_telefone;
-    private boolean atendimento_por_convenio;
+    private int numeroDoConsultorio;
+    private String numeroDoTelefone;
+    private boolean atendimentoPorConvenio;
     
     public Medico() {
     }
     
-    public Medico(String nome, String numero_de_registro, String especialidade, int numero_consultorio, String numero_telefone) {
+    public Medico(String nome, String numeroDeRegistro, String especialidade, int numeroDoConsultorio, String numeroDoTelefone) {
         this.nome = nome;
-        this.numero_de_registro = numero_de_registro;
+        this.numeroDeRegistro = numeroDeRegistro;
         this.especialidade = especialidade;
-        this.numero_consultorio = numero_consultorio;
-        this.numero_telefone = numero_telefone;
-        this.atendimento_por_convenio = atendimento_por_convenio;
+        this.numeroDoConsultorio = numeroDoConsultorio;
+        this.numeroDoTelefone = numeroDoTelefone;
+        this.atendimentoPorConvenio = atendimentoPorConvenio;
     }
     
     public String getNome() {
@@ -37,12 +37,12 @@ public class Medico {
         this.nome = nome;
     }
 
-    public String getNumero_de_registro() {
-        return numero_de_registro;
+    public String getNumeroDeRegistro() {
+        return numeroDeRegistro;
     }
 
-    public void setNumero_de_registro(String numero_de_registro) {
-        this.numero_de_registro = numero_de_registro;
+    public void setNumero_de_registro(String numeroDeRegistro) {
+        this.numeroDeRegistro = numeroDeRegistro;
     }
 
     public String getEspecialidade() {
@@ -53,27 +53,28 @@ public class Medico {
         this.especialidade = especialidade;
     }
 
-    public int getNumero_consultorio() {
-        return numero_consultorio;
+    public int getNumeroDoConsultorio() {
+        return numeroDoConsultorio;
     }
 
-    public void setNumero_consultorio(int numero_consultorio) {
-        this.numero_consultorio = numero_consultorio;
+    public void setNumeroDoConsultorio(int numeroDoConsultorio) {
+        this.numeroDoConsultorio = numeroDoConsultorio;
     }
 
-    public String getNumero_telefone() {
-        return numero_telefone;
+    public String getNumeroDoTelefone() {
+        return numeroDoTelefone;
     }
 
-    public void setNumero_telefone(String numero_telefone) {
-        this.numero_telefone = numero_telefone;
+    public void setNumeroDoTelefone(String numeroDoTelefone) {
+        this.numeroDoTelefone = numeroDoTelefone;
     }
 
     public boolean isAtendimento_por_convenio() {
-        return atendimento_por_convenio;
+        return atendimentoPorConvenio;
     }
 
     public void setAtendimento_por_convenio(boolean atendimento_por_convenio) {
-        this.atendimento_por_convenio = atendimento_por_convenio;
+        this.atendimentoPorConvenio = atendimentoPorConvenio;
     }
+    
 }
