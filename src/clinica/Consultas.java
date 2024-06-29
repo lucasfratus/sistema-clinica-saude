@@ -13,7 +13,7 @@ public class Consultas {
     private String horario;
     private Medico medico;
     private Paciente paciente;
-    private String consulta;
+    private String tipoConsulta;
 
     public String getData() {
         return data;
@@ -47,12 +47,12 @@ public class Consultas {
         this.paciente = paciente;
     }
 
-    public String getConsulta() {
-        return consulta;
+    public String getTipoConsulta() {
+        return tipoConsulta;
     }
 
     public void setConsulta(String consulta) {
-        this.consulta = consulta;
+        this.tipoConsulta = tipoConsulta;
     }
     
 }
