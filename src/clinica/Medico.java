@@ -22,8 +22,6 @@ public class Medico {
         this.numeroDeRegistro = numeroDeRegistro;
         this.especialidade = especialidade;
         this.numeroDoConsultorio = numeroDoConsultorio;
-        this.numeroDoTelefone = numeroDoTelefone;
-        this.atendimentoPorConvenio = atendimentoPorConvenio;
     }
     
     public String getNome() {
