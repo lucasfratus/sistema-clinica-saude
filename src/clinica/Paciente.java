@@ -11,7 +11,7 @@ package clinica;
 public class Paciente {
     private String nome;
     private String email;
-    private int cpf;
+    private String cpf;
     private String dataNascimento;
     private String endereco;
     private int telefone;
@@ -27,7 +27,10 @@ public class Paciente {
       
     public Paciente(){        
     }
-    public Paciente(String nome, String email, String dataNascimento, String endereco, int telefone, String convenio){
+    
+    public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, int telefone, String convenio,
+            Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, String
+                    cirurgias, String alergias){
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -36,6 +39,13 @@ public class Paciente {
         this.telefone = telefone;
         this.convenio = convenio;
         this.prontuario = prontuario;
+        this.fuma = fuma;
+        this.bebe = bebe;
+        this.colesterolAlto = colesterolAlto;
+        this.diabete = diabete;
+        this.doencaCardiaca = doencaCardiaca;
+        this.cirurgias = cirurgias;
+        this.alergias = alergias;
         }
 
     public Prontuario getProntuario() {
