@@ -5,7 +5,7 @@
 package Gerenciador;
 
 import Atendimento.Paciente;
-import Atendimento.Consultas;
+import Atendimento.Consulta;
 
 /**
  *
@@ -13,6 +13,6 @@ import Atendimento.Consultas;
  */
 public class GerenciadorDeMensagens {
     private Paciente paciente;
-    private Consultas consulta;
+    private Consulta consulta;
     private String mensagem;
 }

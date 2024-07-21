@@ -10,12 +10,14 @@ import Staff.Medico;
  *
  * @author Giovani
  */
-public class Consultas {
+public class Consulta {
     private String data;
     private String horario;
     private Medico medico;
     private Paciente paciente;
     private String tipoConsulta;
+    
+    
 
     public String getData() {
         return data;
@@ -53,7 +55,7 @@ public class Consultas {
         return tipoConsulta;
     }
 
-    public void setConsulta(String consulta) {
+    public void setTipoConsulta(String tipoConsulta) {
         this.tipoConsulta = tipoConsulta;
     }
     

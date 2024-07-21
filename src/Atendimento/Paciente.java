@@ -6,17 +6,13 @@ package Atendimento;
 
 import Fichas.Prontuario;
 
-/**
- *
- * @author Giovani
- */
 public class Paciente {
     private String nome;
     private String email;
     private String cpf;
     private String dataNascimento;
     private String endereco;
-    private int telefone;
+    private String telefone;
     private String convenio;
     private Prontuario prontuario;
     private boolean fuma;
@@ -30,7 +26,7 @@ public class Paciente {
     public Paciente(){        
     }
     
-    public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, int telefone, String convenio,
+    public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio,
             Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, String
                     cirurgias, String alergias){
         this.nome = nome;
@@ -98,11 +94,11 @@ public class Paciente {
         this.endereco = endereco;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
