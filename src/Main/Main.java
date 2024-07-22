@@ -16,8 +16,10 @@ public class Main {
         ArrayList<Consulta> consultas1 = new ArrayList();
         ArrayList<Medico> medicos1 = new ArrayList();
         
+        //Paciente paciente0 = new Paciente("Wednesday Addams", "123.456.789-01", "13/01/2006", "123, Rua Fulano de Tal, Bairro Landia, Cidade Metropole", "Particular",
+        //        "wandinha123@gmail.com","(44)99101-0160");
         Paciente paciente0 = new Paciente("Wednesday Addams", "123.456.789-01", "13/01/2006", "123, Rua Fulano de Tal, Bairro Landia, Cidade Metropole", "Particular",
-                "wandinha123@gmail.com","(44)99101-0160");
+                   "Nao Informado", "Nao Informado");
         pacientes1.add(paciente0);
         
         Paciente paciente1 = new Paciente("Tireon Lanester", "997.323.800-12", "01/04/1968" , "500, Avenida Pedro Amaro dos Santos 585, Centro, Alto Paraiso", "Plano de Saude",
@@ -50,7 +52,7 @@ public class Main {
         Secretaria secretaria1 = new Secretaria("Missandei", pacientes1, consultas1);        
         // Marcar Consultas
         secretaria1.marcarConsulta("22/07/2024", "16:30", medico3, paciente0, "Consulta normal");
-        secretaria1.marcarConsulta("01/08/2024", "12:30", medico2, paciente1, "Consulta retorno");
+        secretaria1.marcarConsulta("22/07/2024", "12:30", medico2, paciente1, "Consulta retorno");
         secretaria1.marcarConsulta("22/07/2024", "13:30", medico1, paciente2, "Consulta normal");
         
         // Gerar relatorios

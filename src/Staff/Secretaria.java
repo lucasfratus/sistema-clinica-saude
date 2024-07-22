@@ -3,6 +3,7 @@ package Staff;
 import Atendimento.Consulta;
 import Atendimento.Paciente;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Secretaria {
     private String nomeFuncionario;
@@ -132,26 +133,39 @@ public class Secretaria {
     public void gerarRelatorio(String dataDeAmanha){
         ArrayList<Consulta> relatorioComContato = new ArrayList();
         ArrayList<Consulta> relatorioSemContato = new ArrayList();
-        for(int i = 0; i < listaConsultas.size(); i++)
-            if (listaConsultas.get(i).getData() == dataDeAmanha) {
-                if (listaConsultas.get(i).getPaciente().getTelefone() == null & listaConsultas.get(i).getPaciente().getEmail() == null){
-                    relatorioSemContato.add(String.valueOf(listaConsultas.get(i)));
+        for(int z = 0; z < listaConsultas.size(); z++)
+            if (listaConsultas.get(z).getData() == dataDeAmanha) {
+                if (listaConsultas.get(z).getPaciente().getTelefone() == "Nao Informado" && listaConsultas.get(z).getPaciente().getEmail() == "Nao Informado"){
+                    relatorioSemContato.add(listaConsultas.get(z));
                 } else {
-                    relatorioComContato.add(listaConsultas.get(i));
+                    relatorioComContato.add(listaConsultas.get(z));
                 }        
             }
-        System.out.println("---Relatório de Consultas de Amanha---\n" + 
-                "Com email/telefone:\n" + relatorioComContato + "\n" + "Sem email/telefone:\n" + relatorioSemContato);
-    }
-
-
-
-
-
-
-
-
-
+        
+        System.out.println("---Relatório de Consultas de Amanha---\nCom email/telefone:");
+        for(int i = 0;i < relatorioComContato.size(); i++){
+            System.out.println(relatorioComContato.get(i).getData());
+            System.out.println(relatorioComContato.get(i).getHorario());
+            System.out.println(relatorioComContato.get(i).getMedico().getNome());
+            System.out.println(relatorioComContato.get(i).getPaciente().getNome());
+            System.out.println(relatorioComContato.get(i).getPaciente().getTelefone());
+            System.out.println(relatorioComContato.get(i).getPaciente().getEmail());
+            System.out.println(relatorioComContato.get(i).getTipoConsulta());
+            System.out.println("");
+            
+        }
+        System.out.println("Sem e-mail/telefone:");
+        for(int x = 0;x < relatorioSemContato.size(); x++){
+            System.out.println(relatorioSemContato.get(x).getData());
+            System.out.println(relatorioSemContato.get(x).getHorario());
+            System.out.println(relatorioSemContato.get(x).getMedico().getNome());
+            System.out.println(relatorioSemContato.get(x).getPaciente().getNome());
+            System.out.println(relatorioSemContato.get(x).getPaciente().getTelefone());
+            System.out.println(relatorioSemContato.get(x).getPaciente().getEmail());
+            System.out.println(relatorioSemContato.get(x).getTipoConsulta());
+            System.out.println("");
+              }
+        }
 }
 
     
