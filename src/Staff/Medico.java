@@ -17,7 +17,7 @@ public class Medico {
     public Medico() {
     }
     
-    public Medico(String nome, String numeroDeRegistro, String especialidade, int numeroDoConsultorio, String numeroDoTelefone) {
+    public Medico(String nome, String numeroDeRegistro, String especialidade, int numeroDoConsultorio) {
         this.nome = nome;
         this.numeroDeRegistro = numeroDeRegistro;
         this.especialidade = especialidade;

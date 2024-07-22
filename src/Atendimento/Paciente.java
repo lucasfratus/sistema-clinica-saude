@@ -26,6 +26,17 @@ public class Paciente {
     public Paciente(){        
     }
     
+    public Paciente(String nome, String cpf, String dataNascimento, String endereco, String convenio, String email, String telefone){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
+        this.convenio = convenio;
+        this.email = email;
+        this.telefone = telefone;
+    }
+    
+    /*
     public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio,
             Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, String
                     cirurgias, String alergias){
@@ -45,7 +56,8 @@ public class Paciente {
         this.cirurgias = cirurgias;
         this.alergias = alergias;
         }
-
+    */
+    
     public Prontuario getProntuario() {
         return prontuario;
     }
