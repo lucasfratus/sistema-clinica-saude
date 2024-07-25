@@ -6,10 +6,6 @@ package Fichas;
 
 import Atendimento.Paciente;
 
-/**
- *
- * @author Giovani
- */
 public class RelatoriosMedicos {
     private Paciente paciente;
     private String receita;

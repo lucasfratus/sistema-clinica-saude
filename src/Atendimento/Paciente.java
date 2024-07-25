@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Atendimento;
-
+import java.util.ArrayList;
 import Fichas.Prontuario;
 
 public class Paciente {
@@ -20,8 +20,8 @@ public class Paciente {
     private boolean colesterolAlto;
     private boolean diabete;
     private boolean doencaCardiaca;
-    private String cirurgias;
-    private String alergias;
+    private ArrayList<String> cirurgias;
+    private ArrayList<String> alergias;
       
     public Paciente(){        
     }
@@ -162,19 +162,19 @@ public class Paciente {
         this.doencaCardiaca = doencaCardiaca;
     }
 
-    public String getCirurgias() {
+    public ArrayList<String> getCirurgias() {
         return cirurgias;
     }
 
-    public void setCirurgias(String cirurgias) {
+    public void setCirurgias(ArrayList<String> cirurgias) {
         this.cirurgias = cirurgias;
     }
 
-    public String getAlergias() {
+    public ArrayList<String> getAlergias() {
         return alergias;
     }
 
-    public void setAlergias(String alergias) {
+    public void setAlergias(ArrayList<String> alergias) {
         this.alergias = alergias;
     }
     

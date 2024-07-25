@@ -144,28 +144,26 @@ public class Secretaria {
         
         System.out.println("---Relatório de Consultas de Amanha---\nCom email/telefone:");
         for(int i = 0;i < relatorioComContato.size(); i++){
-            System.out.println(relatorioComContato.get(i).getData());
-            System.out.println(relatorioComContato.get(i).getHorario());
-            System.out.println(relatorioComContato.get(i).getMedico().getNome());
-            System.out.println(relatorioComContato.get(i).getPaciente().getNome());
-            System.out.println(relatorioComContato.get(i).getPaciente().getTelefone());
-            System.out.println(relatorioComContato.get(i).getPaciente().getEmail());
-            System.out.println(relatorioComContato.get(i).getTipoConsulta());
-            System.out.println("");
-            
+            System.out.println("Data: " + relatorioComContato.get(i).getData());
+            System.out.println("Horario: " + relatorioComContato.get(i).getHorario());
+            System.out.println("Medico: " + relatorioComContato.get(i).getMedico().getNome());
+            System.out.println("Paciente: " + relatorioComContato.get(i).getPaciente().getNome());
+            System.out.println("Telefone do Paciente: " + relatorioComContato.get(i).getPaciente().getTelefone());
+            System.out.println("E-mail do Paciente: " + relatorioComContato.get(i).getPaciente().getEmail());
+            System.out.println("Tipo de Consulta: " + relatorioComContato.get(i).getTipoConsulta());
+            System.out.println("");  
         }
+        
         System.out.println("Sem e-mail/telefone:");
         for(int x = 0;x < relatorioSemContato.size(); x++){
-            System.out.println(relatorioSemContato.get(x).getData());
-            System.out.println(relatorioSemContato.get(x).getHorario());
-            System.out.println(relatorioSemContato.get(x).getMedico().getNome());
-            System.out.println(relatorioSemContato.get(x).getPaciente().getNome());
-            System.out.println(relatorioSemContato.get(x).getPaciente().getTelefone());
-            System.out.println(relatorioSemContato.get(x).getPaciente().getEmail());
-            System.out.println(relatorioSemContato.get(x).getTipoConsulta());
+            System.out.println("Data: " + relatorioSemContato.get(x).getData());
+            System.out.println("Horario: " + relatorioSemContato.get(x).getHorario());
+            System.out.println("Medico: " + relatorioSemContato.get(x).getMedico().getNome());
+            System.out.println("Paciente: " + relatorioSemContato.get(x).getPaciente().getNome());
+            System.out.println("Tipo de Consulta: " + relatorioSemContato.get(x).getTipoConsulta());
             System.out.println("");
-              }
         }
+    }
 }
 
     
