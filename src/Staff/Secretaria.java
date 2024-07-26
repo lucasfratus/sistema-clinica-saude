@@ -130,9 +130,10 @@ public class Secretaria {
         listaConsultas.remove(consulta);
     } 
     
-    public void gerarRelatorio(String dataDeAmanha){
+    public ArrayList[] gerarRelatorio(String dataDeAmanha){
         ArrayList<Consulta> relatorioComContato = new ArrayList();
         ArrayList<Consulta> relatorioSemContato = new ArrayList();
+        
         for(int z = 0; z < listaConsultas.size(); z++)
             if (listaConsultas.get(z).getData() == dataDeAmanha) {
                 if (listaConsultas.get(z).getPaciente().getTelefone() == "Nao Informado" && listaConsultas.get(z).getPaciente().getEmail() == "Nao Informado"){
@@ -141,6 +142,10 @@ public class Secretaria {
                     relatorioComContato.add(listaConsultas.get(z));
                 }        
             }
+        
+        ArrayList<Consulta>[] relatorios = new ArrayList[2];
+        relatorios[0] = relatorioSemContato;
+        relatorios[1] = relatorioComContato;
         
         System.out.println("---Relatório de Consultas de Amanha---\nCom email/telefone:");
         for(int i = 0;i < relatorioComContato.size(); i++){
@@ -163,6 +168,8 @@ public class Secretaria {
             System.out.println("Tipo de Consulta: " + relatorioSemContato.get(x).getTipoConsulta());
             System.out.println("");
         }
+        
+        return relatorios;
     }
 }
 
