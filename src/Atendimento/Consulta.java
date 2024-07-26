@@ -6,17 +6,12 @@ package Atendimento;
 
 import Staff.Medico;
 
-/**
- *
- * @author Giovani
- */
 public class Consulta {
     private String data;
     private String horario;
     private Medico medico;
     private Paciente paciente;
     private String tipoConsulta;
-    
     
 
     public String getData() {

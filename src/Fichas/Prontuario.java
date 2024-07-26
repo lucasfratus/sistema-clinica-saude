@@ -4,10 +4,7 @@
  */
 package Fichas;
 
-/**
- *
- * @author Giovani
- */
+
 public class Prontuario {
     private String sintomas;
     private String diagnostico;
