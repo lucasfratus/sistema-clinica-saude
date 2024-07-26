@@ -1,21 +1,56 @@
-package Main;
+package Sistema;
 
 import Atendimento.Consulta;
 import Atendimento.Paciente;
-import Fichas.Prontuario;
-import Fichas.RelatoriosMedicos;
-import Staff.GerenciadorDeMensagens;
 import Staff.Medico;
 import Staff.Secretaria;
-import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Main {
-    public static void main(String[] args){
+public class DadosCadastradosEMarcados {
+    private ArrayList<Consulta> consultasMarcadas;
+    private ArrayList<Paciente> pacientesCadastrados;
+    private ArrayList<Medico> medicos;  
+    private ArrayList<Secretaria> secretarias;
+
+    public DadosCadastradosEMarcados(ArrayList<Consulta> consultasMarcadas, ArrayList<Paciente> pacientesCadastrados, ArrayList<Medico> medicos) {
+        this.consultasMarcadas = consultasMarcadas;
+        this.pacientesCadastrados = pacientesCadastrados;
+        this.medicos = medicos;
+    }
+
+    public ArrayList<Consulta> getConsultasMarcadas() {
+        return consultasMarcadas;
+    }
+
+    public void setConsultasMarcadas(ArrayList<Consulta> consultasMarcadas) {
+        this.consultasMarcadas = consultasMarcadas;
+    }
+
+    public ArrayList<Paciente> getPacientesCadastrados() {
+        return pacientesCadastrados;
+    }
+
+    public void setPacientesCadastrados(ArrayList<Paciente> pacientesCadastrados) {
+        this.pacientesCadastrados = pacientesCadastrados;
+    }
+
+    public ArrayList<Medico> getMedicos() {
+        return medicos;
+    }
+
+    public void setMedicos(ArrayList<Medico> medicos) {
+        this.medicos = medicos;
+    }
+    
+    public ArrayList[] TestarConsultasEPacientes(){
         ArrayList<Paciente> pacientes1 = new ArrayList();
         ArrayList<Consulta> consultas1 = new ArrayList();
         ArrayList<Medico> medicos1 = new ArrayList();
+        ArrayList<Secretaria> secretarias1 = new ArrayList();
         
+        ArrayList[] dadosParaTeste = new ArrayList[4];
+
+        // Criando paci1ntes para o teste
         Paciente paciente0 = new Paciente("Wednesday Addams", "123.456.789-01", "13/01/2006", "123, Rua Fulano de Tal, Bairro Landia, Cidade Metropole", "Particular",
                    "Nao Informado", "Nao Informado");
         pacientes1.add(paciente0);
@@ -36,6 +71,7 @@ public class Main {
                 "seteesferas@dbmail.com", "(77) 7777-7777");
         pacientes1.add(paciente4);
 
+        // Criando médicos para o teste
         Medico medico1 = new Medico("Geralt Robotnik", "1234516-7/BR", "Geneticista", 3);
         medicos1.add(medico1);
         
@@ -45,25 +81,22 @@ public class Main {
         Medico medico3 = new Medico("Ivo Robotnik", "777777-1/BR", "Infectologista", 2);
         medicos1.add(medico3);
                 
-        
+        // Criando uma secretaria para o teste
         Secretaria secretaria1 = new Secretaria("Missandei", pacientes1, consultas1);        
-        // Marcar Consultas
+        
+        // Marcando consultas para o teste
         secretaria1.marcarConsulta("22/07/2024", "16:30", medico3, paciente0, "Consulta normal");
         secretaria1.marcarConsulta("22/07/2024", "12:30", medico2, paciente1, "Consulta retorno");
         secretaria1.marcarConsulta("22/07/2024", "13:30", medico1, paciente2, "Consulta normal");
-                
-        /*
-        int opcao;
         
-        System.out.println("----- Sistema de controle: Saúde & Cia -----");
-        Scanner leitura = new Scanner(System.in);
-        System.out.println("Selecione seu cargo: \n (1) Secretaria \n (2) Medico \n (3) Gerenciador de Mensagens");
-        opcao = leitura.nextInt();
-        if(opcao == 1){  
-            System.out.println("O que você deseja fazer? ");
-            System.out.println("(1) Gerenciar Pacientes \n (2) Gerenciar Consultas \n (3) Gerar Relatorio \n");
-            opcao = leitura.nextInt();  
-        }
-        */
+        // Setando o array para o return
+        dadosParaTeste[0] = pacientes1;
+        dadosParaTeste[1] = consultas1;
+        dadosParaTeste[2] = medicos1;
+        dadosParaTeste[3] = secretarias1;
+        
+        return dadosParaTeste;
     }
+    
+
 }

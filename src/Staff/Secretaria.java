@@ -3,7 +3,7 @@ package Staff;
 import Atendimento.Consulta;
 import Atendimento.Paciente;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class Secretaria {
     private String nomeFuncionario;
@@ -129,7 +129,7 @@ public class Secretaria {
     public void removerConsulta(Consulta consulta){
         listaConsultas.remove(consulta);
     } 
-    
+   
     public ArrayList[] gerarRelatorio(String dataDeAmanha){
         ArrayList<Consulta> relatorioComContato = new ArrayList();
         ArrayList<Consulta> relatorioSemContato = new ArrayList();
