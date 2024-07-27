@@ -40,7 +40,7 @@ public class Secretaria {
         this.listaConsultas = listaConsultas;
     }
     
-    public Paciente cadastrarPaciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio){
+    public Paciente cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
         Paciente novoPaciente = new Paciente();  
         novoPaciente.setNome(nome);
         novoPaciente.setEmail(email);
@@ -56,7 +56,7 @@ public class Secretaria {
     public Paciente buscarPaciente(String cpf, ArrayList<Paciente> listaPacientes){
         Paciente paciente = null;
         for(int i = 0; i < listaPacientes.size(); i++){
-            if (listaPacientes.get(i).getCpf() == cpf) {
+            if (listaPacientes.get(i).getCpf().equals(cpf)) {
                 paciente = listaPacientes.get(i);
             }    
         }
@@ -130,13 +130,13 @@ public class Secretaria {
         listaConsultas.remove(consulta);
     } 
    
-    public ArrayList[] gerarRelatorio(String dataDeAmanha){
+    public ArrayList[] gerarRelatorio(String data){
         ArrayList<Consulta> relatorioComContato = new ArrayList();
         ArrayList<Consulta> relatorioSemContato = new ArrayList();
         
         for(int z = 0; z < listaConsultas.size(); z++)
-            if (listaConsultas.get(z).getData() == dataDeAmanha) {
-                if (listaConsultas.get(z).getPaciente().getTelefone() == "Nao Informado" && listaConsultas.get(z).getPaciente().getEmail() == "Nao Informado"){
+            if (listaConsultas.get(z).getData() == data) {
+                if (listaConsultas.get(z).getPaciente().getTelefone() == "NaoInformado" && listaConsultas.get(z).getPaciente().getEmail() == "NaoInformado"){
                     relatorioSemContato.add(listaConsultas.get(z));
                 } else {
                     relatorioComContato.add(listaConsultas.get(z));
@@ -147,7 +147,7 @@ public class Secretaria {
         relatorios[0] = relatorioSemContato;
         relatorios[1] = relatorioComContato;
         
-        System.out.println("---Relatório de Consultas de Amanha---\nCom email/telefone:");
+        System.out.println("---Relatório de Consultas de " + data + "---\nCom email/telefone:");
         for(int i = 0;i < relatorioComContato.size(); i++){
             System.out.println("Data: " + relatorioComContato.get(i).getData());
             System.out.println("Horario: " + relatorioComContato.get(i).getHorario());

@@ -6,16 +6,19 @@ import Staff.Medico;
 import Staff.Secretaria;
 import java.util.ArrayList;
 
-public class DadosCadastradosEMarcados {
+public class ListasDeDados {
     private ArrayList<Consulta> consultasMarcadas;
     private ArrayList<Paciente> pacientesCadastrados;
     private ArrayList<Medico> medicos;  
     private ArrayList<Secretaria> secretarias;
 
-    public DadosCadastradosEMarcados(ArrayList<Consulta> consultasMarcadas, ArrayList<Paciente> pacientesCadastrados, ArrayList<Medico> medicos) {
+    public ListasDeDados(ArrayList<Consulta> consultasMarcadas, ArrayList<Paciente> pacientesCadastrados, ArrayList<Medico> medicos) {
         this.consultasMarcadas = consultasMarcadas;
         this.pacientesCadastrados = pacientesCadastrados;
         this.medicos = medicos;
+    }
+
+    public ListasDeDados(){
     }
 
     public ArrayList<Consulta> getConsultasMarcadas() {
@@ -50,7 +53,7 @@ public class DadosCadastradosEMarcados {
         
         ArrayList[] dadosParaTeste = new ArrayList[4];
 
-        // Criando paci1ntes para o teste
+        // Criando pacientes para o teste
         Paciente paciente0 = new Paciente("Wednesday Addams", "123.456.789-01", "13/01/2006", "123, Rua Fulano de Tal, Bairro Landia, Cidade Metropole", "Particular",
                    "Nao Informado", "Nao Informado");
         pacientes1.add(paciente0);
@@ -82,7 +85,8 @@ public class DadosCadastradosEMarcados {
         medicos1.add(medico3);
                 
         // Criando uma secretaria para o teste
-        Secretaria secretaria1 = new Secretaria("Missandei", pacientes1, consultas1);        
+        Secretaria secretaria1 = new Secretaria("Missandei", pacientes1, consultas1);   
+        secretarias1.add(secretaria1);
         
         // Marcando consultas para o teste
         secretaria1.marcarConsulta("22/07/2024", "16:30", medico3, paciente0, "Consulta normal");

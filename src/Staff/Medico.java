@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Staff;
 
 import Atendimento.Paciente;
 import Fichas.Prontuario;
 import java.util.ArrayList;
 
-/**
- *
- * @author lucas
- */
 public class Medico {
     private String nome;
     private String numeroDeRegistro;
@@ -70,7 +62,7 @@ public class Medico {
         return numeroAtendidos;
     }
     public Paciente cadastrarPaciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio){
-        Paciente novoPaciente = new Paciente();  
+        Paciente novoPaciente = new Paciente();
         novoPaciente.setNome(nome);
         novoPaciente.setEmail(email);
         novoPaciente.setCpf(cpf);

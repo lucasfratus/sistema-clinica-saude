@@ -3,13 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Atendimento;
+
 import java.util.ArrayList;
 import Fichas.Prontuario;
 
 public class Paciente {
     private String nome;
-    private String email;
     private String cpf;
+    private String email;
     private String dataNascimento;
     private String endereco;
     private String telefone;
@@ -36,10 +37,9 @@ public class Paciente {
         this.telefone = telefone;
     }
     
-    /*
     public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio,
-            Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, String
-                    cirurgias, String alergias){
+            Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, ArrayList<String>
+                    cirurgias, ArrayList<String> alergias){
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -56,7 +56,6 @@ public class Paciente {
         this.cirurgias = cirurgias;
         this.alergias = alergias;
         }
-    */
     
     public Prontuario getProntuario() {
         return prontuario;

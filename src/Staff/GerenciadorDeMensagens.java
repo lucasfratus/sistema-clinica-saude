@@ -28,7 +28,7 @@ public class GerenciadorDeMensagens {
         for(int i = 0; i < listaConsultas.size(); i++){
             Paciente paciente = listaConsultas.get(i).getPaciente();
             Consulta consulta = listaConsultas.get(i);
-            if ("Nao Informado".equals(paciente.getEmail())) {
+            if ("NaoInformado".equals(paciente.getEmail())) {
                 String mensagem = "Prezado(a) " + paciente.getNome() + " A sua consulta com o(a) Doutor(a) " + consulta.getMedico().getNome() + " eh amanha, as"
                         + " " + consulta.getHorario() ;
                 mandarSms(mensagem, paciente.getTelefone());

@@ -4,7 +4,6 @@
  */
 package Fichas;
 
-
 public class Prontuario {
     private String sintomas;
     private String diagnostico;
