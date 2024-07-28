@@ -1,8 +1,10 @@
 package Staff;
 
+import Atendimento.Consulta;
 import Atendimento.Paciente;
 import Fichas.Prontuario;
 import java.util.ArrayList;
+import Sistema.ListasDeDados;
 
 public class Medico {
     private String nome;
@@ -10,16 +12,19 @@ public class Medico {
     private String especialidade;
     private int numeroDoConsultorio;
     private ArrayList<Paciente> listaPacientes;
+    private ArrayList<Consulta> listaConsultas;    
     private int numeroAtendidos;
     
     public Medico() {
     }
     
-    public Medico(String nome, String numeroDeRegistro, String especialidade, int numeroDoConsultorio) {
+    public Medico(String nome, String numeroDeRegistro, String especialidade, int numeroDoConsultorio, ArrayList<Paciente> listaPacientes, ArrayList<Consulta> listaConsultas ) {
         this.nome = nome;
         this.numeroDeRegistro = numeroDeRegistro;
         this.especialidade = especialidade;
         this.numeroDoConsultorio = numeroDoConsultorio;
+        this.listaPacientes = listaPacientes;
+        this.listaConsultas = listaConsultas;
     }
     
     public String getNome() {
@@ -72,6 +77,16 @@ public class Medico {
         novoPaciente.setConvenio(convenio);
         listaPacientes.add(novoPaciente);
         return novoPaciente;
+    }
+    
+    public Paciente buscarPaciente(String cpf){
+        Paciente paciente = null;
+        for(int i = 0; i < listaPacientes.size(); i++){
+            if (listaPacientes.get(i).getCpf().equals(cpf)) {
+                paciente = listaPacientes.get(i);
+            }    
+        }
+        return paciente;
     }
     
     public void cadastrarInformacoesPaciente(Paciente paciente, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, 

@@ -9,11 +9,13 @@ public class Secretaria {
     private String nomeFuncionario;
     private ArrayList<Paciente> listaPacientes;
     private ArrayList<Consulta> listaConsultas;
+    private ArrayList<Medico> listaMedicos;
 
-    public Secretaria(String nomeFuncionario, ArrayList<Paciente> listaPacientes, ArrayList<Consulta> listaConsultas) {
+    public Secretaria(String nomeFuncionario, ArrayList<Paciente> listaPacientes, ArrayList<Consulta> listaConsultas, ArrayList<Medico> listaMedicos) {
         this.nomeFuncionario = nomeFuncionario;
         this.listaPacientes = listaPacientes;
         this.listaConsultas = listaConsultas;
+        this.listaMedicos = listaMedicos;
     }
         
     public String getNomeFuncionario() {
@@ -39,6 +41,15 @@ public class Secretaria {
     public void setListaConsultas(ArrayList<Consulta> listaConsultas) {
         this.listaConsultas = listaConsultas;
     }
+
+    public ArrayList<Medico> getListaMedicos() {
+        return listaMedicos;
+    }
+
+    public void setListaMedicos(ArrayList<Medico> listaMedicos) {
+        this.listaMedicos = listaMedicos;
+    }
+    
     
     public Paciente cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
         Paciente novoPaciente = new Paciente();  
@@ -53,7 +64,7 @@ public class Secretaria {
         return novoPaciente;
     }
 
-    public Paciente buscarPaciente(String cpf, ArrayList<Paciente> listaPacientes){
+    public Paciente buscarPaciente(String cpf){
         Paciente paciente = null;
         for(int i = 0; i < listaPacientes.size(); i++){
             if (listaPacientes.get(i).getCpf().equals(cpf)) {
@@ -61,6 +72,16 @@ public class Secretaria {
             }    
         }
         return paciente;
+    }
+    
+    public Medico buscarMedico(String nomeMedico){
+        Medico medicoBuscado = null;
+        for(int i = 0; i < listaMedicos.size(); i++){
+            if (listaMedicos.get(i).getNome().equals(nomeMedico)) {
+                medicoBuscado = listaMedicos.get(i);
+            }    
+        }
+        return medicoBuscado;
     }
     
     public void atualizarPacienteNome(String novoNome, Paciente paciente){
@@ -106,6 +127,16 @@ public class Secretaria {
         return novaConsulta;
     }
     
+    public Consulta buscarConsulta(String data, String horario, Medico medico){
+        Consulta consultaBuscada = null;
+        for(int i = 0; i < listaConsultas.size(); i++){
+            if(listaConsultas.get(i).getData() == data && (listaConsultas.get(i).getHorario() == horario && listaConsultas.get(i).getMedico() == medico)){
+                consultaBuscada = listaConsultas.get(i);
+            }
+        }
+        return consultaBuscada;
+    }
+    
     public void atualizarConsultaData(String data, Consulta consulta){
         consulta.setData(data);
     }
@@ -147,7 +178,7 @@ public class Secretaria {
         relatorios[0] = relatorioSemContato;
         relatorios[1] = relatorioComContato;
         
-        System.out.println("---Relatório de Consultas de " + data + "---\nCom email/telefone:");
+        System.out.println("---Relatório de Consultas de " + data + "---\n\nCom email/telefone:");
         for(int i = 0;i < relatorioComContato.size(); i++){
             System.out.println("Data: " + relatorioComContato.get(i).getData());
             System.out.println("Horario: " + relatorioComContato.get(i).getHorario());
@@ -158,7 +189,7 @@ public class Secretaria {
             System.out.println("Tipo de Consulta: " + relatorioComContato.get(i).getTipoConsulta());
             System.out.println("");  
         }
-        
+        System.out.println("------------------");
         System.out.println("Sem e-mail/telefone:");
         for(int x = 0;x < relatorioSemContato.size(); x++){
             System.out.println("Data: " + relatorioSemContato.get(x).getData());
@@ -168,7 +199,7 @@ public class Secretaria {
             System.out.println("Tipo de Consulta: " + relatorioSemContato.get(x).getTipoConsulta());
             System.out.println("");
         }
-        
+        System.out.println("------------------");
         return relatorios;
     }
 }
