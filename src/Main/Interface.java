@@ -22,7 +22,9 @@ public class Interface {
         ArrayList<Consulta> consultas = dadosParaTeste[1];
         ArrayList<Medico> medicos = dadosParaTeste[2];
         ArrayList<Secretaria> secretarias = dadosParaTeste[3];
-        Secretaria secretaria = secretarias.get(0);
+        ArrayList<GerenciadorDeMensagens> gerenciadores = dadosParaTeste[4];
+        Secretaria secretaria = secretarias.get(0); // define uma secretaria padrao
+        GerenciadorDeMensagens gerenciador = gerenciadores.get(0); // define um gerenciador de mensagens padrao
         Scanner leitura = new Scanner(System.in);
         int opcao0 = 0;
         switch(opcao0){
@@ -170,7 +172,8 @@ public class Interface {
                                                 break;
                                             }
                                         } while(Voltar.equals(""));
-                                    }            
+                                    }
+                                break;
                             } 
                         } while (Voltar.equals("")); 
                         } while(opcao3 != 4);
@@ -347,257 +350,289 @@ public class Interface {
                     
                     
                     } while(opcao2 != 4);
-            case 2:
-                int opcao211;
-                Voltar = "";
-                System.out.println();
-                leitura.nextLine();
-                System.out.println("Insira o seu nome: ");
-                String nomeMedico = leitura.nextLine();
-                Medico medicoLogado = secretaria.buscarMedico(nomeMedico);
-                if(medicoLogado == null){
-                    System.out.println("Medico nao encontrado");
+                case 2:
+                    int opcao211;
+                    Voltar = "";
+                    System.out.println();
+                    leitura.nextLine();
+                    System.out.println("Insira o seu nome: ");
+                    String nomeMedico = leitura.nextLine();
+                    Medico medicoLogado = secretaria.buscarMedico(nomeMedico);
+                    if(medicoLogado == null){
+                        System.out.println("Medico nao encontrado");
+                        Voltar = "voltar";
+                        break;
+                    } else {
+                    do{
+                    System.out.println();
+                    System.out.println("O que deseja fazer?");
+                    System.out.println("1. Gerenciar Pacientes\n2. Gerenciar Prontuarios\n3. Gerar Relatórios Médicos\n4. Voltar");
+                    opcao211 = leitura.nextInt();
+                    switch(opcao211){
+                        case 1:
+                            Voltar = "";
+                            System.out.println();
+                            leitura.nextLine();
+                            System.out.println("Insira o CPF do paciente desejado: ");
+                            String cpfPaciente = leitura.nextLine();
+                            Paciente pacienteBuscadoPorMedico = medicoLogado.buscarPaciente(cpfPaciente);
+                            if(pacienteBuscadoPorMedico == null){
+                                System.out.println("Paciente não encontrado.");
+                                Voltar = "voltar";
+                                break;
+                            } else {
+                            int opcao220;
+                            do{
+                            System.out.println();
+                            System.out.println("1. Adicionar dados adicionais\n2. Atualizar dados adicionais\n3. Voltar ");
+                            opcao220 = leitura.nextInt();
+                            switch(opcao220){
+                                case 1:
+                                    Voltar = "";
+                                    System.out.println();
+                                    leitura.nextLine();
+                                    System.out.println("O paciente fuma?(true/false)");
+                                    boolean fuma = leitura.nextBoolean();
+                                    System.out.println("O paciente bebe?(true/false)");
+                                    boolean bebe = leitura.nextBoolean();
+                                    System.out.println("O paciente possui diabete?(true/false)");
+                                    boolean diabete = leitura.nextBoolean();
+                                    System.out.println("O paciente possui colesterol alto?(true/false)");
+                                    boolean colesterol = leitura.nextBoolean();
+                                    System.out.println("O paciente possui alguma doenca cardiaca?(true/false)");
+                                    boolean doencaCardiaca = leitura.nextBoolean();
+                                    ArrayList<String> listaCirurgias = new ArrayList();
+                                    pacienteBuscadoPorMedico.setCirurgias(listaCirurgias);
+                                    System.out.println("Quantas cirurgias o paciente fez?");
+                                    int qntdCirurgias = leitura.nextInt();
+                                    if(qntdCirurgias > 0){
+                                        System.out.println("Insira cada uma das cirurgias:");
+                                        for(int x = 0; x <= qntdCirurgias; x++){
+                                            String cirurgia = leitura.nextLine();
+                                            listaCirurgias.add(cirurgia);
+                                        }   
+                                    }
+                                    ArrayList<String> listaAlergias = new ArrayList();
+                                    pacienteBuscadoPorMedico.setAlergias(listaAlergias);
+                                    System.out.println("Quantas alergias o paciente tem?");
+                                    int qntdAlergias = leitura.nextInt();
+                                    if(qntdAlergias > 0){
+                                        System.out.println("Insira cada uma das alergias:");
+                                        for(int x = 0; x <= qntdCirurgias; x++){
+                                            String alergia = leitura.nextLine();
+                                            listaAlergias.add(alergia);
+                                        }
+                                    medicoLogado.cadastrarInformacoesPaciente(pacienteBuscadoPorMedico, fuma, bebe, colesterol, diabete, doencaCardiaca, listaCirurgias, listaAlergias);
+                                    System.out.println("Informacoes adicionais cadastradas com sucesso.");
+                                    Voltar = "voltar";
+                                    break;
+                                    }
+                                case 2:
+                                    Voltar = "";
+                                    System.out.println();
+                                    leitura.nextLine();
+                                    int opcao221;
+                                    do{
+                                    System.out.println("O que deseja atualizar? ");
+                                    System.out.println("1. Fuma \n2. Bebe\n3. Colesterol\n4. Diabate \n5. Doenca Cardiaca\n6. Cirurgias\n7. Alergias\n8. Voltar ");
+                                    opcao221 = leitura.nextInt();
+                                    switch(opcao221){
+                                        case 1:
+                                            System.out.println("Insira a atualizacao: ");
+                                            fuma = leitura.nextBoolean();
+                                            pacienteBuscadoPorMedico.setFuma(fuma);
+                                            System.out.println("Atualizado com sucesso.");
+                                            Voltar = "voltar";
+                                            break;
+                                        case 2:
+                                            System.out.println("Insira a atualizacao: ");
+                                            bebe = leitura.nextBoolean();
+                                            pacienteBuscadoPorMedico.setBebe(bebe);
+                                            System.out.println("Atualizado com sucesso.");
+                                            Voltar = "voltar";
+                                            break;
+                                        case 3:
+                                            System.out.println("Insira a atualizacao: ");
+                                            colesterol = leitura.nextBoolean();
+                                            pacienteBuscadoPorMedico.setColesterolAlto(colesterol);
+                                            System.out.println("Atualizado com sucesso.");
+                                            Voltar = "voltar";
+                                            break;
+                                        case 4:
+                                            System.out.println("Insira a atualizacao: ");
+                                            diabete = leitura.nextBoolean();
+                                            pacienteBuscadoPorMedico.setDiabete(diabete);
+                                            System.out.println("Atualizado com sucesso.");
+                                            Voltar = "voltar";
+                                            break;
+                                        case 5:
+                                            System.out.println("Insira a atualizacao: ");
+                                            doencaCardiaca = leitura.nextBoolean();
+                                            pacienteBuscadoPorMedico.setDoencaCardiaca(doencaCardiaca);
+                                            System.out.println("Ataulizado com sucesso.");
+                                            Voltar = "voltar";
+                                            break;
+                                        case 6:
+                                            System.out.println("O que você deseja? ");
+                                            System.out.println("1. Adicionar \n2. Remover");
+                                            int opcaoAtualizacao = leitura.nextInt();
+                                            if(opcaoAtualizacao == 1){
+                                                System.out.println("Qual cirurgia voce deseja adicionar?");
+                                                String cirurgiaAdicionada = leitura.nextLine();
+                                                medicoLogado.adicionarCirurgia(cirurgiaAdicionada, pacienteBuscadoPorMedico);
+                                                System.out.println("Cirurgia adicionada com sucesso");
+                                            } if(opcaoAtualizacao == 2) {
+                                                System.out.println("Qual cirurgia voce deseja remover?");
+                                                for(int x = 0; x < pacienteBuscadoPorMedico.getCirurgias().size(); x++){
+                                                    System.out.println(pacienteBuscadoPorMedico.getCirurgias().get(x));
+                                                }
+                                                System.out.println();
+                                                leitura.nextLine();
+                                                String cirurgiaRemovida = leitura.nextLine();
+                                                medicoLogado.removerCirurgia(cirurgiaRemovida, pacienteBuscadoPorMedico);
+                                                System.out.println("Cirurgia removida com sucesso");
+                                            }
+                                            Voltar = "voltar";
+                                            break;
+                                        case 7:
+                                            System.out.println("O que você deseja? ");
+                                            System.out.println("1. Adicionar \n2. Remover");
+                                            opcaoAtualizacao = leitura.nextInt();
+                                            if(opcaoAtualizacao == 1){
+                                                System.out.println("Qual alergia voce deseja adicionar?");
+                                                String alergiaAdicionada = leitura.nextLine();
+                                                medicoLogado.adicionarCirurgia(alergiaAdicionada, pacienteBuscadoPorMedico);
+                                                System.out.println("Alergia adicionada com sucesso");
+                                            } if(opcaoAtualizacao == 2) {
+                                                System.out.println("Qual alergia voce deseja remover?");
+                                                for(int x = 0; x < pacienteBuscadoPorMedico.getCirurgias().size(); x++){
+                                                    System.out.println(pacienteBuscadoPorMedico.getCirurgias().get(x));
+                                                }
+                                                System.out.println();
+                                                leitura.nextLine();
+                                                String alergiaRemovida = leitura.nextLine();
+                                                medicoLogado.removerAlergia(alergiaRemovida, pacienteBuscadoPorMedico);
+                                                System.out.println("Alergia removida com sucesso");
+                                            }
+                                            break;
+                                    }
+                                    Voltar = "voltar";
+                                    } while(opcao221 != 8 || Voltar.equals(""));
+                                    break;
+                            }
+                            Voltar = "voltar";
+                            } while(opcao220 != 3 || Voltar.equals(""));
+                            }
+
+                        case 2:
+                            Voltar = "";
+                            System.out.println();
+                            leitura.nextLine();
+                            int opcao200;
+                            System.out.println("Insira o CPF do paciente de que deseja alterar o prontuario:");
+                            String cpfPacienteProntuario = leitura.nextLine();
+                            Paciente pacienteProntuario = medicoLogado.buscarPaciente(cpfPacienteProntuario);
+                            if(pacienteProntuario == null){
+                                System.out.println("Paciente nao encontrado");
+                                Voltar = "voltar";
+                                break;
+                            } else {
+                            do{
+                            System.out.println("O que deseja fazer?");
+                            System.out.println("1. Cadastrar Prontuario \n2. Atualizar Prontuario\n3. Remover Prontuario");
+                            opcao200 = leitura.nextInt();
+                            switch(opcao200){
+                                case 1:
+                                    System.out.println();
+                                    leitura.nextLine();
+                                    System.out.println("Quais são os sintomas?");
+                                    String sintomas = leitura.nextLine();
+                                    System.out.println("Qual o diagnostico?");
+                                    String diagnosticos = leitura.nextLine();
+                                    System.out.println("Qual o tratamento");
+                                    String tratamento = leitura.nextLine();
+                                    medicoLogado.cadastrarProntuario(pacienteProntuario, sintomas, diagnosticos, tratamento);
+                                    System.out.println("Prontuario cadastrado com sucesso.");
+                                    break;
+                                case 2:
+                                    System.out.println();
+                                    leitura.nextLine();
+                                    int opcaoProntuario;
+                                    do{
+                                    System.out.println("O que deseja atualizar?");
+                                    System.out.println("1. Sintomas\n2. Diagnostico\n3.Tratamento\n4. Voltar");
+                                    opcaoProntuario = leitura.nextInt();
+                                    if(opcaoProntuario == 1){
+                                        System.out.println("Insira os sintomas: ");
+                                        String novosSintomas = leitura.nextLine();
+                                        medicoLogado.atualizarSintomasProntuario(pacienteProntuario, novosSintomas);
+                                        System.out.println("Sintomas atualizados com sucesso.");
+                                    } if(opcaoProntuario == 2){
+                                        System.out.println("Insira o novo diagnostico: ");
+                                        String diagnostico = leitura.nextLine();
+                                        medicoLogado.atualizarDiagnosticoProntuario(pacienteProntuario, diagnostico);
+                                        System.out.println("Diagnostico atualizado com sucesso.");
+                                    } if(opcaoProntuario == 3){
+                                        System.out.println("Insira o novo tratamento: ");
+                                        String novoTratamento = leitura.nextLine();
+                                        medicoLogado.atualizarTratamentoProntuario(pacienteProntuario, novoTratamento);
+                                        System.out.println("Tratamento atualizado com sucesso.");
+                                    }
+                                    Voltar = "voltar";
+                                    break;
+                                    }while(opcaoProntuario != 4 || Voltar.equals(""));
+                                case 3:
+                                    System.out.println();
+                                    leitura.nextLine();
+                                    System.out.println("Deseja remover o prontuario do paciente " + pacienteProntuario.getNome() + "?\n"
+                                            + "1. Sim\n2. Nao");
+                                    int confirmacao;
+                                    confirmacao = leitura.nextInt();
+                                    if(confirmacao == 1){
+                                        medicoLogado.removerProntuario(pacienteProntuario);
+                                        System.out.println("Prontuario removido.");
+                                    }
+                                    Voltar = "voltar";
+                                    break;
+                            }
+                            } while(opcao200 !=4 || Voltar.equals(""));
+                            }   
+                        break;
+                    }
+                    } while(opcao211 != 4 || Voltar.equals(""));
+                    }
+                        case3:
+                            Voltar = "";
+                            System.out.println();
+                            leitura.nextLine();
+                            System.out.println("Insira o CPF do paciente desejado: ");
+                            String cpfPaciente = leitura.nextLine();
+                            Paciente pacienteProntuario = medicoLogado.buscarPaciente(cpfPaciente);
+                            if(pacienteProntuario == null){
+                                System.out.println("Paciente não encontrado.");
+                                Voltar = "voltar";
+                                break;
+                            } else {
+                                System.out.println("----Relatorio Gerado----");
+                                medicoLogado.gerarRelatorioMedico(pacienteProntuario);
+                            }
+                            Voltar = "";
+                            break;
+                case 3:
+                    Voltar = "";
+                    System.out.println();
+                    leitura.nextLine();
+                    System.out.println("Deseja enviar as mensagens para os pacientes de amanhã?\n1. Sim\n2. Nao");
+                    int confirmacao = leitura.nextInt();
+                    if(confirmacao == 1){
+                        gerenciador.enviarMensagens(dataDeAmanha);
+                        System.out.println("Mensagens enviadas com sucesso.");
+                    }
                     Voltar = "voltar";
                     break;
-                } else {
-                do{
-                System.out.println();
-                System.out.println("O que deseja fazer?");
-                System.out.println("1. Gerenciar Pacientes\n2. Gerar Prontuarios\n2. Gerar Relatórios Médicos\n3. Voltar");
-                opcao211 = leitura.nextInt();
-                switch(opcao211){
-                    case 1:
-                        Voltar = "";
-                        System.out.println();
-                        leitura.nextLine();
-                        System.out.println("Insira o CPF do paciente desejado: ");
-                        String cpfPaciente = leitura.nextLine();
-                        Paciente pacienteBuscadoPorMedico = medicoLogado.buscarPaciente(cpfPaciente);
-                        if(pacienteBuscadoPorMedico == null){
-                            System.out.println("Paciente não encontrado.");
-                            Voltar = "voltar";
-                            break;
-                        } else {
-                        int opcao220;
-                        do{
-                        System.out.println();
-                        System.out.println("1. Adicionar dados adicionais\n2. Atualizar dados adicionais\n3. Voltar ");
-                        opcao220 = leitura.nextInt();
-                        switch(opcao220){
-                            case 1:
-                                Voltar = "";
-                                System.out.println();
-                                leitura.nextLine();
-                                System.out.println("O paciente fuma?(true/false)");
-                                boolean fuma = leitura.nextBoolean();
-                                System.out.println("O paciente bebe?(true/false)");
-                                boolean bebe = leitura.nextBoolean();
-                                System.out.println("O paciente possui diabete?(true/false)");
-                                boolean diabete = leitura.nextBoolean();
-                                System.out.println("O paciente possui colesterol alto?(true/false)");
-                                boolean colesterol = leitura.nextBoolean();
-                                System.out.println("O paciente possui alguma doenca cardiaca?(true/false)");
-                                boolean doencaCardiaca = leitura.nextBoolean();
-                                ArrayList<String> listaCirurgias = new ArrayList();
-                                pacienteBuscadoPorMedico.setCirurgias(listaCirurgias);
-                                System.out.println("Quantas cirurgias o paciente fez?");
-                                int qntdCirurgias = leitura.nextInt();
-                                if(qntdCirurgias > 0){
-                                    System.out.println("Insira cada uma das cirurgias:");
-                                    for(int x = 0; x <= qntdCirurgias; x++){
-                                        String cirurgia = leitura.nextLine();
-                                        listaCirurgias.add(cirurgia);
-                                    }   
-                                }
-                                ArrayList<String> listaAlergias = new ArrayList();
-                                pacienteBuscadoPorMedico.setAlergias(listaAlergias);
-                                System.out.println("Quantas alergias o paciente tem?");
-                                int qntdAlergias = leitura.nextInt();
-                                if(qntdAlergias > 0){
-                                    System.out.println("Insira cada uma das alergias:");
-                                    for(int x = 0; x <= qntdCirurgias; x++){
-                                        String alergia = leitura.nextLine();
-                                        listaAlergias.add(alergia);
-                                    }
-                                medicoLogado.cadastrarInformacoesPaciente(pacienteBuscadoPorMedico, fuma, bebe, colesterol, diabete, doencaCardiaca, listaCirurgias, listaAlergias);
-                                System.out.println("Informacoes adicionais cadastradas com sucesso.");
-                                Voltar = "voltar";
-                                break;
-                                }
-                            case 2:
-                                Voltar = "";
-                                System.out.println();
-                                leitura.nextLine();
-                                int opcao221;
-                                do{
-                                System.out.println("O que deseja atualizar? ");
-                                System.out.println("1. Fuma \n2. Bebe\n3. Colesterol\n4. Diabate \n5. Doenca Cardiaca\n6. Cirurgias\n7. Alergias\n8. Voltar ");
-                                opcao221 = leitura.nextInt();
-                                switch(opcao221){
-                                    case 1:
-                                        System.out.println("Insira a atualizacao: ");
-                                        fuma = leitura.nextBoolean();
-                                        pacienteBuscadoPorMedico.setFuma(fuma);
-                                        System.out.println("Atualizado com sucesso.");
-                                        Voltar = "voltar";
-                                        break;
-                                    case 2:
-                                        System.out.println("Insira a atualizacao: ");
-                                        bebe = leitura.nextBoolean();
-                                        pacienteBuscadoPorMedico.setBebe(bebe);
-                                        System.out.println("Atualizado com sucesso.");
-                                        Voltar = "voltar";
-                                        break;
-                                    case 3:
-                                        System.out.println("Insira a atualizacao: ");
-                                        colesterol = leitura.nextBoolean();
-                                        pacienteBuscadoPorMedico.setColesterolAlto(colesterol);
-                                        System.out.println("Atualizado com sucesso.");
-                                        Voltar = "voltar";
-                                        break;
-                                    case 4:
-                                        System.out.println("Insira a atualizacao: ");
-                                        diabete = leitura.nextBoolean();
-                                        pacienteBuscadoPorMedico.setDiabete(diabete);
-                                        System.out.println("Atualizado com sucesso.");
-                                        Voltar = "voltar";
-                                        break;
-                                    case 5:
-                                        System.out.println("Insira a atualizacao: ");
-                                        doencaCardiaca = leitura.nextBoolean();
-                                        pacienteBuscadoPorMedico.setDoencaCardiaca(doencaCardiaca);
-                                        System.out.println("Ataulizado com sucesso.");
-                                        Voltar = "voltar";
-                                        break;
-                                    case 6:
-                                        System.out.println("O que você deseja? ");
-                                        System.out.println("1. Adicionar \n2. Remover");
-                                        int opcaoAtualizacao = leitura.nextInt();
-                                        if(opcaoAtualizacao == 1){
-                                            System.out.println("Qual cirurgia voce deseja adicionar?");
-                                            String cirurgiaAdicionada = leitura.nextLine();
-                                            medicoLogado.adicionarCirurgia(cirurgiaAdicionada, pacienteBuscadoPorMedico);
-                                            System.out.println("Cirurgia adicionada com sucesso");
-                                        } if(opcaoAtualizacao == 2) {
-                                            System.out.println("Qual cirurgia voce deseja remover?");
-                                            for(int x = 0; x < pacienteBuscadoPorMedico.getCirurgias().size(); x++){
-                                                System.out.println(pacienteBuscadoPorMedico.getCirurgias().get(x));
-                                            }
-                                            System.out.println();
-                                            leitura.nextLine();
-                                            String cirurgiaRemovida = leitura.nextLine();
-                                            medicoLogado.removerCirurgia(cirurgiaRemovida, pacienteBuscadoPorMedico);
-                                            System.out.println("Cirurgia removida com sucesso");
-                                        }
-                                        Voltar = "voltar";
-                                        break;
-                                    case 7:
-                                        System.out.println("O que você deseja? ");
-                                        System.out.println("1. Adicionar \n2. Remover");
-                                        opcaoAtualizacao = leitura.nextInt();
-                                        if(opcaoAtualizacao == 1){
-                                            System.out.println("Qual alergia voce deseja adicionar?");
-                                            String alergiaAdicionada = leitura.nextLine();
-                                            medicoLogado.adicionarCirurgia(alergiaAdicionada, pacienteBuscadoPorMedico);
-                                            System.out.println("Alergia adicionada com sucesso");
-                                        } if(opcaoAtualizacao == 2) {
-                                            System.out.println("Qual alergia voce deseja remover?");
-                                            for(int x = 0; x < pacienteBuscadoPorMedico.getCirurgias().size(); x++){
-                                                System.out.println(pacienteBuscadoPorMedico.getCirurgias().get(x));
-                                            }
-                                            System.out.println();
-                                            leitura.nextLine();
-                                            String alergiaRemovida = leitura.nextLine();
-                                            medicoLogado.removerAlergia(alergiaRemovida, pacienteBuscadoPorMedico);
-                                            System.out.println("Alergia removida com sucesso");
-                                        }
-                                        break;
-                                }
-                                Voltar = "voltar";
-                                } while(opcao221 != 8 || Voltar.equals(""));
-                                break;
-                        }
-                        Voltar = "voltar";
-                        } while(opcao220 != 3 || Voltar.equals(""));
-                        }
-                    case 2:
-                        Voltar = "";
-                        System.out.println();
-                        leitura.nextLine();
-                        int opcao200;
-                        System.out.println("Insira o CPF do paciente de que deseja alterar o prontuario:");
-                        String cpfPacienteProntuario = leitura.nextLine();
-                        Paciente pacienteProntuario = medicoLogado.buscarPaciente(cpfPacienteProntuario);
-                        if(pacienteProntuario == null){
-                            System.out.println("Paciente nao encontrado");
-                            Voltar = "voltar";
-                            break;
-                        } else {
-                        do{
-                        System.out.println("O que deseja fazer?");
-                        System.out.println("1. Cadastrar Prontuario \n2. Atualizar Prontuario\n3. Remover Prontuario");
-                        opcao200 = leitura.nextInt();
-                        switch(opcao200){
-                            case 1:
-                                System.out.println();
-                                leitura.nextLine();
-                                System.out.println("Quais são os sintomas?");
-                                String sintomas = leitura.nextLine();
-                                System.out.println("Qual o diagnostico?");
-                                String diagnosticos = leitura.nextLine();
-                                System.out.println("Qual o tratamento");
-                                String tratamento = leitura.nextLine();
-                                medicoLogado.cadastrarProntuario(pacienteProntuario, sintomas, diagnosticos, tratamento);
-                                System.out.println("Prontuario cadastrado com sucesso.");
-                            case 2:
-                                System.out.println();
-                                leitura.nextLine();
-                                int opcaoProntuario;
-                                do{
-                                System.out.println("O que deseja atualizar?");
-                                System.out.println("1. Sintomas\n2. Diagnostico\n3.Tratamento\n4. Voltar");
-                                opcaoProntuario = leitura.nextInt();
-                                if(opcaoProntuario == 1){
-                                    System.out.println("Insira os sintomas: ");
-                                    String novosSintomas = leitura.nextLine();
-                                    medicoLogado.atualizarSintomasProntuario(pacienteProntuario, novosSintomas);
-                                    System.out.println("Sintomas atualizados com sucesso.");
-                                } if(opcaoProntuario == 2){
-                                    System.out.println("Insira o novo diagnostico: ");
-                                    String diagnostico = leitura.nextLine();
-                                    medicoLogado.atualizarDiagnosticoProntuario(pacienteProntuario, diagnostico);
-                                    System.out.println("Diagnostico atualizado com sucesso.");
-                                } if(opcaoProntuario == 3){
-                                    System.out.println("Insira o novo tratamento: ");
-                                    String novoTratamento = leitura.nextLine();
-                                    medicoLogado.atualizarTratamentoProntuario(pacienteProntuario, novoTratamento);
-                                    System.out.println("Tratamento atualizado com sucesso.");
-                                }
-                                Voltar = "voltar";
-                                break;
-                                }while(opcaoProntuario != 4 || Voltar.equals(""));
-                            case 3:
-                                System.out.println();
-                                leitura.nextLine();
-                                System.out.println("Deseja remover o prontuario do paciente " + pacienteProntuario.getNome() + "?\n"
-                                        + "1. Sim\n2. Nao");
-                                int confirmacao;
-                                confirmacao = leitura.nextInt();
-                                if(confirmacao == 1){
-                                    medicoLogado.removerProntuario(pacienteProntuario);
-                                    System.out.println("Prontuario removido.");
-                                }
-                                Voltar = "voltar"
-                                break;
-                        }
-                        } while(opcao200 !=4 || Voltar.equals(""));
-                        }   
-                        break;
                 }
-                } while(opcao211 != 4 || Voltar.equals(""));
-                }
-            }                
-            } while (opcao1 != 4); 
+                } while (opcao1 != 4); 
+
             }
         }
     }

@@ -9,6 +9,11 @@ public class GerenciadorDeMensagens {
     private Secretaria secretaria;
     private ArrayList<String> mensagensEnviadas;
     
+    public GerenciadorDeMensagens(Secretaria secretaria,ArrayList<String> mensagensEnviadas) {
+        this.secretaria = secretaria;
+        this.mensagensEnviadas = mensagensEnviadas;
+    }
+    
     public ArrayList<Consulta> getPacientesComContato(String dataDeAmanha){
         ArrayList[] relatorio = new ArrayList[2];
         relatorio = secretaria.gerarRelatorio(dataDeAmanha);

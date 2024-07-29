@@ -2,6 +2,7 @@ package Sistema;
 
 import Atendimento.Consulta;
 import Atendimento.Paciente;
+import Staff.GerenciadorDeMensagens;
 import Staff.Medico;
 import Staff.Secretaria;
 import java.util.ArrayList;
@@ -11,12 +12,14 @@ public class ListasDeDados {
     private ArrayList<Paciente> pacientesCadastrados;
     private ArrayList<Medico> medicos;  
     private ArrayList<Secretaria> secretarias;
+    private ArrayList<GerenciadorDeMensagens> gerenciadores;
 
-    public ListasDeDados(ArrayList<Consulta> consultasMarcadas, ArrayList<Paciente> pacientesCadastrados, ArrayList<Medico> medicos) {
+    public ListasDeDados(ArrayList<Consulta> consultasMarcadas, ArrayList<Paciente> pacientesCadastrados, ArrayList<Medico> medicos, ArrayList<GerenciadorDeMensagens> gerenciador) {
         this.consultasMarcadas = consultasMarcadas;
         this.pacientesCadastrados = pacientesCadastrados;
         this.medicos = medicos;
         this.secretarias = secretarias;
+        this.gerenciadores = gerenciador;
     }
 
     public ListasDeDados(){
@@ -51,8 +54,9 @@ public class ListasDeDados {
         ArrayList<Consulta> consultas1 = new ArrayList();
         ArrayList<Medico> medicos1 = new ArrayList();
         ArrayList<Secretaria> secretarias1 = new ArrayList();
+        ArrayList<GerenciadorDeMensagens> gerenciadores1 = new ArrayList();
         
-        ArrayList[] dadosParaTeste = new ArrayList[4];
+        ArrayList[] dadosParaTeste = new ArrayList[5];
 
         // Criando pacientes para o teste
         Paciente paciente0 = new Paciente("Wednesday Addams", "12345678901", "13/01/2006", "123, Rua Fulano de Tal, Bairro Landia, Cidade Metropole", "Particular",
@@ -94,11 +98,19 @@ public class ListasDeDados {
         secretaria1.marcarConsulta("05/08/2024", "12:30", medico2, paciente1, "Consulta retorno");
         secretaria1.marcarConsulta("02/08/2024", "13:30", medico1, paciente2, "Consulta normal");
         
+        // mensagens enviadas
+        ArrayList<String> msgEnviadas = new ArrayList();
+        // Criando um objeto gerenciador
+        GerenciadorDeMensagens gerenciador = new GerenciadorDeMensagens(secretaria1, msgEnviadas);
+        gerenciadores1.add(gerenciador);
+        
         // Setando o array para o return
         dadosParaTeste[0] = pacientes1;
         dadosParaTeste[1] = consultas1;
         dadosParaTeste[2] = medicos1;
         dadosParaTeste[3] = secretarias1;
+        dadosParaTeste[4] = gerenciadores1;
+        
         
         return dadosParaTeste;
     }

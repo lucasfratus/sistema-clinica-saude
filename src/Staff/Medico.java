@@ -180,6 +180,7 @@ public class Medico {
     }
     
     public void gerarRelatorioMedico(Paciente paciente){
+        this.setNumeroAtendidos();
         System.out.println("Nome do paciente: " + paciente.getNome());
         System.out.println("Receita: " + paciente.getProntuario().getTratamento());
         System.out.println("Atestado: (*Documento em pdf*)");
