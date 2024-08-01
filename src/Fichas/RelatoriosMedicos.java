@@ -9,13 +9,13 @@ import Atendimento.Paciente;
 public class RelatoriosMedicos {
     private Paciente paciente;
     private String receita;
-    private boolean atestado;
-    private boolean declaracaoAcompanhamento;
+    private String atestado;
+    private String declaracaoAcompanhamento;
 
     public RelatoriosMedicos(){
     }
     
-    public RelatoriosMedicos(Paciente paciente, String receita, boolean atestado, boolean declaracaoAcompanhamento){
+    public RelatoriosMedicos(Paciente paciente, String receita, String atestado, String declaracaoAcompanhamento){
         this.paciente = paciente;
         this.receita = receita;
         this.atestado = atestado;
@@ -38,20 +38,21 @@ public class RelatoriosMedicos {
         this.receita = receita;
     }
 
-    public boolean isAtestado() {
+    public String getAtestado() {
         return atestado;
     }
 
-    public void setAtestado(boolean atestado) {
+    public void setAtestado(String atestado) {
         this.atestado = atestado;
     }
 
-    public boolean isDeclaracaoAcompanhamento() {
+    public String getDeclaracaoAcompanhamento() {
         return declaracaoAcompanhamento;
     }
 
-    public void setDeclaracaoAcompanhamento(boolean declaracaoAcompanhamento) {
+    public void setDeclaracaoAcompanhamento(String declaracaoAcompanhamento) {
         this.declaracaoAcompanhamento = declaracaoAcompanhamento;
     }
-    
+
+
 }
