@@ -17,7 +17,7 @@ public class ListasDeDados {
     public ListasDeDados(ArrayList<Consulta> consultasMarcadas, ArrayList<Paciente> pacientesCadastrados, ArrayList<Medico> medicos, ArrayList<GerenciadorDeMensagens> gerenciador) {
         this.consultasMarcadas = consultasMarcadas;
         this.pacientesCadastrados = pacientesCadastrados;
-        this.medicos = medicos;
+        this.medicos    = medicos;
         this.secretarias = secretarias;
         this.gerenciadores = gerenciador;
     }
