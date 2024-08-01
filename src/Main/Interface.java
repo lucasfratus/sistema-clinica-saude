@@ -352,12 +352,12 @@ public class Interface {
                 case 2:
                     int opcao211;
                     Voltar = "";
+                    do{
                     System.out.println();
                     leitura.nextLine();
                     System.out.println("Insira o seu nome: ");
                     String nomeMedico = leitura.nextLine();
                     Medico medicoLogado = secretaria.buscarMedico(nomeMedico);
-                    do{
                     if(medicoLogado == null){
                         System.out.println("Medico nao encontrado");
                         Voltar = "voltar";
@@ -616,8 +616,7 @@ public class Interface {
                     }
                     }
                     } while(opcao211 != 4 || Voltar.equals(""));
-                    
-
+                    break;    
                 case 3:
                     Voltar = "";
                     System.out.println();
