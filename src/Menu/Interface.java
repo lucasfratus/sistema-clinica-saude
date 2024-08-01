@@ -1,13 +1,13 @@
-package Main;
+package Menu;
 
 import Atendimento.Consulta;
 import Atendimento.Paciente;
 import Fichas.Prontuario;
 import Fichas.RelatoriosMedicos;
-import Staff.GerenciadorDeMensagens;
-import Staff.Medico;
+import EmpregadosClinica.GerenciadorDeMensagens;
+import EmpregadosClinica.Medico;
 import Sistema.ListasDeDados;
-import Staff.Secretaria;
+import EmpregadosClinica.Secretaria;
 import java.util.Scanner;
 import java.util.ArrayList;
 

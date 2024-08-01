@@ -1,6 +1,6 @@
-package Staff;
+package EmpregadosClinica;
 
-import Staff.Secretaria;
+import EmpregadosClinica.Secretaria;
 import Atendimento.Consulta;
 import Atendimento.Paciente;
 import java.util.ArrayList;

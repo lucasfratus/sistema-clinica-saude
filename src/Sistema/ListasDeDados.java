@@ -2,9 +2,9 @@ package Sistema;
 
 import Atendimento.Consulta;
 import Atendimento.Paciente;
-import Staff.GerenciadorDeMensagens;
-import Staff.Medico;
-import Staff.Secretaria;
+import EmpregadosClinica.GerenciadorDeMensagens;
+import EmpregadosClinica.Medico;
+import EmpregadosClinica.Secretaria;
 import java.util.ArrayList;
 
 public class ListasDeDados {

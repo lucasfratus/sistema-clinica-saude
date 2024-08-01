@@ -4,7 +4,7 @@
  */
 package Atendimento;
 
-import Staff.Medico;
+import EmpregadosClinica.Medico;
 
 public class Consulta {
     private String data;
