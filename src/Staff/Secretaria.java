@@ -167,7 +167,7 @@ public class Secretaria {
         
         for(int z = 0; z < listaConsultas.size(); z++)
             if (listaConsultas.get(z).getData() == data) {
-                if (listaConsultas.get(z).getPaciente().getTelefone() == "NaoInformado" && listaConsultas.get(z).getPaciente().getEmail() == "NaoInformado"){
+                if (listaConsultas.get(z).getPaciente().getTelefone() == "Nao Informado" && listaConsultas.get(z).getPaciente().getEmail() == "Nao Informado"){
                     relatorioSemContato.add(listaConsultas.get(z));
                 } else {
                     relatorioComContato.add(listaConsultas.get(z));
