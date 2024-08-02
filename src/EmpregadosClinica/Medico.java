@@ -94,7 +94,8 @@ public class Medico {
         paciente.setCirurgias(cirurgias);
         paciente.setAlergias(alergias);
     }
-
+    
+    // Os métodos a seguir atualizam e removem as informações adicionais dos Pacientes. 
     public void atualizarPacienteProntuario(Prontuario prontuario, Paciente paciente){
         paciente.setProntuario(prontuario); 
     }
@@ -152,10 +153,12 @@ public class Medico {
     }
     
     public void cadastrarProntuario(Paciente paciente, String sintoma, String diagnostico, String tratamento){
+        // Cadastra um prontuário de um paciente,
         Prontuario prontuarioPaciente = new Prontuario(sintoma, diagnostico, tratamento);
         paciente.setProntuario(prontuarioPaciente);
     }
     
+    // Os métodos a seguir permitem a atualização dos dados de um prontuario de um paciente
     public void atualizarDiagnosticoProntuario(Paciente paciente, String diagonostico){
         paciente.getProntuario().setDiagnostico(diagonostico);
     }
@@ -174,12 +177,14 @@ public class Medico {
         paciente.getProntuario().setTratamento(null);
     }
     
+    /* Gera um relatório médico do paciente, com seu nome, receita, atestado e declaração de acompanhamento (os dois ultimos
+    gerados de forma representativa). Além disso mostra qual é o número do paciente atendido naquele mês.*/
     public void gerarRelatorioMedico(Paciente paciente){
         this.setNumeroAtendidos();
         System.out.println("Nome do paciente: " + paciente.getNome());
         System.out.println("Receita: " + paciente.getProntuario().getTratamento());
         System.out.println("Atestado: (*Documento em pdf*)");
         System.out.println("Declaração de acompanhamento: (*Documento em pdf*)");
-        System.out.println("Clientes atendidos no mês: " + this.getNumeroAtendidos());
+        System.out.println("Paciente atendido no mês: " + this.getNumeroAtendidos());
     }
 }
