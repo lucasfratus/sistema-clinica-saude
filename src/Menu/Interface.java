@@ -541,8 +541,9 @@ public class Interface {
                                 break;
                             } else {
                             do{
+                            Voltar = "voltar";
                             System.out.println("O que deseja fazer?");
-                            System.out.println("1. Cadastrar Prontuario \n2. Atualizar Prontuario\n3. Remover Prontuario");
+                            System.out.println("1. Cadastrar Prontuario \n2. Atualizar Prontuario\n3. Remover Prontuario\n4. Voltar");
                             opcao200 = leitura.nextInt();
                             switch(opcao200){
                                 case 1:
@@ -552,10 +553,11 @@ public class Interface {
                                     String sintomas = leitura.nextLine();
                                     System.out.println("Qual o diagnostico?");
                                     String diagnosticos = leitura.nextLine();
-                                    System.out.println("Qual o tratamento");
+                                    System.out.println("Qual o tratamento?");
                                     String tratamento = leitura.nextLine();
                                     medicoLogado.cadastrarProntuario(pacienteProntuario, sintomas, diagnosticos, tratamento);
                                     System.out.println("Prontuario cadastrado com sucesso.");
+                                    Voltar = "voltar";
                                     break;
                                 case 2:
                                     System.out.println();
@@ -563,7 +565,7 @@ public class Interface {
                                     int opcaoProntuario;
                                     do{
                                     System.out.println("O que deseja atualizar?");
-                                    System.out.println("1. Sintomas\n2. Diagnostico\n3.Tratamento\n4. Voltar");
+                                    System.out.println("1. Sintomas\n2. Diagnostico\n3.Tratamento\n4.Voltar");
                                     opcaoProntuario = leitura.nextInt();
                                     if(opcaoProntuario == 1){
                                         System.out.println("Insira os sintomas: ");
@@ -598,8 +600,9 @@ public class Interface {
                                     Voltar = "voltar";
                                     break;
                             }
-                            } while(opcao200 !=4 || Voltar.equals(""));
+                            } while(opcao200 != 4 || Voltar.equals(""));
                             }
+                            break;
                         case 3:
                             Voltar = "";
                             System.out.println();

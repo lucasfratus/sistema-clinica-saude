@@ -50,6 +50,7 @@ public class ListasDeDados {
     }
     
     public ArrayList[] TestarConsultasEPacientes(){
+        // Gera dados pré-definidos para facilitar o teste do código. Retorna um ArrayList com todos os dados gerados.
         ArrayList<Paciente> pacientes1 = new ArrayList();
         ArrayList<Consulta> consultas1 = new ArrayList();
         ArrayList<Medico> medicos1 = new ArrayList();

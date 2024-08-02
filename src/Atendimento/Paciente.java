@@ -24,6 +24,8 @@ public class Paciente {
     }
     
     public Paciente(String nome, String cpf, String dataNascimento, String endereco, String convenio, String email, String telefone){
+    /* Construtor para a instanciação de um objeto Paciente. Utilizado, principalmente, para o cadastro do paciente realizado pela
+    secretaria */
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -36,6 +38,7 @@ public class Paciente {
     public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio,
             Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, ArrayList<String>
                     cirurgias, ArrayList<String> alergias){
+        /* Construtor para a instanciação de um objeto Paciente. Consta informações adicionais, além das informações do construtor anterior */
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;

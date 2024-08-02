@@ -52,19 +52,13 @@ public class Secretaria {
     
     
     public Paciente cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
-        Paciente novoPaciente = new Paciente();  
-        novoPaciente.setNome(nome);
-        novoPaciente.setEmail(email);
-        novoPaciente.setCpf(cpf);
-        novoPaciente.setDataNascimento(dataNascimento);
-        novoPaciente.setEndereco(endereco);
-        novoPaciente.setTelefone(telefone);
-        novoPaciente.setConvenio(convenio);
-        listaPacientes.add(novoPaciente);
+        // Cadastra as informações basicas de um paciente
+        Paciente novoPaciente = new Paciente(nome, cpf, dataNascimento, endereco, convenio, email, telefone);
         return novoPaciente;
     }
 
     public Paciente buscarPaciente(String cpf){
+        // Busca um paciente na lista de pacientes através do CPF, retornando um objeto Paciente que possui o CPF desejado.
         Paciente paciente = null;
         for(int i = 0; i < listaPacientes.size(); i++){
             if (listaPacientes.get(i).getCpf().equals(cpf)) {
@@ -75,6 +69,7 @@ public class Secretaria {
     }
     
     public Medico buscarMedico(String nomeMedico){
+        // Busca um médico na lista de médicos através do nome, retornando um objeto Medico que possui o nome desejado.
         Medico medicoBuscado = null;
         for(int i = 0; i < listaMedicos.size(); i++){
             if (listaMedicos.get(i).getNome().equals(nomeMedico)) {
@@ -83,7 +78,7 @@ public class Secretaria {
         }
         return medicoBuscado;
     }
-    
+    // Permite a atualização/remoção de informações basicas de um paciente.
     public void atualizarPacienteNome(String novoNome, Paciente paciente){
         paciente.setNome(novoNome); 
     }
@@ -113,10 +108,12 @@ public class Secretaria {
     }
     
     public void removerPaciente(Paciente paciente){
+        // Remove um paciente da lista de pacientes.
         listaPacientes.remove(paciente);
     }
     
     public Consulta marcarConsulta(String data, String horario, Medico medico, Paciente paciente, String tipoConsulta){
+        // Marca uma consulta, adicionando ela na lista de consultas
         Consulta novaConsulta = new Consulta(); 
         novaConsulta.setData(data);
         novaConsulta.setHorario(horario);
@@ -128,6 +125,8 @@ public class Secretaria {
     }
     
     public Consulta buscarConsulta(String data, String horario, Medico medico){
+        /* Busca uma consulta por meio da data, horario e medico da consulta marcada na lista de consultas. 
+        Retorna um objeto do tipo consulta. */
         Consulta consultaBuscada = null;
         for(int i = 0; i < listaConsultas.size(); i++){
             if(listaConsultas.get(i).getData().equals(data) && listaConsultas.get(i).getHorario().equals(horario) && listaConsultas.get(i).getMedico().equals(medico)){
@@ -136,7 +135,7 @@ public class Secretaria {
         }
         return consultaBuscada;
     }
-    
+    // Os métodos a seguir atualizam os dados de uma consulta
     public void atualizarConsultaData(String data, Consulta consulta){
         consulta.setData(data);
     }
@@ -158,10 +157,19 @@ public class Secretaria {
     }
     
     public void removerConsulta(Consulta consulta){
+        // Remove uma consulta da lista de consultas
         listaConsultas.remove(consulta);
     } 
    
     public ArrayList[] gerarRelatorio(String data){
+        /* 
+        Gera um relatorio de consultas de uma determinada data.
+        Mostra as informações dessa consultas, como data, horario, medico, paciente, tipo de consulta.
+        Mostra, também, quais pacientes possuem ou não uma forma de contato(email/telefone).
+        Retorna um ArrayList, sendo o primeiro espaço outro ArrayList contendo as consultas que os pacientes
+        não possuem forma de contato. No outro espaço, há outro ArrayList, mas este contém as consultas que os
+        pacientes possuem alguma forma de contato.
+        */
         ArrayList<Consulta> relatorioComContato = new ArrayList();
         ArrayList<Consulta> relatorioSemContato = new ArrayList();
         

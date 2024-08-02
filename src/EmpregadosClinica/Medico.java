@@ -67,19 +67,13 @@ public class Medico {
         return numeroAtendidos;
     }
     public Paciente cadastrarPaciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio){
-        Paciente novoPaciente = new Paciente();
-        novoPaciente.setNome(nome);
-        novoPaciente.setEmail(email);
-        novoPaciente.setCpf(cpf);
-        novoPaciente.setDataNascimento(dataNascimento);
-        novoPaciente.setEndereco(endereco);
-        novoPaciente.setTelefone(telefone);
-        novoPaciente.setConvenio(convenio);
-        listaPacientes.add(novoPaciente);
+        // Cadastra as informações básicas de um paciente, semelhante ao cadastrar paciente da secretaria;
+        Paciente novoPaciente = new Paciente(nome, cpf, dataNascimento, endereco, convenio, email, telefone);
         return novoPaciente;
     }
     
     public Paciente buscarPaciente(String cpf){
+       // Busca um paciente na lista de pacientes através do CPF, retornando um objeto Paciente que possui o CPF desejado.
         Paciente paciente = null;
         for(int i = 0; i < listaPacientes.size(); i++){
             if (listaPacientes.get(i).getCpf().equals(cpf)) {
@@ -91,6 +85,7 @@ public class Medico {
     
     public void cadastrarInformacoesPaciente(Paciente paciente, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, 
             ArrayList<String> cirurgias, ArrayList<String> alergias) {
+        // Cadastra as informações adicionais do paciente. Só pode ser realizado pelo médico, diferente do cadastrarPaciente().
         paciente.setFuma(fuma);
         paciente.setBebe(bebe);
         paciente.setColesterolAlto(colesterolAlto);
