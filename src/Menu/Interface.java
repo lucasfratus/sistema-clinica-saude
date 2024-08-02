@@ -27,10 +27,10 @@ public class Interface {
         GerenciadorDeMensagens gerenciador = gerenciadores.get(0); // define um gerenciador de mensagens padrao
         Scanner leitura = new Scanner(System.in);
         int opcao0 = 0;
+        String Voltar = "";
         switch(opcao0){
             default:
             int opcao1;
-            String Voltar;
             do{
             System.out.println();
             System.out.println("----- Sistema de controle: Saúde & Cia -----");
@@ -40,7 +40,6 @@ public class Interface {
                 case 1:
                     int opcao2;
                     do{
-                    Voltar = "";
                     System.out.println();
                     System.out.println("O que você deseja fazer? ");
                     System.out.println("1. Gerenciar Pacientes \n2. Gerenciar Consultas \n3. Gerar Relatorio\n4. Voltar ao menu anterior");
@@ -49,13 +48,14 @@ public class Interface {
                         case 1:
                             int opcao3;
                             do{
-                            System.out.println();
-                            leitura.nextLine(); // Lê o \n
                             Voltar = "";
+                            System.out.println();
+                            leitura.nextLine(); // Lê o \n;
                             System.out.println();
                             System.out.println("O que você deseja fazer? ");
                             System.out.println("1. Cadastrar Paciente \n2. Remover Paciente \n3. Atualizar Paciente\n4. Voltar ao menu anterior");
                             opcao3 = leitura.nextInt();
+                            Voltar = "voltar";
                             switch(opcao3){
                                 case 1:
                                     System.out.println();
@@ -97,6 +97,7 @@ public class Interface {
                                     
                                 case 3:
                                     int opcao32;
+                                    Voltar = "";
                                     do{
                                     System.out.println();
                                     leitura.nextLine(); // Lê o \n
@@ -104,7 +105,7 @@ public class Interface {
                                     String cpfAtualizar = leitura.nextLine();
                                     Paciente pacienteAtualizado = secretaria.buscarPaciente(cpfAtualizar);
                                     if (pacienteAtualizado == null){
-                                        System.out.println("Paciente nao encontrado.(Pressione ENTER");
+                                        System.out.println("Paciente nao encontrado.(Pressione ENTER)");
                                         Voltar = "voltar";
                                         break;
                                     } else{ 
@@ -179,7 +180,7 @@ public class Interface {
                         case 2:
                             int opcao321;
                             do{
-                            Voltar = "";
+                            Voltar = "voltar";
                             System.out.println();
                             leitura.nextLine(); // Lê o \n
                             System.out.println("O que deseja fazer? ");
@@ -205,7 +206,7 @@ public class Interface {
                                             Voltar = "voltar";
                                             break;
                                         } else {
-                                            System.out.println("Insira a data(Formato DD/MM/AAAA: ");
+                                            System.out.println("Insira a data(Formato DD/MM/AAAA): ");
                                             String dataConsulta = leitura.nextLine();
                                             System.out.println("Insira o horário: ");
                                             String horarioConsulta = leitura.nextLine();
@@ -339,7 +340,8 @@ public class Interface {
                             }
                             } while(opcao322 != 6 || Voltar.equals(""));
                             }
-                            } while(opcao321 != 4 || Voltar.equals("")); 
+                            } while(opcao321 != 4 || Voltar.equals(""));
+                            break;
                         case 3:
                             Voltar = "";
                             System.out.println();
@@ -635,8 +637,9 @@ public class Interface {
                     }
                     Voltar = "voltar";
                     break;
+                
                 }
-                } while (opcao1 != 4); 
+                } while (opcao1 != 4 || Voltar.equals("")); 
 
             }
         }

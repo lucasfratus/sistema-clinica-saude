@@ -130,7 +130,7 @@ public class Secretaria {
     public Consulta buscarConsulta(String data, String horario, Medico medico){
         Consulta consultaBuscada = null;
         for(int i = 0; i < listaConsultas.size(); i++){
-            if(listaConsultas.get(i).getData() == data && (listaConsultas.get(i).getHorario() == horario && listaConsultas.get(i).getMedico() == medico)){
+            if(listaConsultas.get(i).getData().equals(data) && listaConsultas.get(i).getHorario().equals(horario) && listaConsultas.get(i).getMedico().equals(medico)){
                 consultaBuscada = listaConsultas.get(i);
             }
         }
