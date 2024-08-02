@@ -96,6 +96,8 @@ public class Interface {
                                     break;
                                     
                                 case 3:
+                                    int opcao32;
+                                    do{
                                     System.out.println();
                                     leitura.nextLine(); // Lê o \n
                                     System.out.println("Insira o CPF do paciente que deseja atualizar(Apenas numeros): ");
@@ -105,11 +107,9 @@ public class Interface {
                                         System.out.println("Paciente nao encontrado.(Pressione ENTER");
                                         Voltar = "voltar";
                                         break;
-                                    } else{
+                                    } else{ 
                                         System.out.println("O que você deseja atualizar?");
                                         System.out.println("1. Nome \n2. CPF \n3. Data de Nascimento \n4. Endereco \n5. Telefone \n6. E-mail \n7. Convenio\n8. Voltar");
-                                        int opcao32;
-                                        do{
                                         opcao32 = leitura.nextInt();
                                         switch(opcao32){
                                             case 1:
@@ -170,11 +170,11 @@ public class Interface {
                                                 Voltar = "voltar";
                                                 break;
                                             }
-                                        } while(Voltar.equals(""));
-                                    }
+                                        } 
+                                    } while(opcao32 != 8|| Voltar.equals(""));
                                 break;
                             } 
-                        } while(opcao3 != 4 || Voltar.equals("voltar"));
+                        } while(opcao3 != 4 || Voltar.equals(""));
                         break;
                         case 2:
                             int opcao321;
@@ -257,10 +257,12 @@ public class Interface {
                                         Voltar = "voltar";
                                         break;
                                     } else {
+                                        Scanner leituraNova = new Scanner(System.in);
+                                        leituraNova.useDelimiter("\n");
                                         System.out.println("Insira a data da consulta:");
-                                        String dataAtualizada = leitura.nextLine();
+                                        String dataAtualizada = leituraNova.next();
                                         System.out.println("Insira o horario da consulta(formato hh:mm): ");
-                                        String horarioAtualizada = leitura.nextLine();
+                                        String horarioAtualizada = leituraNova.next();
                                         Consulta consultaAtualizada = secretaria.buscarConsulta(dataAtualizada, horarioAtualizada, medicoAtualizada);
                                         if(consultaAtualizada == null) {
                                             System.out.println("Consulta nao encontrada.(Pressione ENTER)");
@@ -330,24 +332,24 @@ public class Interface {
                                                     String novoTipoConsulta = leitura.nextLine();
                                                     consultaAtualizada.setTipoConsulta(novoTipoConsulta);
                                                     System.out.println("Tipo de consulta atualizado com sucesso.");
+                                                    Voltar = "voltar";
                                                     break;
                                         }  
                                     } 
                             }
-                            } while(opcao322 != 6 || Voltar.equals("voltar"));
+                            } while(opcao322 != 6 || Voltar.equals(""));
                             }
-                            } while(opcao321 != 4 || Voltar.equals("voltar")); 
+                            } while(opcao321 != 4 || Voltar.equals("")); 
                         case 3:
                             Voltar = "";
                             System.out.println();
                             leitura.nextLine(); // Lê o \n
-                            System.out.print("Gostaria de gerar o relatório de amanhã?");
                             secretaria.gerarRelatorio(dataDeAmanha);
                             System.out.println("Relatorio gerado com sucesso");
                             break;
                     }
                     break;
-                    } while(opcao2 != 4 || Voltar.equals("voltar"));
+                    } while(opcao2 != 4 || Voltar.equals(""));
                     break;
                 case 2:
                     int opcao211;
@@ -608,8 +610,12 @@ public class Interface {
                                 Voltar = "voltar";
                                 break;
                             } else {
+                                if(pacienteProntuario.getProntuario() == null){
+                                    System.out.println("O paciente não possui um prontuário ainda.");
+                                } else {
                                 System.out.println("----Relatorio Gerado----");
                                 medicoLogado.gerarRelatorioMedico(pacienteProntuario);
+                                }
                             }
                             Voltar = "";
                             break;

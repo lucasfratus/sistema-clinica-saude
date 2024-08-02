@@ -1,4 +1,4 @@
- package EmpregadosClinica;
+package EmpregadosClinica;
 
 import Atendimento.Consulta;
 import Atendimento.Paciente;
