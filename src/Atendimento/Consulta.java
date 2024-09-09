@@ -3,7 +3,11 @@ package Atendimento;
 import EmpregadosClinica.Medico;
 import Sistema.MedicoCadastrado;
 import Sistema.PacienteCadastrado;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "CONSULTA")
 public class Consulta {
     private String data;
     private String horario;
@@ -36,7 +40,7 @@ public class Consulta {
         this.medico = medico;
     }
 
-    public Paciente getPaciente() {
+    public PacienteCadastrado getPaciente() {
         return paciente;
     }
 
