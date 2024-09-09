@@ -8,16 +8,11 @@ import java.util.ArrayList;
 public class Secretaria {
     private String nomeFuncionario;
     private String cpf;
-    private ArrayList<Paciente> listaPacientes;
-    private ArrayList<Consulta> listaConsultas;
-    private ArrayList<Medico> listaMedicos;
 
-    public Secretaria(String nomeFuncionario, String cpf, ArrayList<Paciente> listaPacientes, ArrayList<Consulta> listaConsultas, ArrayList<Medico> listaMedicos) {
+
+    public Secretaria(String nomeFuncionario, String cpf) {
         this.nomeFuncionario = nomeFuncionario;
         this.cpf = cpf;
-        this.listaPacientes = listaPacientes;
-        this.listaConsultas = listaConsultas;
-        this.listaMedicos = listaMedicos;
     }
         
     public String getNomeFuncionario() {
@@ -35,38 +30,15 @@ public class Secretaria {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
-    public ArrayList<Paciente> getListaPacientes() {
-        return listaPacientes;
-    }
-
-    public void setListaPacientes(ArrayList<Paciente> listaPacientes) {
-        this.listaPacientes = listaPacientes;
-    }
-
-    public ArrayList<Consulta> getListaConsultas() {
-        return listaConsultas;
-    }
-
-    public void setListaConsultas(ArrayList<Consulta> listaConsultas) {
-        this.listaConsultas = listaConsultas;
-    }
-
-    public ArrayList<Medico> getListaMedicos() {
-        return listaMedicos;
-    }
-
-    public void setListaMedicos(ArrayList<Medico> listaMedicos) {
-        this.listaMedicos = listaMedicos;
-    }
-    
-    
+ 
     public Paciente cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
         // Cadastra as informações basicas de um paciente
         Paciente novoPaciente = new Paciente(nome, cpf, dataNascimento, endereco, convenio, email, telefone);
         return novoPaciente;
     }
-
+    /*
+    ARRUMAR
+    
     public Paciente buscarPaciente(String cpf){
         // Busca um paciente na lista de pacientes através do CPF, retornando um objeto Paciente que possui o CPF desejado.
         Paciente paciente = null;
@@ -88,6 +60,7 @@ public class Secretaria {
         }
         return medicoBuscado;
     }
+    */
     // Permite a atualização/remoção de informações basicas de um paciente.
     public void atualizarPacienteNome(String novoNome, Paciente paciente){
         paciente.setNome(novoNome); 
@@ -116,12 +89,12 @@ public class Secretaria {
     public void atualizarPacienteConvenio(String convenio, Paciente paciente){
         paciente.setConvenio(convenio);
     }
-    
+    /*
     public void removerPaciente(Paciente paciente){
         // Remove um paciente da lista de pacientes.
         listaPacientes.remove(paciente);
     }
-    
+    */
     public Consulta marcarConsulta(String data, String horario, Medico medico, Paciente paciente, String tipoConsulta){
         // Marca uma consulta, adicionando ela na lista de consultas
         Consulta novaConsulta = new Consulta(); 
@@ -130,13 +103,12 @@ public class Secretaria {
         novaConsulta.setMedico(medico);
         novaConsulta.setPaciente(paciente);
         novaConsulta.setTipoConsulta(tipoConsulta);
-        listaConsultas.add(novaConsulta);
         return novaConsulta;
     }
-    
+    /*
     public Consulta buscarConsulta(String data, String horario, Medico medico){
-        /* Busca uma consulta por meio da data, horario e medico da consulta marcada na lista de consultas. 
-        Retorna um objeto do tipo consulta. */
+        Busca uma consulta por meio da data, horario e medico da consulta marcada na lista de consultas. 
+        Retorna um objeto do tipo consulta.
         Consulta consultaBuscada = null;
         for(int i = 0; i < listaConsultas.size(); i++){
             if(listaConsultas.get(i).getData().equals(data) && listaConsultas.get(i).getHorario().equals(horario) && listaConsultas.get(i).getMedico().equals(medico)){
@@ -145,6 +117,7 @@ public class Secretaria {
         }
         return consultaBuscada;
     }
+    */
     // Os métodos a seguir atualizam os dados de uma consulta
     public void atualizarConsultaData(String data, Consulta consulta){
         consulta.setData(data);
@@ -165,21 +138,21 @@ public class Secretaria {
     public void atualizarConsultaPaciente(String tipoConsulta, Consulta consulta){
         consulta.setTipoConsulta(tipoConsulta);
     }
-    
+    /*
     public void removerConsulta(Consulta consulta){
         // Remove uma consulta da lista de consultas
         listaConsultas.remove(consulta);
     } 
    
     public ArrayList[] gerarRelatorio(String data){
-        /* 
+        
         Gera um relatorio de consultas de uma determinada data.
         Mostra as informações dessa consultas, como data, horario, medico, paciente, tipo de consulta.
         Mostra, também, quais pacientes possuem ou não uma forma de contato(email/telefone).
         Retorna um ArrayList, sendo o primeiro espaço outro ArrayList contendo as consultas que os pacientes
         não possuem forma de contato. No outro espaço, há outro ArrayList, mas este contém as consultas que os
         pacientes possuem alguma forma de contato.
-        */
+        
         ArrayList<Consulta> relatorioComContato = new ArrayList();
         ArrayList<Consulta> relatorioSemContato = new ArrayList();
         
@@ -220,6 +193,7 @@ public class Secretaria {
         System.out.println("------------------");
         return relatorios;
     }
+    */
 }
 
     

@@ -18,7 +18,7 @@ public class GerenciadorDeMensagens {
     public ArrayList<Consulta> getPacientesComContato(String dataDeAmanha){
         // Retorna um ArrayList de consultas que os pacientes possuem alguma forma de contato(email ou telefone)
         ArrayList[] relatorio = new ArrayList[2];
-        relatorio = secretaria.gerarRelatorio(dataDeAmanha);
+        //relatorio = secretaria.gerarRelatorio(dataDeAmanha);
         return relatorio[1];
     }
     

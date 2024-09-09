@@ -4,27 +4,25 @@ import Atendimento.Consulta;
 import Atendimento.Paciente;
 import Fichas.Prontuario;
 import java.util.ArrayList;
-import Sistema.ListasDeDados;
+import javax.persistence.EntityManager;
 
 public class Medico {
     private String nome;
     private String numeroDeRegistro;
     private String especialidade;
-    private int numeroDoConsultorio;
-    private ArrayList<Paciente> listaPacientes;
-    private ArrayList<Consulta> listaConsultas;    
+    private String numeroDoConsultorio;  
     private int numeroAtendidos;
+    private EntityManager em;
     
     public Medico() {
     }
     
-    public Medico(String nome, String numeroDeRegistro, String especialidade, int numeroDoConsultorio, ArrayList<Paciente> listaPacientes, ArrayList<Consulta> listaConsultas) {
+    public Medico(String nome, String numeroDeRegistro, String especialidade, String numeroDoConsultorio, int numeroAtendidos) {
         this.nome = nome;
         this.numeroDeRegistro = numeroDeRegistro;
         this.especialidade = especialidade;
         this.numeroDoConsultorio = numeroDoConsultorio;
-        this.listaPacientes = listaPacientes;
-        this.listaConsultas = listaConsultas;
+        this.numeroAtendidos = numeroAtendidos;
     }
     
     public String getNome() {
@@ -51,11 +49,11 @@ public class Medico {
         this.especialidade = especialidade;
     }
 
-    public int getNumeroDoConsultorio() {
+    public String getNumeroDoConsultorio() {
         return numeroDoConsultorio;
     }
 
-    public void setNumeroDoConsultorio(int numeroDoConsultorio) {
+    public void setNumeroDoConsultorio(String numeroDoConsultorio) {
         this.numeroDoConsultorio = numeroDoConsultorio;
     }
     
@@ -71,7 +69,8 @@ public class Medico {
         Paciente novoPaciente = new Paciente(nome, cpf, dataNascimento, endereco, convenio, email, telefone);
         return novoPaciente;
     }
-    
+    /*
+    // ARRUMAR
     public Paciente buscarPaciente(String cpf){
        // Busca um paciente na lista de pacientes através do CPF, retornando um objeto Paciente que possui o CPF desejado.
         Paciente paciente = null;
@@ -94,7 +93,7 @@ public class Medico {
         paciente.setCirurgias(cirurgias);
         paciente.setAlergias(alergias);
     }
-    
+    */
     // Os métodos a seguir atualizam e removem as informações adicionais dos Pacientes. 
     public void atualizarPacienteProntuario(Prontuario prontuario, Paciente paciente){
         paciente.setProntuario(prontuario); 

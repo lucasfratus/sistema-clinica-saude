@@ -73,25 +73,25 @@
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="NascPacienteCadastrado" min="-2" pref="156" max="-2" attributes="0"/>
+                              <Component id="NascNovoPaciente" min="-2" pref="156" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="ConvenientePacienteCadastro" pref="203" max="32767" attributes="0"/>
+                                  <Component id="ConvenioNovoPaciente" pref="203" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="EndereçoPacienteCadastrado" max="32767" attributes="0"/>
+                              <Component id="EnderecoNovoPaciente" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="NomePacienteCadastrado" max="32767" attributes="0"/>
+                              <Component id="NomeNovoPaciente" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -105,7 +105,7 @@
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="NomePacienteCadastrado" min="-2" max="-2" attributes="0"/>
+                  <Component id="NomeNovoPaciente" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -116,20 +116,23 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="CPFNovoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NascPacienteCadastrado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ConvenientePacienteCadastro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NascNovoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ConvenioNovoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="EndereçoPacienteCadastrado" min="-2" max="-2" attributes="0"/>
+                  <Component id="EnderecoNovoPaciente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="NomePacienteCadastrado">
+        <Component class="javax.swing.JTextField" name="NomeNovoPaciente">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NomeNovoPacienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -156,7 +159,7 @@
             <Property name="text" type="java.lang.String" value="Data de Nascimento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="NascPacienteCadastrado">
+        <Component class="javax.swing.JFormattedTextField" name="NascNovoPaciente">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
@@ -168,14 +171,14 @@
             <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Endere&#xe7;oPacienteCadastrado">
+        <Component class="javax.swing.JTextField" name="EnderecoNovoPaciente">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Conv&#xea;nio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="ConvenientePacienteCadastro">
+        <Component class="javax.swing.JTextField" name="ConvenioNovoPaciente">
         </Component>
       </SubComponents>
     </Container>
@@ -193,28 +196,21 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="EmailPacienteCadastrado" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="TelefonePacienteCadastrado" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
                           <Component id="BotaoCadastrar" min="-2" pref="219" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TelefoneNovoPaciente" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <Component id="EmailNovoPaciente" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -227,15 +223,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="TelefonePacienteCadastrado" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="EmailPacienteCadastrado" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="TelefoneNovoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="EmailNovoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
                   <Component id="BotaoCadastrar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -253,19 +248,14 @@
             <Property name="text" type="java.lang.String" value="E-mail:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Caso n&#xe3;o possua algum deles, inserir &quot;NaoInformado&quot;."/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="TelefonePacienteCadastrado">
+        <Component class="javax.swing.JTextField" name="TelefoneNovoPaciente">
           <Properties>
             <Property name="text" type="java.lang.String" value="(##)#####-####"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="EmailPacienteCadastrado">
+        <Component class="javax.swing.JTextField" name="EmailNovoPaciente">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmailPacienteCadastradoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmailNovoPacienteActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BotaoCadastrar">

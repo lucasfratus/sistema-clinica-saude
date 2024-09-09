@@ -1,34 +1,19 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Menu;
 
-import Atendimento.Consulta;
-import Atendimento.Paciente;
-import Fichas.Prontuario;
-import Fichas.RelatoriosMedicos;
-import EmpregadosClinica.GerenciadorDeMensagens;
 import EmpregadosClinica.Medico;
-import Sistema.ListasDeDados;
 import EmpregadosClinica.Secretaria;
 import Sistema.GerenciadorCadastrado;
 import Sistema.MedicoCadastrado;
 import Sistema.SecretariaCadastrada;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
+    EntityManager em;
     
-    public Login() {
+    public Login(EntityManager em) {
         initComponents();
+        this.em = em;
     }
 
     /**
@@ -41,7 +26,7 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        NomeFuncionario = new javax.swing.JTextField();
+        credFuncionario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Entrar = new javax.swing.JButton();
         ProfissaoEscolhida = new javax.swing.JComboBox<>();
@@ -52,12 +37,12 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema - Saude & Cia");
 
-        jLabel1.setText("Nome:");
+        jLabel1.setText("CPF/CRM");
 
-        NomeFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        NomeFuncionario.addActionListener(new java.awt.event.ActionListener() {
+        credFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        credFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomeFuncionarioActionPerformed(evt);
+                credFuncionarioActionPerformed(evt);
             }
         });
 
@@ -101,7 +86,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(Entrar))
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(NomeFuncionario, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(credFuncionario, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ProfissaoEscolhida, javax.swing.GroupLayout.Alignment.LEADING, 0, 311, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -120,7 +105,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(credFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -136,19 +121,33 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NomeFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeFuncionarioActionPerformed
+    private void credFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NomeFuncionarioActionPerformed
+    }//GEN-LAST:event_credFuncionarioActionPerformed
 
     private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
+        String credenciais = new String();
+        credenciais = credFuncionario.getText(); // Obtém a credencial inserida  
+        
         if((ProfissaoEscolhida.getSelectedItem()).equals("Secretaria")) {
-            TelaPrincipalSecretaria telaSec = new TelaPrincipalSecretaria();
-            telaSec.setVisible(true);
+            SecretariaCadastrada secCred = new SecretariaCadastrada(); // Cria um objeto da classe SecretariaCadastrada
+            secCred = em.find(SecretariaCadastrada.class, credenciais);
+            if(secCred != null){
+                Secretaria secLogada = new Secretaria(secCred.getNomeFuncionario(), secCred.getCpf());
+                TelaPrincipalSecretaria telaSec = new TelaPrincipalSecretaria(secLogada, em);
+                telaSec.setVisible(true);
+            }
             this.dispose();
     }
         if((ProfissaoEscolhida.getSelectedItem()).equals("Médico")) {
-            TelaPrincipalMed telaMed = new TelaPrincipalMed();
-            telaMed.setVisible(true);
+            MedicoCadastrado medicoCred = new MedicoCadastrado(); // Cria um objeto da classe MedicoCadastrado 
+                                                                // para armazenar as credencias do médico que será logado
+            medicoCred = em.find(MedicoCadastrado.class, credenciais);
+            if (medicoCred != null) {
+                Medico medicoLogado = new Medico(medicoCred.getNome(), medicoCred.getNumeroDeRegistro(), medicoCred.getEspecialidade(), medicoCred.getNumeroDoConsultorio(), medicoCred.getNumeroAtendidos());
+                TelaPrincipalMed telaMed = new TelaPrincipalMed(medicoLogado, em);
+                telaMed.setVisible(true);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_EntrarActionPerformed
@@ -173,18 +172,21 @@ public class Login extends javax.swing.JFrame {
             String novoMedicoEspecialidade = JOptionPane.showInputDialog(null, "Insira a Especialidade do novo Médico: ");
             String novoMedicoConsultorio = JOptionPane.showInputDialog(null, "Insira o número do consultório do novo Médico: ");
             MedicoCadastrado novoMedico = new MedicoCadastrado();
+            em.getTransaction().begin();
             novoMedico.setNome(novoMedicoNome);
             novoMedico.setNumeroDeRegistro(novoMedicoCRM);
             novoMedico.setEspecialidade(novoMedicoEspecialidade);
             novoMedico.setNumeroDoConsultorio(novoMedicoConsultorio);
             novoMedico.setNumeroAtendidos(0);
-            // em.persist(novoMedico);
+            em.merge(novoMedico);
+            em.getTransaction().commit();
+        
         }
         if ((ProfissaoEscolhida.getSelectedItem()).equals("Gerenciador de Mensagem")) {
             String novoGmCpf = JOptionPane.showInputDialog(null, "Insira o cpf do Gerenciador de Mensagens: ");
             GerenciadorCadastrado novoGM = new GerenciadorCadastrado();
             novoGM.setCpf(novoGmCpf);
-            // em.persist(novoGM);
+            em.merge(novoGM);
         }
         
     }//GEN-LAST:event_botaoRegistrarActionPerformed
@@ -192,43 +194,13 @@ public class Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
         
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Entrar;
-    private javax.swing.JTextField NomeFuncionario;
     private javax.swing.JComboBox<String> ProfissaoEscolhida;
     private javax.swing.JButton botaoRegistrar;
+    private javax.swing.JTextField credFuncionario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

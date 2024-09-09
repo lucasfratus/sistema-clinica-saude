@@ -1,7 +1,15 @@
 package Sistema;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "SECRETARIA")
 public class SecretariaCadastrada {
     private String nomeFuncionario;
+    
+    @Id
     private String cpf;
 
     public String getNomeFuncionario() {

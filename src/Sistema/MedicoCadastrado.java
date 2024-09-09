@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class MedicoCadastrado {
     private String nome;
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private String numeroDeRegistro;
     private String especialidade;
     private String numeroDoConsultorio;

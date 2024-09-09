@@ -1,22 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Menu;
 
+import EmpregadosClinica.Secretaria;
+import Sistema.PacienteCadastrado;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucas
- */
 public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
-
+    EntityManager em;
+    Secretaria secretariaLogada;
+    
     /**
      * Creates new form TelaMedCadastrarPaciente
      */
-    public TelaSecCadastrarPaciente() {
+    public TelaSecCadastrarPaciente(Secretaria secretariaLogada, EntityManager em) {
         initComponents();
+        this.secretariaLogada = secretariaLogada;
+        this.em = em;
     }
 
     /**
@@ -29,27 +28,32 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        NomePacienteCadastrado = new javax.swing.JTextField();
+        NomeNovoPaciente = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         CPFNovoPaciente = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        NascPacienteCadastrado = new javax.swing.JFormattedTextField();
+        NascNovoPaciente = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        EndereçoPacienteCadastrado = new javax.swing.JTextField();
+        EnderecoNovoPaciente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        ConvenientePacienteCadastro = new javax.swing.JTextField();
+        ConvenioNovoPaciente = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        TelefonePacienteCadastrado = new javax.swing.JTextField();
-        EmailPacienteCadastrado = new javax.swing.JTextField();
+        TelefoneNovoPaciente = new javax.swing.JTextField();
+        EmailNovoPaciente = new javax.swing.JTextField();
         BotaoCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        NomeNovoPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomeNovoPacienteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome:");
 
@@ -69,7 +73,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         jLabel3.setText("Data de Nascimento:");
 
         try {
-            NascPacienteCadastrado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            NascNovoPaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -95,20 +99,20 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3)
-                            .addComponent(NascPacienteCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(NascNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ConvenientePacienteCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                .addComponent(ConvenioNovoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EndereçoPacienteCadastrado)
+                            .addComponent(EnderecoNovoPaciente)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(NomePacienteCadastrado))
+                            .addComponent(NomeNovoPaciente))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,7 +121,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NomePacienteCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NomeNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,12 +130,12 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CPFNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NascPacienteCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConvenientePacienteCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NascNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConvenioNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EndereçoPacienteCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(EnderecoNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -141,13 +145,11 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
 
         jLabel7.setText("E-mail:");
 
-        jLabel8.setText("Caso não possua algum deles, inserir \"NaoInformado\".");
+        TelefoneNovoPaciente.setText("(##)#####-####");
 
-        TelefonePacienteCadastrado.setText("(##)#####-####");
-
-        EmailPacienteCadastrado.addActionListener(new java.awt.event.ActionListener() {
+        EmailNovoPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailPacienteCadastradoActionPerformed(evt);
+                EmailNovoPacienteActionPerformed(evt);
             }
         });
 
@@ -165,22 +167,17 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(BotaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EmailPacienteCadastrado)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(TelefonePacienteCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(BotaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(TelefoneNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(EmailNovoPaciente))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -189,14 +186,12 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TelefonePacienteCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EmailPacienteCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TelefoneNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EmailNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(BotaoCadastrar)
                 .addContainerGap())
         );
@@ -229,60 +224,47 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CPFNovoPacienteActionPerformed
 
-    private void EmailPacienteCadastradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailPacienteCadastradoActionPerformed
+    private void EmailNovoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailNovoPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EmailPacienteCadastradoActionPerformed
+    }//GEN-LAST:event_EmailNovoPacienteActionPerformed
 
     private void BotaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarActionPerformed
-        JOptionPane.showMessageDialog(null,"Paciente Cadastrado");
-        this.dispose();
+        String nomePaciente = NomeNovoPaciente.getText();
+        String cpfPaciente = CPFNovoPaciente.getText();
+        String emailPaciente = EmailNovoPaciente.getText();
+        String telefonePaciente = TelefoneNovoPaciente.getText();
+        String enderecoPaciente = EnderecoNovoPaciente.getText();
+        String convenioPaciente = ConvenioNovoPaciente.getText();
+        String nascPaciente = NascNovoPaciente.getText();
+        if(nomePaciente != "" && cpfPaciente != "" && nascPaciente != "" && convenioPaciente != "" && enderecoPaciente != "") { // Talvez seja null e nao ""
+            PacienteCadastrado novoPaciente = new PacienteCadastrado();
+            novoPaciente.setNome(nomePaciente);
+            novoPaciente.setCpf(cpfPaciente);
+            novoPaciente.setEmail(emailPaciente);
+            novoPaciente.setTelefone(telefonePaciente);
+            novoPaciente.setEndereco(enderecoPaciente);
+            novoPaciente.setConvenio(convenioPaciente);
+            em.persist(novoPaciente);
+            JOptionPane.showMessageDialog(null,"Paciente Cadastrado");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!", "Preencha os campos necessários!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BotaoCadastrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaSecCadastrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaSecCadastrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaSecCadastrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaSecCadastrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void NomeNovoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeNovoPacienteActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaSecCadastrarPaciente().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_NomeNovoPacienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCadastrar;
     private javax.swing.JFormattedTextField CPFNovoPaciente;
-    private javax.swing.JTextField ConvenientePacienteCadastro;
-    private javax.swing.JTextField EmailPacienteCadastrado;
-    private javax.swing.JTextField EndereçoPacienteCadastrado;
-    private javax.swing.JFormattedTextField NascPacienteCadastrado;
-    private javax.swing.JTextField NomePacienteCadastrado;
-    private javax.swing.JTextField TelefonePacienteCadastrado;
+    private javax.swing.JTextField ConvenioNovoPaciente;
+    private javax.swing.JTextField EmailNovoPaciente;
+    private javax.swing.JTextField EnderecoNovoPaciente;
+    private javax.swing.JFormattedTextField NascNovoPaciente;
+    private javax.swing.JTextField NomeNovoPaciente;
+    private javax.swing.JTextField TelefoneNovoPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -290,7 +272,6 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
