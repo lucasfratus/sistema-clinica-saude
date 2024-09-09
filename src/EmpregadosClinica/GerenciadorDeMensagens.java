@@ -29,7 +29,7 @@ public class GerenciadorDeMensagens {
     public void mandarSms(String mensagem, String telefone){
         // Representa o envio de um SMS, que possui uma mensagem, ao paciente que possui um telefone.
     }
-    
+    /*
     public String enviarMensagens(String dataDeAmanha){
         // Envia mensagens aos pacientes que possuem email/telefone e possuem uma consulta marcada no próximo dia.
         ArrayList<Consulta> listaConsultas = new ArrayList();
@@ -52,7 +52,7 @@ public class GerenciadorDeMensagens {
         }
         return "Mensagens enviadas com sucesso";   
     }
-    
+    */
     public String visualizarMensagensEnviadas(){
         // Possibilita a visualização de todas as mensagens enviadas anteriormente,
         String buffer = null;

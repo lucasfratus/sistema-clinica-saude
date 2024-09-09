@@ -1,7 +1,15 @@
 package Menu;
 
-public class TelaSecAlterarConsulta extends javax.swing.JFrame {
+import Atendimento.Consulta;
+import EmpregadosClinica.Secretaria;
+import Sistema.MedicoCadastrado;
+import Sistema.PacienteCadastrado;
+import javax.persistence.EntityManager;
 
+public class TelaSecAlterarConsulta extends javax.swing.JFrame {
+    EntityManager em;
+    Consulta consulta;
+    Secretaria secretaria;
     /**
      * Creates new form TelaSecAlterarConsulta
      */
@@ -158,36 +166,47 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed
-        campoData.setText("a");
+        campoData.setText(consulta.getData());
     }//GEN-LAST:event_campoDataActionPerformed
 
     private void campoHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHoraActionPerformed
-        campoHora.setText("b");
+        campoHora.setText(consulta.getHorario());
     }//GEN-LAST:event_campoHoraActionPerformed
 
     private void campoCRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCRMActionPerformed
-        campoCRM.setText("c");
+        campoCRM.setText(consulta.getMedico().getNumeroDeRegistro());
     }//GEN-LAST:event_campoCRMActionPerformed
 
     private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
-        campoCPF.setText("d");
+        campoCPF.setText(consulta.getPaciente().getCpf());
     }//GEN-LAST:event_campoCPFActionPerformed
 
     private void tipoNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoNormalActionPerformed
-        if (tipoRetorno.getSelectedObjects()[0].equals("Normal")) {
-            
-        }
+        if (consulta.getTipoConsulta().equals("Normal")) {
+            tipoNormal.setSelected(true);
+        }   
     }//GEN-LAST:event_tipoNormalActionPerformed
 
-    private void tipoRetornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoRetornoActionPerformed
-        if (tipoRetorno.getSelectedObjects()[0].equals("Retorno")) {
-            
-        }
-    }//GEN-LAST:event_tipoRetornoActionPerformed
-
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
+        em.flush();
+        secretaria.atualizarConsultaData(campoData.getText(), consulta);
+        secretaria.atualizarConsultaHorario(campoHora.getText(), consulta);
+        secretaria.atualizarConsultaMedico(em.find(MedicoCadastrado.class, campoCRM.getText()),consulta);
+        secretaria.atualizarConsultaPaciente(em.find(PacienteCadastrado.class, campoCPF.getText()), consulta);
+        if (tipoRetorno.getSelectedObjects()[0].equals("Retorno")) {
+            secretaria.atualizarConsultaTipo("Retorno", consulta);
+        }
+        if(tipoRetorno.getSelectedObjects()[0].equals("Normal")) {
+            secretaria.atualizarConsultaTipo("Normal", consulta);
+        }
         this.dispose();
     }//GEN-LAST:event_botaoAtualizarActionPerformed
+
+    private void tipoRetornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoRetornoActionPerformed
+        if (consulta.getTipoConsulta().equals("Retorno")) {
+            tipoRetorno.setSelected(true);
+        }
+    }//GEN-LAST:event_tipoRetornoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

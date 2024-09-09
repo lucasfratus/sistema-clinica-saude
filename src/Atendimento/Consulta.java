@@ -1,12 +1,14 @@
 package Atendimento;
 
 import EmpregadosClinica.Medico;
+import Sistema.MedicoCadastrado;
+import Sistema.PacienteCadastrado;
 
 public class Consulta {
     private String data;
     private String horario;
-    private Medico medico;
-    private Paciente paciente;
+    private MedicoCadastrado medico;
+    private PacienteCadastrado paciente;
     private String tipoConsulta;
     
 
@@ -26,11 +28,11 @@ public class Consulta {
         this.horario = horario;
     }
 
-    public Medico getMedico() {
+    public MedicoCadastrado getMedico() {
         return medico;
     }
 
-    public void setMedico(Medico medico) {
+    public void setMedico(MedicoCadastrado medico) {
         this.medico = medico;
     }
 
@@ -38,7 +40,7 @@ public class Consulta {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(PacienteCadastrado paciente) {
         this.paciente = paciente;
     }
 

@@ -4,6 +4,10 @@
  */
 package Menu;
 
+import Atendimento.Paciente;
+import EmpregadosClinica.Secretaria;
+import Sistema.PacienteCadastrado;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,7 +15,8 @@ import javax.swing.JOptionPane;
  * @author lucas
  */
 public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
-
+    EntityManager em;
+    Secretaria secretariaLogada;
     /**
      * Creates new form TelaMedicoGerenciarPaciente
      */
@@ -146,25 +151,31 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BotaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVoltarActionPerformed
-        TelaPrincipalSecretaria TelaAnterior = new TelaPrincipalSecretaria();
+        TelaPrincipalSecretaria TelaAnterior = new TelaPrincipalSecretaria(secretariaLogada, em);
         TelaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotaoVoltarActionPerformed
-
+    
     private void BotaoCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarPacienteActionPerformed
-        TelaSecCadastrarPaciente TelaCadastro = new TelaSecCadastrarPaciente();
+        TelaSecCadastrarPaciente TelaCadastro = new TelaSecCadastrarPaciente(secretariaLogada, em);
         TelaCadastro.setVisible(true);
     }//GEN-LAST:event_BotaoCadastrarPacienteActionPerformed
 
     private void BotaoRemoverPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRemoverPacienteActionPerformed
-        String cpfRemovido = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja remover: ");
+        String cpf = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja atualizar", "CPF:", JOptionPane.QUESTION_MESSAGE);
+        secretariaLogada.removerPaciente(em,cpf);
         JOptionPane.showMessageDialog(null,"Paciente Removido com Sucesso");
     }//GEN-LAST:event_BotaoRemoverPacienteActionPerformed
 
     private void BotaoAtualizarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAtualizarPacienteActionPerformed
-        String cpfAtualizado = JOptionPane.showInputDialog(null,"Insira o CPF do paciente que deseja atualizar: ");
-        TelaSecAtualizarPaciente TelaAtualizacao = new TelaSecAtualizarPaciente();
-        TelaAtualizacao.setVisible(true);
+        String cpf = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja atualizar", "CPF:", JOptionPane.QUESTION_MESSAGE);
+        PacienteCadastrado pacienteCred = em.find(PacienteCadastrado.class, cpf);
+        if(pacienteCred != null) {
+            TelaSecAtualizarPaciente TelaAtualizacao = new TelaSecAtualizarPaciente(em, secretariaLogada, pacienteCred);
+            TelaAtualizacao.setVisible(true);
+        } else {
+            
+        }
     }//GEN-LAST:event_BotaoAtualizarPacienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

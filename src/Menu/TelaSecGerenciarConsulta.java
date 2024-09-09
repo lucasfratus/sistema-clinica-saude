@@ -7,9 +7,7 @@ import javax.swing.JOptionPane;
 public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
     EntityManager em;
     Secretaria secretariaLogada;
-    /**
-     * Creates new form TelaMedCadastrarPaciente
-     */
+
     public TelaSecGerenciarConsulta(Secretaria secretariaLogada, EntityManager em) {
         initComponents();
         this.secretariaLogada = secretariaLogada;
@@ -152,7 +150,7 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoAlterarConsultaActionPerformed
 
     private void BotaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVoltarActionPerformed
-        TelaPrincipalSecretaria TelaAnterior = new TelaPrincipalSecretaria(sec);
+        TelaPrincipalSecretaria TelaAnterior = new TelaPrincipalSecretaria(secretariaLogada, em);
         TelaAnterior.setVisible(true);
         this.dispose();
         

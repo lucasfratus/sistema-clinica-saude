@@ -2,7 +2,9 @@ package EmpregadosClinica;
 
 import Atendimento.Consulta;
 import Atendimento.Paciente;
-import java.util.ArrayList;
+import Sistema.MedicoCadastrado;
+import Sistema.PacienteCadastrado;
+import javax.persistence.EntityManager;
 
 
 public class Secretaria {
@@ -31,9 +33,16 @@ public class Secretaria {
         this.cpf = cpf;
     }
  
-    public Paciente cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
+    public PacienteCadastrado cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
         // Cadastra as informações basicas de um paciente
-        Paciente novoPaciente = new Paciente(nome, cpf, dataNascimento, endereco, convenio, email, telefone);
+        PacienteCadastrado novoPaciente = new PacienteCadastrado();
+        novoPaciente.setNome(nome);
+        novoPaciente.setCpf(cpf);
+        novoPaciente.setEmail(email);
+        novoPaciente.setDataNascimento(dataNascimento);
+        novoPaciente.setEndereco(endereco);
+        novoPaciente.setTelefone(telefone);
+        novoPaciente.setConvenio(convenio);
         return novoPaciente;
     }
     /*
@@ -62,40 +71,43 @@ public class Secretaria {
     }
     */
     // Permite a atualização/remoção de informações basicas de um paciente.
-    public void atualizarPacienteNome(String novoNome, Paciente paciente){
+    public void atualizarPacienteNome(String novoNome, PacienteCadastrado paciente){
         paciente.setNome(novoNome); 
     }
     
-    public void atualizarPacienteEmail(String email, Paciente paciente){
+    public void atualizarPacienteEmail(String email, PacienteCadastrado paciente){
         paciente.setEmail(email); 
     }
     
-    public void atualizarPacienteCpf(String cpf, Paciente paciente){
+    public void atualizarPacienteCpf(String cpf, PacienteCadastrado paciente){
         paciente.setCpf(cpf); 
     }
     
-    public void atualizarPacienteDataNascimento(String dataNascimento, Paciente paciente){
+    public void atualizarPacienteDataNascimento(String dataNascimento, PacienteCadastrado paciente){
         paciente.setDataNascimento(dataNascimento); 
     }
     
-    public void atualizarPacienteEndereco(String endereco, Paciente paciente){
+    public void atualizarPacienteEndereco(String endereco, PacienteCadastrado paciente){
         paciente.setEndereco(endereco);
     }
     
-    public void atualizarPacienteTelefone(String telefone, Paciente paciente){
+    public void atualizarPacienteTelefone(String telefone, PacienteCadastrado paciente){
         paciente.setTelefone(telefone);
     }
     
-    public void atualizarPacienteConvenio(String convenio, Paciente paciente){
+    public void atualizarPacienteConvenio(String convenio, PacienteCadastrado paciente){
         paciente.setConvenio(convenio);
     }
-    /*
-    public void removerPaciente(Paciente paciente){
+    
+    public void removerPaciente(EntityManager em, String cpf){
         // Remove um paciente da lista de pacientes.
-        listaPacientes.remove(paciente);
+        PacienteCadastrado paciente = em.find(PacienteCadastrado.class, cpf);
+        if(paciente != null){
+            em.remove(paciente);
+        }
     }
-    */
-    public Consulta marcarConsulta(String data, String horario, Medico medico, Paciente paciente, String tipoConsulta){
+    
+    public Consulta marcarConsulta(String data, String horario, MedicoCadastrado medico, PacienteCadastrado paciente, String tipoConsulta){
         // Marca uma consulta, adicionando ela na lista de consultas
         Consulta novaConsulta = new Consulta(); 
         novaConsulta.setData(data);
@@ -127,15 +139,15 @@ public class Secretaria {
         consulta.setHorario(horario);
     }
    
-    public void atualizarConsultaMedico(Medico medico, Consulta consulta){
+    public void atualizarConsultaMedico(MedicoCadastrado medico, Consulta consulta){
         consulta.setMedico(medico);
     }
     
-    public void atualizarConsultaPaciente(Paciente paciente, Consulta consulta){
+    public void atualizarConsultaPaciente(PacienteCadastrado paciente, Consulta consulta){
         consulta.setPaciente(paciente);
     }
     
-    public void atualizarConsultaPaciente(String tipoConsulta, Consulta consulta){
+    public void atualizarConsultaTipo(String tipoConsulta, Consulta consulta){
         consulta.setTipoConsulta(tipoConsulta);
     }
     /*

@@ -1,6 +1,8 @@
 package Menu;
 
+import Atendimento.Paciente;
 import EmpregadosClinica.Secretaria;
+import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
@@ -145,9 +147,11 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoGerarRelatorioActionPerformed
 
     private void BotaoGerenciarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerenciarPacientesActionPerformed
-        TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente();
-        NovaTela.setVisible(true);
-        this.dispose();
+        
+            TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente();
+            NovaTela.setVisible(true);
+            this.dispose();
+        
     }//GEN-LAST:event_BotaoGerenciarPacientesActionPerformed
 
     private void BotaoGerenciarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerenciarConsultasActionPerformed
@@ -155,7 +159,6 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
         TelaConsulta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotaoGerenciarConsultasActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoGerarRelatorio;
