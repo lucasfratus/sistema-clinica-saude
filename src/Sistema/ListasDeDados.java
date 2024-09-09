@@ -91,7 +91,7 @@ public class ListasDeDados {
         medicos1.add(medico3);
                 
         // Criando uma secretaria para o teste
-        Secretaria secretaria1 = new Secretaria("Missandei", pacientes1, consultas1, medicos1);   
+        Secretaria secretaria1 = new Secretaria("Missandei","123452347", pacientes1, consultas1, medicos1);   
         secretarias1.add(secretaria1);
         
         // Marcando consultas para o teste

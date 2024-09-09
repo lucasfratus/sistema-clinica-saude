@@ -6,6 +6,7 @@ import Atendimento.Paciente;
 import java.util.ArrayList;
 
 public class GerenciadorDeMensagens {
+    private String cpf;
     private Secretaria secretaria;
     private ArrayList<String> mensagensEnviadas;
     

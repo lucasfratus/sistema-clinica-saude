@@ -7,12 +7,14 @@ import java.util.ArrayList;
 
 public class Secretaria {
     private String nomeFuncionario;
+    private String cpf;
     private ArrayList<Paciente> listaPacientes;
     private ArrayList<Consulta> listaConsultas;
     private ArrayList<Medico> listaMedicos;
 
-    public Secretaria(String nomeFuncionario, ArrayList<Paciente> listaPacientes, ArrayList<Consulta> listaConsultas, ArrayList<Medico> listaMedicos) {
+    public Secretaria(String nomeFuncionario, String cpf, ArrayList<Paciente> listaPacientes, ArrayList<Consulta> listaConsultas, ArrayList<Medico> listaMedicos) {
         this.nomeFuncionario = nomeFuncionario;
+        this.cpf = cpf;
         this.listaPacientes = listaPacientes;
         this.listaConsultas = listaConsultas;
         this.listaMedicos = listaMedicos;
@@ -24,6 +26,14 @@ public class Secretaria {
 
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
     public ArrayList<Paciente> getListaPacientes() {
