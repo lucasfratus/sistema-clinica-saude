@@ -14,16 +14,15 @@
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/META-INF/persistence.xml</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaMedInfoAdicional.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaSecAtualizarPaciente.java</file>
-            <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Sistema/PacienteCadastrado.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaMedInfoAdicionalCad.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaMedGerenciarPaciente.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/Login.java</file>
-            <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaSecCadastrarPaciente.java</file>
+            <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/EmpregadosClinica/Secretaria.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaSecMarcarConsulta.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaPrincipalMed.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaSecGerenciarConsulta.java</file>
-            <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Sistema/GerenciadorCadastrado.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Atendimento/Paciente.java</file>
+            <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Menu/TelaMedGerenciarProntuariosCOMECAR.java</file>
             <file>file:/C:/Users/lucas/OneDrive/Documentos/GitHub/sistema-saude-poo/src/Sistema/SistemaBd.java</file>
         </group>
     </open-files>

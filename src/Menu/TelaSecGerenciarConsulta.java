@@ -189,7 +189,6 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
         if(consultaAlt != null){
             TelaSecAlterarConsulta telaAlterar = new TelaSecAlterarConsulta(secretariaLogada, consultaAlt, em);
             telaAlterar.setVisible(true);
-            this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Consulta não encontrada", "Erro!", JOptionPane.ERROR_MESSAGE);
         }

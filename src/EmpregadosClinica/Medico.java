@@ -122,13 +122,14 @@ public class Medico {
     }
 
     
-    public void cadastrarProntuario(PacienteCadastrado paciente, String sintoma, String diagnostico, String tratamento, Integer id){
+    public void cadastrarProntuario(PacienteCadastrado paciente, String sintoma, String diagnostico, String tratamento, EntityManager em){
         // Cadastra um prontuário de um paciente,
         Prontuario prontuarioPaciente = new Prontuario();
         prontuarioPaciente.setDiagnostico(diagnostico);
         prontuarioPaciente.setPaciente(paciente);
         prontuarioPaciente.setDiagnostico(diagnostico);
         paciente.setProntuario(prontuarioPaciente);
+        em.persist(prontuarioPaciente);
     }
     
     // Os métodos a seguir permitem a atualização dos dados de um prontuario de um paciente
@@ -152,12 +153,13 @@ public class Medico {
     
     /* Gera um relatório médico do paciente, com seu nome, receita, atestado e declaração de acompanhamento (os dois ultimos
     gerados de forma representativa). Além disso mostra qual é o número do paciente atendido naquele mês.*/
-    public void gerarRelatorioMedico(PacienteCadastrado paciente){
+    public PacienteCadastrado gerarRelatorioMedico(PacienteCadastrado paciente){
         this.setNumeroAtendidos();
         System.out.println("Nome do paciente: " + paciente.getNome());
         System.out.println("Receita: " + paciente.getProntuario().getTratamento());
         System.out.println("Atestado: (*Documento em pdf*)");
         System.out.println("Declaração de acompanhamento: (*Documento em pdf*)");
         System.out.println("Paciente atendido no mês: " + this.getNumeroAtendidos());
+        return paciente;
     }
 }

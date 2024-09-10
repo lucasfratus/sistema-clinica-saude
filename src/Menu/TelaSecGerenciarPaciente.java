@@ -165,7 +165,7 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
             secretariaLogada.removerPaciente(em,cpf);
             JOptionPane.showMessageDialog(null,"Paciente Removido com Sucesso!");
         } else {
-             JOptionPane.showMessageDialog(null, "Paciente não encontrado!", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Paciente não encontrado!", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotaoRemoverPacienteActionPerformed
 
