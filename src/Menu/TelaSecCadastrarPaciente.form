@@ -248,9 +248,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="EmailNovoPaciente">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmailNovoPacienteActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BotaoCadastrar">
           <Properties>

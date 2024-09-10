@@ -139,8 +139,7 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "CPF incorreto/não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
-            }
-            
+            } 
         }
         if((ProfissaoEscolhida.getSelectedItem()).equals("Médico")) {
             MedicoCadastrado medicoCred = new MedicoCadastrado(); // Cria um objeto da classe MedicoCadastrado 

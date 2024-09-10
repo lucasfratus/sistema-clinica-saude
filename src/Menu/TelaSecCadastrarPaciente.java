@@ -137,12 +137,6 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
 
         TelefoneNovoPaciente.setText("(##)#####-####");
 
-        EmailNovoPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailNovoPacienteActionPerformed(evt);
-            }
-        });
-
         BotaoCadastrar.setText("Cadastrar");
         BotaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,10 +203,6 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void EmailNovoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailNovoPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailNovoPacienteActionPerformed
 
     private void BotaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarActionPerformed
         String nomePaciente = NomeNovoPaciente.getText();

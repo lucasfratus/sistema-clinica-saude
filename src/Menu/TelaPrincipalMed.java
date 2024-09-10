@@ -120,6 +120,8 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         if(pacienteRelatorio != null){
             TelaMedRelatorio telaRelatorio = new TelaMedRelatorio(pacienteRelatorio, medicoLogado, em);
             telaRelatorio.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "CPF incorreto/Paciente não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_botaoGerarRelatoriosActionPerformed

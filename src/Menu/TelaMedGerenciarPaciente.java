@@ -129,7 +129,7 @@ public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
             TelaMedInfoAdicionalCad telaInfoAd = new TelaMedInfoAdicionalCad(em, medicoLogado, pacienteAdicionais);
             telaInfoAd.setVisible(true);
         } else {
-                JOptionPane.showMessageDialog(null, "CPF incorreto/Paciente não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "CPF incorreto/Paciente não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotaoAtualizarInfoActionPerformed
 

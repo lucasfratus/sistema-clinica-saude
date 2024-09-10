@@ -10,16 +10,11 @@ import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucas
- */
+
 public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
     EntityManager em;
     Secretaria secretariaLogada;
-    /**
-     * Creates new form TelaMedicoGerenciarPaciente
-     */
+
     public TelaSecGerenciarPaciente() {
         initComponents();
     }
@@ -169,7 +164,6 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Paciente Removido com Sucesso");
         } else {
              JOptionPane.showMessageDialog(null, "Paciente não encontrado!", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
-
         }
     }//GEN-LAST:event_BotaoRemoverPacienteActionPerformed
 
