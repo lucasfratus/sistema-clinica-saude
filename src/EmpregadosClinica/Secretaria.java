@@ -1,7 +1,6 @@
 package EmpregadosClinica;
 
 import Atendimento.Consulta;
-import Atendimento.Paciente;
 import Sistema.MedicoCadastrado;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
@@ -10,6 +9,7 @@ import javax.persistence.EntityManager;
 public class Secretaria {
     private String nomeFuncionario;
     private String cpf;
+    private EntityManager em;
 
 
     public Secretaria(String nomeFuncionario, String cpf) {
@@ -35,6 +35,7 @@ public class Secretaria {
  
     public PacienteCadastrado cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
         // Cadastra as informações basicas de um paciente
+        em.getTransaction().begin();
         PacienteCadastrado novoPaciente = new PacienteCadastrado();
         novoPaciente.setNome(nome);
         novoPaciente.setCpf(cpf);
@@ -43,72 +44,67 @@ public class Secretaria {
         novoPaciente.setEndereco(endereco);
         novoPaciente.setTelefone(telefone);
         novoPaciente.setConvenio(convenio);
+        em.getTransaction().commit();
         return novoPaciente;
     }
-    /*
-    ARRUMAR
     
-    public Paciente buscarPaciente(String cpf){
-        // Busca um paciente na lista de pacientes através do CPF, retornando um objeto Paciente que possui o CPF desejado.
-        Paciente paciente = null;
-        for(int i = 0; i < listaPacientes.size(); i++){
-            if (listaPacientes.get(i).getCpf().equals(cpf)) {
-                paciente = listaPacientes.get(i);
-            }    
-        }
-        return paciente;
-    }
-    
-    public Medico buscarMedico(String nomeMedico){
-        // Busca um médico na lista de médicos através do nome, retornando um objeto Medico que possui o nome desejado.
-        Medico medicoBuscado = null;
-        for(int i = 0; i < listaMedicos.size(); i++){
-            if (listaMedicos.get(i).getNome().equals(nomeMedico)) {
-                medicoBuscado = listaMedicos.get(i);
-            }    
-        }
-        return medicoBuscado;
-    }
-    */
+
     // Permite a atualização/remoção de informações basicas de um paciente.
     public void atualizarPacienteNome(String novoNome, PacienteCadastrado paciente){
+        em.getTransaction().begin();
         paciente.setNome(novoNome); 
+        em.getTransaction().commit();
     }
     
     public void atualizarPacienteEmail(String email, PacienteCadastrado paciente){
+        em.getTransaction().begin();
         paciente.setEmail(email); 
+        em.getTransaction().commit();
     }
     
     public void atualizarPacienteCpf(String cpf, PacienteCadastrado paciente){
+        em.getTransaction().begin();
         paciente.setCpf(cpf); 
+        em.getTransaction().commit();
     }
     
     public void atualizarPacienteDataNascimento(String dataNascimento, PacienteCadastrado paciente){
+        em.getTransaction().begin();
         paciente.setDataNascimento(dataNascimento); 
+        em.getTransaction().commit();
     }
     
     public void atualizarPacienteEndereco(String endereco, PacienteCadastrado paciente){
+        em.getTransaction().begin();
         paciente.setEndereco(endereco);
+        em.getTransaction().commit();
     }
     
     public void atualizarPacienteTelefone(String telefone, PacienteCadastrado paciente){
+        em.getTransaction().begin();
         paciente.setTelefone(telefone);
+        em.getTransaction().commit();
     }
     
     public void atualizarPacienteConvenio(String convenio, PacienteCadastrado paciente){
+        em.getTransaction().begin();
         paciente.setConvenio(convenio);
+        em.getTransaction().commit();
     }
     
     public void removerPaciente(EntityManager em, String cpf){
-        // Remove um paciente da lista de pacientes.
+        // Remove um paciente do banco de dados.
+        em.getTransaction().begin();
         PacienteCadastrado paciente = em.find(PacienteCadastrado.class, cpf);
         if(paciente != null){
             em.remove(paciente);
         }
+        em.getTransaction().commit();
     }
     
     public Consulta marcarConsulta(String data, String horario, MedicoCadastrado medico, PacienteCadastrado paciente, String tipoConsulta, EntityManager em){
-        // Marca uma consulta, adicionando ela na lista de consultas
+        // Marca uma consulta, adicionando ela na base de dados
+        em.getTransaction().begin();
         Consulta novaConsulta = new Consulta(); 
         novaConsulta.setData(data);
         novaConsulta.setHorario(horario);
@@ -116,45 +112,46 @@ public class Secretaria {
         novaConsulta.setPaciente(paciente);
         novaConsulta.setTipoConsulta(tipoConsulta);
         em.persist(novaConsulta);
+        em.getTransaction().commit();
         return novaConsulta;
     }
-    /*
-    public Consulta buscarConsulta(String data, String horario, Medico medico){
-        Busca uma consulta por meio da data, horario e medico da consulta marcada na lista de consultas. 
-        Retorna um objeto do tipo consulta.
-        Consulta consultaBuscada = null;
-        for(int i = 0; i < listaConsultas.size(); i++){
-            if(listaConsultas.get(i).getData().equals(data) && listaConsultas.get(i).getHorario().equals(horario) && listaConsultas.get(i).getMedico().equals(medico)){
-                consultaBuscada = listaConsultas.get(i);
-            }
-        }
-        return consultaBuscada;
-    }
-    */
+    
     // Os métodos a seguir atualizam os dados de uma consulta
     public void atualizarConsultaData(String data, Consulta consulta){
+        em.getTransaction().begin();
         consulta.setData(data);
+        em.getTransaction().commit();
     }
     
     public void atualizarConsultaHorario(String horario, Consulta consulta){
+        em.getTransaction().begin();
         consulta.setHorario(horario);
+        em.getTransaction().commit();
     }
    
     public void atualizarConsultaMedico(MedicoCadastrado medico, Consulta consulta){
+        em.getTransaction().begin();
         consulta.setMedico(medico);
+        em.getTransaction().commit();
     }
     
     public void atualizarConsultaPaciente(PacienteCadastrado paciente, Consulta consulta){
+        em.getTransaction().begin();
         consulta.setPaciente(paciente);
+        em.getTransaction().commit();
     }
     
     public void atualizarConsultaTipo(String tipoConsulta, Consulta consulta){
+        em.getTransaction().begin();
         consulta.setTipoConsulta(tipoConsulta);
+        em.getTransaction().commit();
     }
     
     public void removerConsulta(Consulta consulta, EntityManager em){
         // Remove uma consulta da lista de consultas
+        em.getTransaction().begin();
         em.remove(consulta);
+        em.getTransaction().commit();
     } 
     /*
     public ArrayList[] gerarRelatorio(String data){

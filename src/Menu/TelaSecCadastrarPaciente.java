@@ -50,12 +50,6 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        NomeNovoPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomeNovoPacienteActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Nome:");
 
         jLabel2.setText("CPF:");
@@ -225,20 +219,13 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         String convenioPaciente = ConvenioNovoPaciente.getText();
         String nascPaciente = NascNovoPaciente.getText();
         if(nomePaciente != "" && cpfPaciente != "" && nascPaciente != "" && convenioPaciente != "" && enderecoPaciente != "") { // Talvez seja null e nao ""
-            PacienteCadastrado novoPaciente = secretariaLogada.cadastrarPaciente(nomePaciente, cpfPaciente, emailPaciente, nascPaciente, enderecoPaciente, telefonePaciente, convenioPaciente);
-            em.getTransaction().begin();
-            em.persist(novoPaciente);
-            em.getTransaction().commit();
+            secretariaLogada.cadastrarPaciente(nomePaciente, cpfPaciente, emailPaciente, nascPaciente, enderecoPaciente, telefonePaciente, convenioPaciente);
             JOptionPane.showMessageDialog(null,"Paciente Cadastrado com sucesso");
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Erro!", "Preencha os campos necessários!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotaoCadastrarActionPerformed
-
-    private void NomeNovoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeNovoPacienteActionPerformed
-
-    }//GEN-LAST:event_NomeNovoPacienteActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         this.dispose();

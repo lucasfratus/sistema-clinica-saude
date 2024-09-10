@@ -22,7 +22,7 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         botaoGerenciarP = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botaoGerenciarProntuarios = new javax.swing.JButton();
         botaoGerarRelatorios = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -43,8 +43,13 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("Gerenciar Prontuarios");
+        botaoGerenciarProntuarios.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        botaoGerenciarProntuarios.setText("Gerenciar Prontuarios");
+        botaoGerenciarProntuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGerenciarProntuariosActionPerformed(evt);
+            }
+        });
 
         botaoGerarRelatorios.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         botaoGerarRelatorios.setText("Gerar Relatórios Médicos");
@@ -83,7 +88,7 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
                 .addContainerGap(115, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botaoGerenciarP, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoGerenciarProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoGerarRelatorios))
                 .addGap(114, 114, 114))
         );
@@ -95,7 +100,7 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(botaoGerenciarP, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoGerenciarProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(botaoGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -126,10 +131,14 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botaoGerarRelatoriosActionPerformed
 
+    private void botaoGerenciarProntuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerenciarProntuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoGerenciarProntuariosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoGerarRelatorios;
     private javax.swing.JButton botaoGerenciarP;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botaoGerenciarProntuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

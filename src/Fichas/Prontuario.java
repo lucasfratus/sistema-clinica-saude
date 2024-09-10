@@ -10,13 +10,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PRONTUARIO")
 public class Prontuario {
+    @Id
     @OneToOne(cascade = CascadeType.ALL)
     private PacienteCadastrado paciente;
     private String sintomas;
     private String diagnostico;
     private String tratamento;
-    @Id
-    private Integer idPront;
+
     
     public Prontuario(){
     }
@@ -51,14 +51,5 @@ public class Prontuario {
 
     public void setPaciente(PacienteCadastrado paciente) {
         this.paciente = paciente;
-    }
-
-    public Integer getIdPront() {
-        return idPront;
-    }
-
-    public void setIdPront(Integer idPront) {
-        this.idPront = idPront;
-    }
-           
+    }    
 }
