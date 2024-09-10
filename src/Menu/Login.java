@@ -1,5 +1,6 @@
 package Menu;
 
+import EmpregadosClinica.GerenciadorDeMensagens;
 import EmpregadosClinica.Medico;
 import EmpregadosClinica.Secretaria;
 import Sistema.GerenciadorCadastrado;
@@ -57,11 +58,6 @@ public class Login extends javax.swing.JFrame {
 
         ProfissaoEscolhida.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         ProfissaoEscolhida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum", "Médico", "Secretaria", "Gerenciador de Mensagem" }));
-        ProfissaoEscolhida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfissaoEscolhidaActionPerformed(evt);
-            }
-        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagens/logo.png"))); // NOI18N
 
@@ -131,7 +127,6 @@ public class Login extends javax.swing.JFrame {
         
         if((ProfissaoEscolhida.getSelectedItem()).equals("Nenhum")) {
             JOptionPane.showMessageDialog(null, "Escolha um cargo!", "Cargo não escolhido", JOptionPane.ERROR_MESSAGE);
-
         }
         
         if((ProfissaoEscolhida.getSelectedItem()).equals("Secretaria")) {
@@ -146,7 +141,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "CPF incorreto/não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
             }
             
-    }
+        }
         if((ProfissaoEscolhida.getSelectedItem()).equals("Médico")) {
             MedicoCadastrado medicoCred = new MedicoCadastrado(); // Cria um objeto da classe MedicoCadastrado 
                                                                 // para armazenar as credencias do médico que será logado
@@ -159,13 +154,16 @@ public class Login extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "CRM incorreto/não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
             }
-            
+        }
+        if((ProfissaoEscolhida.getSelectedItem()).equals("Gerenciador")){
+            GerenciadorCadastrado gerenciadorCred = new GerenciadorCadastrado();
+            gerenciadorCred = em.find(GerenciadorCadastrado.class, credenciais);
+            if (gerenciadorCred != null){
+                GerenciadorDeMensagens gerenciadorLogado = new GerenciadorDeMensagens(gerenciadorCred.getCpf(),gerenciadorCred.getNome());
+                // TERMINAR
+            }
         }
     }//GEN-LAST:event_EntrarActionPerformed
-
-    private void ProfissaoEscolhidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfissaoEscolhidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProfissaoEscolhidaActionPerformed
 
     private void botaoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistrarActionPerformed
         if((ProfissaoEscolhida.getSelectedItem()).equals("Secretaria")) {
@@ -198,7 +196,9 @@ public class Login extends javax.swing.JFrame {
             String novoGmCpf = JOptionPane.showInputDialog(null, "Insira o cpf do Gerenciador de Mensagens: ");
             GerenciadorCadastrado novoGM = new GerenciadorCadastrado();
             novoGM.setCpf(novoGmCpf);
+            em.getTransaction().begin();
             em.merge(novoGM);
+            em.getTransaction().commit();
         }
         
     }//GEN-LAST:event_botaoRegistrarActionPerformed

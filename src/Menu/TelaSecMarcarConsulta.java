@@ -1,16 +1,25 @@
 package Menu;
 
+import Atendimento.Consulta;
+import EmpregadosClinica.Secretaria;
+import Sistema.MedicoCadastrado;
+import Sistema.PacienteCadastrado;
+import javax.persistence.EntityManager;
+
 /**
  *
  * @author lucas
  */
 public class TelaSecMarcarConsulta extends javax.swing.JFrame {
-
+    EntityManager em;
+    Secretaria secretariaLogada;
     /**
      * Creates new form TelaSecMarcarConsulta
      */
-    public TelaSecMarcarConsulta() {
+    public TelaSecMarcarConsulta(Secretaria secretariaLogada, EntityManager em) {
         initComponents();
+        this.secretariaLogada = secretariaLogada;
+        this.em = em;
     }
 
     /**
@@ -44,7 +53,7 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
 
         jLabel3.setText("Data: (dd/mm/aaaa)");
 
-        jLabel4.setText("Horário:");
+        jLabel4.setText("Horário: (hh:mm)");
 
         grupoTipoDeConsulta.add(consultaNormal);
         consultaNormal.setText("Normal");
@@ -66,10 +75,6 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(botaoMarcar)
-                .addContainerGap(196, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cpfPacienteConsulta)
@@ -77,6 +82,7 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -93,10 +99,13 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(consultaNormal)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(consultaRetorno))))
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(consultaRetorno)))))
+                        .addGap(0, 28, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoMarcar)
+                .addGap(196, 196, 196))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,16 +129,63 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
                     .addComponent(horarioConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(consultaNormal)
                     .addComponent(consultaRetorno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(botaoMarcar)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoMarcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMarcarActionPerformed
-        // TODO add your handling code here:
+        String cpfPaciente = cpfPacienteConsulta.getText();
+        PacienteCadastrado pacienteCred = em.find(PacienteCadastrado.class, cpfPaciente);
+        
+        String crmMedico = crmConsulta.getText();
+        MedicoCadastrado medicoCred = em.find(MedicoCadastrado.class, crmMedico);
+        
+        String data = dataConsulta.getText();
+        String horario = horarioConsulta.getText();
+        
+        String tipoConsulta = "";
+        if(consultaNormal.isSelected()){
+            tipoConsulta = "Normal";
+        }
+        if(consultaRetorno.isSelected()){
+            tipoConsulta = "Retorno";
+        }
+        
+        if(pacienteCred != null && medicoCred != null && data != null && horario != null & tipoConsulta != "") {
+            // criacao do id da consulta
+            StringBuilder idConsulta = new StringBuilder();
+            idConsulta.append(data);
+            String resIdConsulta = idConsulta.toString().replaceAll("[/]", "");
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            idConsulta.append("/");
+            idConsulta.append(horario);
+            resIdConsulta = idConsulta.toString().replaceAll("[:]", "");
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            idConsulta.append("/");
+            idConsulta.append(crmMedico);
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            resIdConsulta = idConsulta.toString();
+            
+            // Marcando consulta
+            Consulta novaConsulta = new Consulta();
+            novaConsulta.setData(data);
+            novaConsulta.setHorario(horario);
+            novaConsulta.setIdConsulta(resIdConsulta);
+            novaConsulta.setMedico(medicoCred);
+            novaConsulta.setPaciente(pacienteCred);
+            novaConsulta.setTipoConsulta(tipoConsulta);
+            
+            em.getTransaction().begin();
+            em.persist(novaConsulta);
+            em.getTransaction().commit();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoMarcarActionPerformed
 

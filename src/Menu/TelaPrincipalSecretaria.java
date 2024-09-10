@@ -138,20 +138,13 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
 
     private void BotaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerarRelatorioActionPerformed
         StringBuilder relatorio = new StringBuilder();
-        //relatorio.append("Nome do paciente: ").append(nome).append("\n");
-        //relatorio.append("CPF do paciente: ").append(cpf).append("\n");
-        //relatorio.append("Data: ").append(data).append("\n");
-        //relatorio.append("Receita: ").append(receita).append("\n");
-        //relatorio.append("Atestado: (*Documento em pdf*)").append("\n");
-        //relatorio.append("Declaração de acompanhamento: (*Documento em pdf*)").append("\n");
         JOptionPane.showMessageDialog(null,relatorio);
     }//GEN-LAST:event_BotaoGerarRelatorioActionPerformed
 
     private void BotaoGerenciarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerenciarPacientesActionPerformed
-        
-            TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente();
-            NovaTela.setVisible(true);
-            this.dispose();
+        TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente();
+        NovaTela.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_BotaoGerenciarPacientesActionPerformed
 

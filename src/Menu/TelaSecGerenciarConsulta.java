@@ -129,7 +129,7 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void BotaoMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoMarcarConsultaActionPerformed
-        TelaSecMarcarConsulta marcarTela = new TelaSecMarcarConsulta();
+        TelaSecMarcarConsulta marcarTela = new TelaSecMarcarConsulta(secretariaLogada, em);
         marcarTela.setVisible(true);
     }//GEN-LAST:event_BotaoMarcarConsultaActionPerformed
 

@@ -163,8 +163,14 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
 
     private void BotaoRemoverPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRemoverPacienteActionPerformed
         String cpf = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja atualizar", "CPF:", JOptionPane.QUESTION_MESSAGE);
-        secretariaLogada.removerPaciente(em,cpf);
-        JOptionPane.showMessageDialog(null,"Paciente Removido com Sucesso");
+        PacienteCadastrado p = em.find(PacienteCadastrado.class, cpf);
+        if(p != null) {
+            secretariaLogada.removerPaciente(em,cpf);
+            JOptionPane.showMessageDialog(null,"Paciente Removido com Sucesso");
+        } else {
+             JOptionPane.showMessageDialog(null, "Paciente não encontrado!", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_BotaoRemoverPacienteActionPerformed
 
     private void BotaoAtualizarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAtualizarPacienteActionPerformed

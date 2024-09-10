@@ -7,20 +7,29 @@ import java.util.ArrayList;
 
 public class GerenciadorDeMensagens {
     private String cpf;
-    private Secretaria secretaria;
-    private ArrayList<String> mensagensEnviadas;
+    private String nome;
     
-    public GerenciadorDeMensagens(Secretaria secretaria,ArrayList<String> mensagensEnviadas) {
-        this.secretaria = secretaria;
-        this.mensagensEnviadas = mensagensEnviadas;
+    public GerenciadorDeMensagens(String cpf, String nome){
+        this.cpf = cpf;
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
-    public ArrayList<Consulta> getPacientesComContato(String dataDeAmanha){
-        // Retorna um ArrayList de consultas que os pacientes possuem alguma forma de contato(email ou telefone)
-        ArrayList[] relatorio = new ArrayList[2];
-        //relatorio = secretaria.gerarRelatorio(dataDeAmanha);
-        return relatorio[1];
-    }
     
     public void mandarEmail(String mensagem, String email){
         // Representa o envio de um email, que possui uma mensagem, ao paciente que possui um telefone.
@@ -53,6 +62,7 @@ public class GerenciadorDeMensagens {
         return "Mensagens enviadas com sucesso";   
     }
     */
+    /*
     public String visualizarMensagensEnviadas(){
         // Possibilita a visualização de todas as mensagens enviadas anteriormente,
         String buffer = null;
@@ -61,4 +71,5 @@ public class GerenciadorDeMensagens {
         }
         return buffer;
     }
+*/
 }
