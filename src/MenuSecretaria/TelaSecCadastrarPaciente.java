@@ -1,4 +1,4 @@
-package Menu;
+package MenuSecretaria;
 
 import EmpregadosClinica.Secretaria;
 import Sistema.PacienteCadastrado;

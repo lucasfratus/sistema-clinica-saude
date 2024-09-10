@@ -1,5 +1,7 @@
-package Menu;
+package MenuLogin;
 
+import MenuSecretaria.TelaPrincipalSecretaria;
+import MenuMedico.TelaPrincipalMed;
 import EmpregadosClinica.GerenciadorDeMensagens;
 import EmpregadosClinica.Medico;
 import EmpregadosClinica.Secretaria;

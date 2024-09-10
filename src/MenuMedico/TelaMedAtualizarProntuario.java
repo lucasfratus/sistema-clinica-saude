@@ -1,4 +1,4 @@
-package Menu;
+package MenuMedico;
 
 import EmpregadosClinica.Medico;
 import Fichas.Prontuario;

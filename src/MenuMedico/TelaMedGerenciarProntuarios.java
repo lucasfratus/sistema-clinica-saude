@@ -1,5 +1,6 @@
-package Menu;
+package MenuMedico;
 
+import MenuMedico.TelaMedAtualizarProntuario;
 import EmpregadosClinica.Medico;
 import Fichas.Prontuario;
 import Sistema.PacienteCadastrado;

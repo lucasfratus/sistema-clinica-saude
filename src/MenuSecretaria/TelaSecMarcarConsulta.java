@@ -1,4 +1,4 @@
-package Menu;
+package MenuSecretaria;
 
 import Atendimento.Consulta;
 import EmpregadosClinica.Secretaria;

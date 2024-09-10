@@ -186,14 +186,15 @@ public class Medico {
     }
     
     /* Gera um relatório médico do paciente, com seu nome, receita, atestado e declaração de acompanhamento (os dois ultimos
-    gerados de forma representativa). Além disso mostra qual é o número do paciente atendido naquele mês.*/
-    public PacienteCadastrado gerarRelatorioMedico(PacienteCadastrado paciente){
+    gerados de forma representativa)*/
+    public String gerarRelatorioMedico(PacienteCadastrado paciente){
         this.setNumeroAtendidos();
-        System.out.println("Nome do paciente: " + paciente.getNome());
-        System.out.println("Receita: " + paciente.getProntuario().getTratamento());
-        System.out.println("Atestado: (*Documento em pdf*)");
-        System.out.println("Declaração de acompanhamento: (*Documento em pdf*)");
-        System.out.println("Paciente atendido no mês: " + this.getNumeroAtendidos());
-        return paciente;
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("Nome do paciente: " + paciente.getNome());
+        buffer.append("\nReceita: " + paciente.getProntuario().getTratamento());
+        buffer.append("\nAtestado: (*Documento em pdf*)");
+        buffer.append("\nDeclaração de acompanhamento: (*Documento em pdf*)");
+        String bufferString = buffer.toString();
+        return bufferString;
     }
 }

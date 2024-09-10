@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Menu;
+package MenuSecretaria;
 
 import Atendimento.Paciente;
 import EmpregadosClinica.Secretaria;
@@ -49,7 +49,6 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 600));
 
         BotaoCadastrarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BotaoCadastrarPaciente.setText("Cadastrar Paciente");

@@ -1,5 +1,6 @@
-package Menu;
+package MenuMedico;
 
+import MenuMedico.TelaMedGerenciarPaciente;
 import EmpregadosClinica.Medico;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;

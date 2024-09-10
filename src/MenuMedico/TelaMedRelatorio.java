@@ -1,4 +1,4 @@
-package Menu;
+package MenuMedico;
 
 import EmpregadosClinica.Medico;
 import Sistema.PacienteCadastrado;
@@ -25,15 +25,9 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        labelNomePaciente = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        receitaPaciente = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        documentoEmPdf = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        labelDeclaracao = new javax.swing.JLabel();
         botaoVoltar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        caixaRelatorio = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -41,30 +35,18 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nome:");
-
-        labelNomePaciente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelNomePaciente.setText(paciente.getNome());
-
-        jLabel2.setText("Receita:");
-
-        receitaPaciente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        receitaPaciente.setText(paciente.getProntuario().getTratamento());
-
-        jLabel4.setText("Atestado:");
-
-        documentoEmPdf.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        documentoEmPdf.setText("**Documento em .pdf**");
-
-        jLabel6.setText("Declaração de acompanhamento:");
-
-        labelDeclaracao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelDeclaracao.setText("**Documento em .pdf**");
-
         botaoVoltar.setText("Voltar");
         botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoVoltarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Relatorio");
+
+        caixaRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caixaRelatorioActionPerformed(evt);
             }
         });
 
@@ -89,48 +71,27 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(140, Short.MAX_VALUE)
+                .addComponent(botaoVoltar)
+                .addGap(139, 139, 139))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(caixaRelatorio)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6)
-                            .addComponent(labelDeclaracao)
-                            .addComponent(labelNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(receitaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(documentoEmPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoVoltar)
-                .addGap(139, 139, 139))
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNomePaciente)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel2)
+                .addComponent(caixaRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(receitaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(documentoEmPdf)
-                .addGap(48, 48, 48)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(labelDeclaracao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(botaoVoltar)
                 .addContainerGap())
         );
@@ -143,24 +104,24 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
+        TelaPrincipalMed telaAnterior = new TelaPrincipalMed(medicoLogado, em);
+        telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botaoVoltarActionPerformed
+
+    private void caixaRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caixaRelatorioActionPerformed
+        caixaRelatorio.setText(medicoLogado.gerarRelatorioMedico(paciente));
+    }//GEN-LAST:event_caixaRelatorioActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JLabel documentoEmPdf;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField caixaRelatorio;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JLabel labelDeclaracao;
-    private javax.swing.JLabel labelNomePaciente;
-    private javax.swing.JLabel receitaPaciente;
     // End of variables declaration//GEN-END:variables
 }
