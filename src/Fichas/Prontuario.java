@@ -1,14 +1,24 @@
 package Fichas;
 
+import Sistema.PacienteCadastrado;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PRONTUARIO")
 public class Prontuario {
+    @OneToOne(cascade = CascadeType.ALL)
+    private PacienteCadastrado paciente;
     private String sintomas;
     private String diagnostico;
     private String tratamento;
+    @Id
+    private Integer idPront;
     
-    public Prontuario(String sintomas, String diagnostico, String tratamento){
-        this.sintomas = sintomas;
-        this.diagnostico = diagnostico;
-        this.tratamento = tratamento;
+    public Prontuario(){
     }
 
     public String getSintomas() {
@@ -33,6 +43,22 @@ public class Prontuario {
 
     public void setTratamento(String tratamento) {
         this.tratamento = tratamento;
+    }
+
+    public PacienteCadastrado getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteCadastrado paciente) {
+        this.paciente = paciente;
+    }
+
+    public Integer getIdPront() {
+        return idPront;
+    }
+
+    public void setIdPront(Integer idPront) {
+        this.idPront = idPront;
     }
            
 }

@@ -2,9 +2,12 @@ package Sistema;
 
 import Fichas.Prontuario;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "PACIENTE")
 public class PacienteCadastrado {
@@ -16,6 +19,7 @@ public class PacienteCadastrado {
     private String endereco;
     private String telefone;
     private String convenio;
+    @OneToOne(cascade = CascadeType.ALL)
     private Prontuario prontuario;
     private boolean fuma;
     private boolean bebe;

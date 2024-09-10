@@ -122,9 +122,12 @@ public class Medico {
     }
 
     
-    public void cadastrarProntuario(PacienteCadastrado paciente, String sintoma, String diagnostico, String tratamento){
+    public void cadastrarProntuario(PacienteCadastrado paciente, String sintoma, String diagnostico, String tratamento, Integer id){
         // Cadastra um prontuário de um paciente,
-        Prontuario prontuarioPaciente = new Prontuario(sintoma, diagnostico, tratamento);
+        Prontuario prontuarioPaciente = new Prontuario();
+        prontuarioPaciente.setDiagnostico(diagnostico);
+        prontuarioPaciente.setPaciente(paciente);
+        prontuarioPaciente.setDiagnostico(diagnostico);
         paciente.setProntuario(prontuarioPaciente);
     }
     
