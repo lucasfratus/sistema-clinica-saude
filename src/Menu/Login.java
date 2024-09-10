@@ -129,6 +129,11 @@ public class Login extends javax.swing.JFrame {
         String credenciais = new String();
         credenciais = credFuncionario.getText(); // Obtém a credencial inserida  
         
+        if((ProfissaoEscolhida.getSelectedItem()).equals("Nenhum")) {
+            JOptionPane.showMessageDialog(null, "Escolha um cargo!", "Cargo não escolhido", JOptionPane.ERROR_MESSAGE);
+
+        }
+        
         if((ProfissaoEscolhida.getSelectedItem()).equals("Secretaria")) {
             SecretariaCadastrada secCred = new SecretariaCadastrada(); // Cria um objeto da classe SecretariaCadastrada
             secCred = em.find(SecretariaCadastrada.class, credenciais);
@@ -136,8 +141,11 @@ public class Login extends javax.swing.JFrame {
                 Secretaria secLogada = new Secretaria(secCred.getNomeFuncionario(), secCred.getCpf());
                 TelaPrincipalSecretaria telaSec = new TelaPrincipalSecretaria(secLogada, em);
                 telaSec.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "CPF incorreto/não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
             }
-            this.dispose();
+            
     }
         if((ProfissaoEscolhida.getSelectedItem()).equals("Médico")) {
             MedicoCadastrado medicoCred = new MedicoCadastrado(); // Cria um objeto da classe MedicoCadastrado 
@@ -147,8 +155,11 @@ public class Login extends javax.swing.JFrame {
                 Medico medicoLogado = new Medico(medicoCred.getNome(), medicoCred.getNumeroDeRegistro(), medicoCred.getEspecialidade(), medicoCred.getNumeroDoConsultorio(), medicoCred.getNumeroAtendidos());
                 TelaPrincipalMed telaMed = new TelaPrincipalMed(medicoLogado, em);
                 telaMed.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "CRM incorreto/não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
             }
-            this.dispose();
+            
         }
     }//GEN-LAST:event_EntrarActionPerformed
 
@@ -164,7 +175,9 @@ public class Login extends javax.swing.JFrame {
             SecretariaCadastrada novaSecretaria = new SecretariaCadastrada();
             novaSecretaria.setNomeFuncionario(novoSecretariaNome);
             novaSecretaria.setCpf(novaSecretariaCPF);
-            
+            em.getTransaction().begin();
+            em.merge(novaSecretaria);
+            em.getTransaction().commit();
         }
         if((ProfissaoEscolhida.getSelectedItem()).equals("Médico")) {
             String novoMedicoNome = JOptionPane.showInputDialog(null, "Insira o nome do novo Médico: ");

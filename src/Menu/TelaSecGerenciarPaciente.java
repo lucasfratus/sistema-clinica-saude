@@ -174,7 +174,7 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
             TelaSecAtualizarPaciente TelaAtualizacao = new TelaSecAtualizarPaciente(em, secretariaLogada, pacienteCred);
             TelaAtualizacao.setVisible(true);
         } else {
-            
+            JOptionPane.showMessageDialog(null, "CPF incorreto/Paciente não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotaoAtualizarPacienteActionPerformed
 

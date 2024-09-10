@@ -31,13 +31,13 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         NomeNovoPaciente = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        CPFNovoPaciente = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         NascNovoPaciente = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         EnderecoNovoPaciente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         ConvenioNovoPaciente = new javax.swing.JTextField();
+        CPFNovoPaciente = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -58,17 +58,6 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         jLabel1.setText("Nome:");
 
         jLabel2.setText("CPF:");
-
-        try {
-            CPFNovoPaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        CPFNovoPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CPFNovoPacienteActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Data de Nascimento:");
 
@@ -94,9 +83,9 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CPFNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(27, 27, 27)
+                            .addComponent(jLabel2)
+                            .addComponent(CPFNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3)
                             .addComponent(NascNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,7 +93,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ConvenioNovoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                .addComponent(ConvenioNovoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,10 +117,11 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CPFNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NascNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConvenioNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NascNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ConvenioNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CPFNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,10 +210,6 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CPFNovoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPFNovoPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CPFNovoPacienteActionPerformed
-
     private void EmailNovoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailNovoPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailNovoPacienteActionPerformed
@@ -254,7 +240,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCadastrar;
-    private javax.swing.JFormattedTextField CPFNovoPaciente;
+    private javax.swing.JTextField CPFNovoPaciente;
     private javax.swing.JTextField ConvenioNovoPaciente;
     private javax.swing.JTextField EmailNovoPaciente;
     private javax.swing.JTextField EnderecoNovoPaciente;

@@ -1,7 +1,9 @@
 package Menu;
 
 import EmpregadosClinica.Medico;
+import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 
 
 public class TelaPrincipalMed extends javax.swing.JFrame {
@@ -21,13 +23,14 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botaoGerenciarP = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botaoGerarRelatorios = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Principal - Usuario: Medico");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Bem vindo(a)!");
@@ -43,8 +46,13 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton1.setText("Gerenciar Prontuarios");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("Gerar Relatórios Médicos");
+        botaoGerarRelatorios.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        botaoGerarRelatorios.setText("Gerar Relatórios Médicos");
+        botaoGerarRelatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGerarRelatoriosActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Sistema");
 
@@ -68,29 +76,29 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoGerenciarP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(139, 139, 139))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(226, 226, 226)
+                .addGap(190, 190, 190)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(115, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoGerenciarP, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoGerarRelatorios))
+                .addGap(114, 114, 114))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(71, 71, 71)
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
-                .addComponent(botaoGerenciarP)
-                .addGap(62, 62, 62)
-                .addComponent(jButton1)
-                .addGap(63, 63, 63)
-                .addComponent(jButton2)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(botaoGerenciarP, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(botaoGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,10 +114,20 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botaoGerenciarPActionPerformed
 
+    private void botaoGerarRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarRelatoriosActionPerformed
+        String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja gerar um relatório médico:");
+        PacienteCadastrado pacienteRelatorio = em.find(PacienteCadastrado.class, cpfPaciente);
+        if(pacienteRelatorio != null){
+            TelaMedRelatorio telaRelatorio = new TelaMedRelatorio(pacienteRelatorio, medicoLogado, em);
+            telaRelatorio.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_botaoGerarRelatoriosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoGerarRelatorios;
     private javax.swing.JButton botaoGerenciarP;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

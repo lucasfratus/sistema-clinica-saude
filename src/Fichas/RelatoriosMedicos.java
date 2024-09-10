@@ -8,16 +8,6 @@ public class RelatoriosMedicos {
     private String atestado;
     private String declaracaoAcompanhamento;
 
-    public RelatoriosMedicos(){
-    }
-    
-    public RelatoriosMedicos(Paciente paciente, String receita, String atestado, String declaracaoAcompanhamento){
-        this.paciente = paciente;
-        this.receita = receita;
-        this.atestado = atestado;
-        this.declaracaoAcompanhamento = declaracaoAcompanhamento;
-    }
-
     public Paciente getPaciente() {
         return paciente;
     }
