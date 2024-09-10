@@ -1,5 +1,6 @@
 package Menu;
 
+import Atendimento.Consulta;
 import EmpregadosClinica.Secretaria;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
@@ -137,23 +138,67 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
         String medicoConsulta = JOptionPane.showInputDialog(null, "Insira o CRM do médico da consulta: ");
         String diaConsulta = JOptionPane.showInputDialog(null, "Insira a data da consulta:(FORMATO: dd/mm/aaaa)");
         String horaConsulta = JOptionPane.showInputDialog(null, "Insira o horário da consulta:(FORMATO: hh:mm");
-        JOptionPane.showMessageDialog(null,"Consulta desmarcada com Sucesso");
+        
+        // criacao do id da consulta
+            StringBuilder idConsulta = new StringBuilder();
+            idConsulta.append(diaConsulta);
+            String resIdConsulta = idConsulta.toString().replaceAll("[/]", "");
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            idConsulta.append("/");
+            idConsulta.append(horaConsulta);
+            resIdConsulta = idConsulta.toString().replaceAll("[:]", "");
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            idConsulta.append("/");
+            idConsulta.append(medicoConsulta);
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            resIdConsulta = idConsulta.toString();
+        
+        Consulta consultaDesmarcar = em.find(Consulta.class, resIdConsulta);
+        if(consultaDesmarcar != null){
+            secretariaLogada.removerConsulta(consultaDesmarcar, em);
+            JOptionPane.showMessageDialog(null,"Consulta desmarcada com Sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Consulta não encontrada", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BotaoDesmarcarConsultaActionPerformed
 
     private void BotaoAlterarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAlterarConsultaActionPerformed
         String medicoConsulta = JOptionPane.showInputDialog(null, "Insira o CRM do médico da consulta: ");
         String diaConsulta = JOptionPane.showInputDialog(null, "Insira a data da consulta:(FORMATO: dd/mm/aaaa)");
         String horaConsulta = JOptionPane.showInputDialog(null, "Insira o horário da consulta:(FORMATO: hh:mm");
-        
-        TelaSecAlterarConsulta telaAlterar = new TelaSecAlterarConsulta();
-        telaAlterar.setVisible(true);
+        // criacao do id da consulta
+            StringBuilder idConsulta = new StringBuilder();
+            idConsulta.append(diaConsulta);
+            String resIdConsulta = idConsulta.toString().replaceAll("[/]", "");
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            idConsulta.append("/");
+            idConsulta.append(horaConsulta);
+            resIdConsulta = idConsulta.toString().replaceAll("[:]", "");
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            idConsulta.append("/");
+            idConsulta.append(medicoConsulta);
+            idConsulta = new StringBuilder(resIdConsulta);
+            
+            resIdConsulta = idConsulta.toString();
+        Consulta consultaAlt = em.find(Consulta.class, resIdConsulta);
+        if(consultaAlt != null){
+            TelaSecAlterarConsulta telaAlterar = new TelaSecAlterarConsulta(secretariaLogada, consultaAlt, em);
+            telaAlterar.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Consulta não encontrada", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BotaoAlterarConsultaActionPerformed
 
     private void BotaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVoltarActionPerformed
         TelaPrincipalSecretaria TelaAnterior = new TelaPrincipalSecretaria(secretariaLogada, em);
         TelaAnterior.setVisible(true);
-        this.dispose();
-        
+        this.dispose();      
     }//GEN-LAST:event_BotaoVoltarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

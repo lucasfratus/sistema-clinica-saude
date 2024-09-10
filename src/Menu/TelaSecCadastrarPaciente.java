@@ -44,6 +44,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         TelefoneNovoPaciente = new javax.swing.JTextField();
         EmailNovoPaciente = new javax.swing.JTextField();
         BotaoCadastrar = new javax.swing.JButton();
+        botaoVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,24 +145,33 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
             }
         });
 
+        botaoVoltar.setText("Fechar Janela");
+        botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(BotaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botaoVoltar)
+                        .addGap(80, 80, 80)
+                        .addComponent(BotaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TelefoneNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(45, 45, 45)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(EmailNovoPaciente))))
+                            .addComponent(EmailNovoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -176,7 +186,9 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
                     .addComponent(TelefoneNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EmailNovoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(BotaoCadastrar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotaoCadastrar)
+                    .addComponent(botaoVoltar))
                 .addContainerGap())
         );
 
@@ -217,7 +229,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
             em.getTransaction().begin();
             em.persist(novoPaciente);
             em.getTransaction().commit();
-            JOptionPane.showMessageDialog(null,"Paciente Cadastrado");
+            JOptionPane.showMessageDialog(null,"Paciente Cadastrado com sucesso");
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Erro!", "Preencha os campos necessários!", JOptionPane.ERROR_MESSAGE);
@@ -228,6 +240,10 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_NomeNovoPacienteActionPerformed
 
+    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoVoltarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCadastrar;
     private javax.swing.JTextField CPFNovoPaciente;
@@ -237,6 +253,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField NascNovoPaciente;
     private javax.swing.JTextField NomeNovoPaciente;
     private javax.swing.JTextField TelefoneNovoPaciente;
+    private javax.swing.JButton botaoVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

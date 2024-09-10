@@ -142,7 +142,7 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoGerarRelatorioActionPerformed
 
     private void BotaoGerenciarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerenciarPacientesActionPerformed
-        TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente();
+        TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente(secretariaLogada, em);
         NovaTela.setVisible(true);
         this.dispose();
         

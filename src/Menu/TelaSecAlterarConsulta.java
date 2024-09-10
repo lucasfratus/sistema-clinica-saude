@@ -9,12 +9,15 @@ import javax.persistence.EntityManager;
 public class TelaSecAlterarConsulta extends javax.swing.JFrame {
     EntityManager em;
     Consulta consulta;
-    Secretaria secretaria;
+    Secretaria secretariaLogada;
     /**
      * Creates new form TelaSecAlterarConsulta
      */
-    public TelaSecAlterarConsulta() {
+    public TelaSecAlterarConsulta(Secretaria secretariaLogada, Consulta consulta, EntityManager em) {
         initComponents();
+        this.secretariaLogada = secretariaLogada;
+        this.consulta = consulta;
+        this.em = em;
     }
 
     /**
@@ -38,6 +41,7 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
         tipoNormal = new javax.swing.JRadioButton();
         tipoRetorno = new javax.swing.JRadioButton();
         botaoAtualizar = new javax.swing.JButton();
+        botaoVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,43 +100,49 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
             }
         });
 
+        botaoVoltar.setText("Fechar Janela");
+        botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(campoCPF, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(campoCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tipoNormal)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tipoRetorno)
-                                        .addGap(20, 20, 20))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(botaoAtualizar)))
+                                .addComponent(botaoVoltar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoAtualizar))
+                            .addComponent(campoCPF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(campoCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tipoNormal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tipoRetorno)
+                                .addGap(20, 20, 20)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,7 +168,9 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
                     .addComponent(tipoNormal)
                     .addComponent(tipoRetorno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(botaoAtualizar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAtualizar)
+                    .addComponent(botaoVoltar))
                 .addContainerGap())
         );
 
@@ -189,15 +201,15 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
 
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         em.flush();
-        secretaria.atualizarConsultaData(campoData.getText(), consulta);
-        secretaria.atualizarConsultaHorario(campoHora.getText(), consulta);
-        secretaria.atualizarConsultaMedico(em.find(MedicoCadastrado.class, campoCRM.getText()),consulta);
-        secretaria.atualizarConsultaPaciente(em.find(PacienteCadastrado.class, campoCPF.getText()), consulta);
+        secretariaLogada.atualizarConsultaData(campoData.getText(), consulta);
+        secretariaLogada.atualizarConsultaHorario(campoHora.getText(), consulta);
+        secretariaLogada.atualizarConsultaMedico(em.find(MedicoCadastrado.class, campoCRM.getText()),consulta);
+        secretariaLogada.atualizarConsultaPaciente(em.find(PacienteCadastrado.class, campoCPF.getText()), consulta);
         if (tipoRetorno.getSelectedObjects()[0].equals("Retorno")) {
-            secretaria.atualizarConsultaTipo("Retorno", consulta);
+            secretariaLogada.atualizarConsultaTipo("Retorno", consulta);
         }
         if(tipoRetorno.getSelectedObjects()[0].equals("Normal")) {
-            secretaria.atualizarConsultaTipo("Normal", consulta);
+            secretariaLogada.atualizarConsultaTipo("Normal", consulta);
         }
         this.dispose();
     }//GEN-LAST:event_botaoAtualizarActionPerformed
@@ -208,9 +220,14 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tipoRetornoActionPerformed
 
+    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoVoltarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAtualizar;
+    private javax.swing.JButton botaoVoltar;
     private javax.swing.JTextField campoCPF;
     private javax.swing.JTextField campoCRM;
     private javax.swing.JTextField campoData;

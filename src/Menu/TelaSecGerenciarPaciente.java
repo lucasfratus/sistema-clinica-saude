@@ -15,8 +15,10 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
     EntityManager em;
     Secretaria secretariaLogada;
 
-    public TelaSecGerenciarPaciente() {
+    public TelaSecGerenciarPaciente(Secretaria secretariaLogada, EntityManager em) {
         initComponents();
+        this.em = em;
+        this.secretariaLogada = secretariaLogada;
     }
 
     /**
@@ -161,7 +163,7 @@ public class TelaSecGerenciarPaciente extends javax.swing.JFrame {
         PacienteCadastrado p = em.find(PacienteCadastrado.class, cpf);
         if(p != null) {
             secretariaLogada.removerPaciente(em,cpf);
-            JOptionPane.showMessageDialog(null,"Paciente Removido com Sucesso");
+            JOptionPane.showMessageDialog(null,"Paciente Removido com Sucesso!");
         } else {
              JOptionPane.showMessageDialog(null, "Paciente não encontrado!", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
         }

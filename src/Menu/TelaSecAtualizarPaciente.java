@@ -218,7 +218,7 @@ public class TelaSecAtualizarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_convenioAtualizadoActionPerformed
 
     private void BotaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVoltarActionPerformed
-        TelaSecGerenciarPaciente telaAnterior = new TelaSecGerenciarPaciente();
+        TelaSecGerenciarPaciente telaAnterior = new TelaSecGerenciarPaciente(secretariaLogada, em);
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotaoVoltarActionPerformed
