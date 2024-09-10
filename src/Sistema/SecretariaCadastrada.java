@@ -8,7 +8,6 @@ import javax.persistence.Table;
 @Table(name = "SECRETARIA")
 public class SecretariaCadastrada {
     private String nomeFuncionario;
-    
     @Id
     private String cpf;
 

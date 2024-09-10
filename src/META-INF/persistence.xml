@@ -3,6 +3,9 @@
   <persistence-unit name="sistema-saudePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <class>Sistema.MedicoCadastrado</class>
+    <class>Sistema.SecretariaCadastrada</class>
+    <class>Sistema.PacienteCadastrado</class>
+    <class>Atendimento.Consulta</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sistema-saudeBD"/>
       <property name="javax.persistence.jdbc.user" value="lucas"/>

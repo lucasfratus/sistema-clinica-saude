@@ -180,7 +180,6 @@ public class Login extends javax.swing.JFrame {
             novoMedico.setNumeroAtendidos(0);
             em.merge(novoMedico);
             em.getTransaction().commit();
-        
         }
         if ((ProfissaoEscolhida.getSelectedItem()).equals("Gerenciador de Mensagem")) {
             String novoGmCpf = JOptionPane.showInputDialog(null, "Insira o cpf do Gerenciador de Mensagens: ");
@@ -190,11 +189,6 @@ public class Login extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_botaoRegistrarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Entrar;

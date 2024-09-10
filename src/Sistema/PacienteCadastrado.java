@@ -22,8 +22,8 @@ public class PacienteCadastrado {
     private boolean colesterolAlto;
     private boolean diabete;
     private boolean doencaCardiaca;
-    private ArrayList<String> cirurgias;
-    private ArrayList<String> alergias;
+    private StringBuilder cirurgias;
+    private StringBuilder alergias;
 
     public String getNome() {
         return nome;
@@ -129,19 +129,19 @@ public class PacienteCadastrado {
         this.doencaCardiaca = doencaCardiaca;
     }
 
-    public ArrayList<String> getCirurgias() {
+    public StringBuilder getCirurgias() {
         return cirurgias;
     }
 
-    public void setCirurgias(ArrayList<String> cirurgias) {
+    public void setCirurgias(StringBuilder cirurgias) {
         this.cirurgias = cirurgias;
     }
 
-    public ArrayList<String> getAlergias() {
+    public StringBuilder getAlergias() {
         return alergias;
     }
 
-    public void setAlergias(ArrayList<String> alergias) {
+    public void setAlergias(StringBuilder alergias) {
         this.alergias = alergias;
     }
     

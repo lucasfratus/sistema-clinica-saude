@@ -4,12 +4,12 @@ import EmpregadosClinica.Medico;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 
-public class TelaMedInfoAdicional extends javax.swing.JFrame {
+public class TelaMedInfoAdicionalCad extends javax.swing.JFrame {
     private Medico medicoLogado;
     private PacienteCadastrado paciente;
     private EntityManager em;
 
-    public TelaMedInfoAdicional(EntityManager em, Medico medicoLogado, PacienteCadastrado paciente) {
+    public TelaMedInfoAdicionalCad(EntityManager em, Medico medicoLogado, PacienteCadastrado paciente) {
         initComponents();
         this.em = em;
         this.medicoLogado = medicoLogado;
@@ -34,7 +34,7 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         checkboxDoencaCardio = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        botaoCadastrar = new javax.swing.JButton();
+        botaoAtualizar = new javax.swing.JButton();
         textCirurgias = new javax.swing.JTextField();
         textAlergias = new javax.swing.JTextField();
 
@@ -43,11 +43,21 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         checkboxFuma.setText("Fuma");
+        checkboxFuma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxFumaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Informações adicionais");
 
         checkboxBebe.setText("Bebe");
+        checkboxBebe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxBebeActionPerformed(evt);
+            }
+        });
 
         checkboxDiabete.setText("Possui diabetes");
         checkboxDiabete.addActionListener(new java.awt.event.ActionListener() {
@@ -57,17 +67,39 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         });
 
         checkboxColesterol.setText("Possui colesterol alto");
+        checkboxColesterol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxColesterolActionPerformed(evt);
+            }
+        });
 
         checkboxDoencaCardio.setText("Possui alguma doença cardiaca");
+        checkboxDoencaCardio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxDoencaCardioActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Cirurgias feitas:");
 
         jLabel3.setText("Alergias:");
 
-        botaoCadastrar.setText("Cadastrar");
-        botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        botaoAtualizar.setText("Atualizar");
+        botaoAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCadastrarActionPerformed(evt);
+                botaoAtualizarActionPerformed(evt);
+            }
+        });
+
+        textCirurgias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCirurgiasActionPerformed(evt);
+            }
+        });
+
+        textAlergias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAlergiasActionPerformed(evt);
             }
         });
 
@@ -76,13 +108,14 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar)
+                .addContainerGap(257, Short.MAX_VALUE)
+                .addComponent(botaoAtualizar)
                 .addGap(243, 243, 243))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textCirurgias)
+                    .addComponent(textAlergias)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkboxFuma)
@@ -93,8 +126,7 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
                             .addComponent(checkboxDoencaCardio)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(textAlergias))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,12 +148,12 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textCirurgias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textAlergias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar)
+                .addGap(18, 18, 18)
+                .addComponent(botaoAtualizar)
                 .addContainerGap())
         );
 
@@ -146,10 +178,10 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkboxDiabeteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxDiabeteActionPerformed
-        // TODO add your handling code here:
+        checkboxDiabete.setSelected(paciente.isDiabete());
     }//GEN-LAST:event_checkboxDiabeteActionPerformed
 
-    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+    private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         boolean diabete = checkboxDiabete.isSelected();
         boolean fuma = checkboxFuma.isSelected();
         boolean bebe = checkboxBebe.isSelected();
@@ -160,10 +192,34 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         em.getTransaction().begin();
         medicoLogado.cadastrarInformacoesPaciente(paciente, fuma, bebe, colesterol, diabete, doenca, cirurgias, alergias);
         em.getTransaction().commit();
-    }//GEN-LAST:event_botaoCadastrarActionPerformed
+    }//GEN-LAST:event_botaoAtualizarActionPerformed
+
+    private void checkboxFumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxFumaActionPerformed
+        checkboxFuma.setSelected(paciente.isFuma());
+    }//GEN-LAST:event_checkboxFumaActionPerformed
+
+    private void checkboxBebeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxBebeActionPerformed
+        checkboxBebe.setSelected(paciente.isBebe());
+    }//GEN-LAST:event_checkboxBebeActionPerformed
+
+    private void checkboxColesterolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxColesterolActionPerformed
+        checkboxColesterol.setSelected(paciente.isColesterolAlto());
+    }//GEN-LAST:event_checkboxColesterolActionPerformed
+
+    private void checkboxDoencaCardioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxDoencaCardioActionPerformed
+        checkboxDoencaCardio.setSelected(paciente.isDoencaCardiaca());
+    }//GEN-LAST:event_checkboxDoencaCardioActionPerformed
+
+    private void textCirurgiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCirurgiasActionPerformed
+        textCirurgias.setText((paciente.getCirurgias()).toString());
+    }//GEN-LAST:event_textCirurgiasActionPerformed
+
+    private void textAlergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlergiasActionPerformed
+        textAlergias.setText((paciente.getAlergias()).toString());
+    }//GEN-LAST:event_textAlergiasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCadastrar;
+    private javax.swing.JButton botaoAtualizar;
     private javax.swing.JCheckBox checkboxBebe;
     private javax.swing.JCheckBox checkboxColesterol;
     private javax.swing.JCheckBox checkboxDiabete;

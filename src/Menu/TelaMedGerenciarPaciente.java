@@ -1,24 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Menu;
 
 import EmpregadosClinica.Medico;
+import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucas
- */
 public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
     private Medico medicoLogado;
     private EntityManager em;
     
-    /**
-     * Creates new form TelaMedGerenciarPaciente
-     */
     public TelaMedGerenciarPaciente(Medico medicoLogado, EntityManager em) {
         initComponents();
         this.medicoLogado = medicoLogado;
@@ -54,6 +44,11 @@ public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
 
         BotaoAtualizarInfo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BotaoAtualizarInfo.setText("Atualizar Informações Adicionais");
+        BotaoAtualizarInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoAtualizarInfoActionPerformed(evt);
+            }
+        });
 
         botaoVoltar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         botaoVoltar.setText("Voltar");
@@ -88,9 +83,8 @@ public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
                 .addContainerGap(110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(botaoVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botaoCadastrarInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotaoAtualizarInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(botaoCadastrarInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotaoAtualizarInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(109, 109, 109))
         );
         layout.setVerticalGroup(
@@ -114,9 +108,12 @@ public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
 
     private void botaoCadastrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarInfoActionPerformed
         String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja cadastrar informações adicionais: ");
-     
-        TelaMedInfoAdicional telaInfoAd = new TelaMedInfoAdicional();
-        telaInfoAd.setVisible(true);
+        PacienteCadastrado pacienteAdicionais = em.find(PacienteCadastrado.class, cpfPaciente);
+        if(pacienteAdicionais != null){
+            TelaMedInfoAdicional telaInfoAd = new TelaMedInfoAdicional(em, medicoLogado, pacienteAdicionais);
+            telaInfoAd.setVisible(true);
+        }
+        
     }//GEN-LAST:event_botaoCadastrarInfoActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
@@ -124,6 +121,10 @@ public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
         telaMed.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botaoVoltarActionPerformed
+
+    private void BotaoAtualizarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAtualizarInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoAtualizarInfoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoAtualizarInfo;

@@ -4,6 +4,7 @@ import EmpregadosClinica.Medico;
 import Sistema.MedicoCadastrado;
 import Sistema.PacienteCadastrado;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +13,7 @@ public class Consulta {
     private String data;
     private String horario;
     private MedicoCadastrado medico;
+    @Id
     private PacienteCadastrado paciente;
     private String tipoConsulta;
     

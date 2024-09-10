@@ -107,7 +107,7 @@ public class Secretaria {
         }
     }
     
-    public Consulta marcarConsulta(String data, String horario, MedicoCadastrado medico, PacienteCadastrado paciente, String tipoConsulta){
+    public Consulta marcarConsulta(String data, String horario, MedicoCadastrado medico, PacienteCadastrado paciente, String tipoConsulta, EntityManager em){
         // Marca uma consulta, adicionando ela na lista de consultas
         Consulta novaConsulta = new Consulta(); 
         novaConsulta.setData(data);
@@ -115,6 +115,7 @@ public class Secretaria {
         novaConsulta.setMedico(medico);
         novaConsulta.setPaciente(paciente);
         novaConsulta.setTipoConsulta(tipoConsulta);
+        em.persist(novaConsulta);
         return novaConsulta;
     }
     /*
@@ -150,12 +151,12 @@ public class Secretaria {
     public void atualizarConsultaTipo(String tipoConsulta, Consulta consulta){
         consulta.setTipoConsulta(tipoConsulta);
     }
-    /*
-    public void removerConsulta(Consulta consulta){
+    
+    public void removerConsulta(Consulta consulta, EntityManager em){
         // Remove uma consulta da lista de consultas
-        listaConsultas.remove(consulta);
+        em.remove(consulta);
     } 
-   
+    /*
     public ArrayList[] gerarRelatorio(String data){
         
         Gera um relatorio de consultas de uma determinada data.

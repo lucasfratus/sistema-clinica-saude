@@ -17,8 +17,8 @@ public class Paciente {
     private boolean colesterolAlto;
     private boolean diabete;
     private boolean doencaCardiaca;
-    private ArrayList<String> cirurgias;
-    private ArrayList<String> alergias;
+    private StringBuilder cirurgias;
+    private StringBuilder alergias;
       
     public Paciente(){        
     }
@@ -36,8 +36,8 @@ public class Paciente {
     }
     
     public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio,
-            Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, ArrayList<String>
-                    cirurgias, ArrayList<String> alergias){
+            Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, StringBuilder
+                    cirurgias, StringBuilder alergias){
         /* Construtor para a instanciação de um objeto Paciente. Consta informações adicionais, além das informações do construtor anterior */
         this.nome = nome;
         this.email = email;
@@ -160,19 +160,19 @@ public class Paciente {
         this.doencaCardiaca = doencaCardiaca;
     }
 
-    public ArrayList<String> getCirurgias() {
+    public StringBuilder getCirurgias() {
         return cirurgias;
     }
 
-    public void setCirurgias(ArrayList<String> cirurgias) {
+    public void setCirurgias(StringBuilder cirurgias) {
         this.cirurgias = cirurgias;
     }
 
-    public ArrayList<String> getAlergias() {
+    public StringBuilder getAlergias() {
         return alergias;
     }
 
-    public void setAlergias(ArrayList<String> alergias) {
+    public void setAlergias(StringBuilder alergias) {
         this.alergias = alergias;
     }
     

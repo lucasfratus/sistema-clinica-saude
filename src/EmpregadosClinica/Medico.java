@@ -1,9 +1,7 @@
 package EmpregadosClinica;
 
-import Atendimento.Consulta;
-import Atendimento.Paciente;
 import Fichas.Prontuario;
-import java.util.ArrayList;
+import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 
 public class Medico {
@@ -64,26 +62,10 @@ public class Medico {
     public int getNumeroAtendidos(){
         return numeroAtendidos;
     }
-    public Paciente cadastrarPaciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio){
-        // Cadastra as informações básicas de um paciente, semelhante ao cadastrar paciente da secretaria;
-        Paciente novoPaciente = new Paciente(nome, cpf, dataNascimento, endereco, convenio, email, telefone);
-        return novoPaciente;
-    }
-    /*
-    // ARRUMAR
-    public Paciente buscarPaciente(String cpf){
-       // Busca um paciente na lista de pacientes através do CPF, retornando um objeto Paciente que possui o CPF desejado.
-        Paciente paciente = null;
-        for(int i = 0; i < listaPacientes.size(); i++){
-            if (listaPacientes.get(i).getCpf().equals(cpf)) {
-                paciente = listaPacientes.get(i);
-            }    
-        }
-        return paciente;
-    }
     
-    public void cadastrarInformacoesPaciente(Paciente paciente, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, 
-            ArrayList<String> cirurgias, ArrayList<String> alergias) {
+    
+    public void cadastrarInformacoesPaciente(PacienteCadastrado paciente, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, 
+            StringBuilder cirurgias, StringBuilder alergias) {
         // Cadastra as informações adicionais do paciente. Só pode ser realizado pelo médico, diferente do cadastrarPaciente().
         paciente.setFuma(fuma);
         paciente.setBebe(bebe);
@@ -93,84 +75,73 @@ public class Medico {
         paciente.setCirurgias(cirurgias);
         paciente.setAlergias(alergias);
     }
-    */
     // Os métodos a seguir atualizam e removem as informações adicionais dos Pacientes. 
-    public void atualizarPacienteProntuario(Prontuario prontuario, Paciente paciente){
+    public void atualizarPacienteProntuario(Prontuario prontuario, PacienteCadastrado paciente){
         paciente.setProntuario(prontuario); 
     }
     
-    public void atualizarPacienteFuma(boolean fuma, Paciente paciente){
+    public void atualizarPacienteFuma(boolean fuma, PacienteCadastrado paciente){
         paciente.setFuma(fuma); 
     }
     
-    public void atualizarPacienteCpf(boolean bebe, Paciente paciente){
+    public void atualizarPacienteCpf(boolean bebe, PacienteCadastrado paciente){
         paciente.setBebe(bebe); 
     }
     
-    public void atualizarPacienteColesterol(boolean colesterolAlto, Paciente paciente){
+    public void atualizarPacienteColesterol(boolean colesterolAlto, PacienteCadastrado paciente){
         paciente.setColesterolAlto(colesterolAlto); 
     }
     
-    public void atualizarPacienteDiabete(boolean diabete, Paciente paciente){
+    public void atualizarPacienteDiabete(boolean diabete, PacienteCadastrado paciente){
         paciente.setDiabete(diabete);
     }
     
-    public void atualizarPacienteDoencaCardiaca(boolean doencaCardiaca, Paciente paciente){
+    public void atualizarPacienteDoencaCardiaca(boolean doencaCardiaca, PacienteCadastrado paciente){
         paciente.setDoencaCardiaca(doencaCardiaca);
     }
     
-    public void atualizarPacienteCirurgias(ArrayList<String> cirurgias, Paciente paciente){
+    public void atualizarPacienteCirurgias(StringBuilder cirurgias, PacienteCadastrado paciente){
         paciente.setCirurgias(cirurgias);
     }
     
-    public void atualizarPacienteAlergias(ArrayList<String> alergias, Paciente paciente){
+    public void atualizarPacienteAlergias(StringBuilder alergias, PacienteCadastrado paciente){
         paciente.setAlergias(alergias);
     }
     
-    public void adicionarAlergia(String alergia, Paciente paciente){
-        ArrayList<String> listaAlergias = paciente.getAlergias();
-        listaAlergias.add(alergia);
+    public void adicionarAlergia(String alergia, PacienteCadastrado paciente){
+        StringBuilder listaAlergias = paciente.getAlergias();
+        listaAlergias.append(", " + alergia);
         paciente.setAlergias(listaAlergias);
     }
     
-    public void removerAlergia(String alergia, Paciente paciente){
-        ArrayList<String> listaAlergias = paciente.getAlergias();
-        listaAlergias.remove(alergia);
-        paciente.setAlergias(listaAlergias);
-    }
     
-    public void adicionarCirurgia(String cirurgia, Paciente paciente){
-        ArrayList<String> listaCirurgias = paciente.getCirurgias();
-        listaCirurgias.add(cirurgia);
-        paciente.setCirurgias(listaCirurgias); 
+    public void adicionarCirurgia(StringBuilder cirurgia, PacienteCadastrado paciente){
+        StringBuilder Cirurgias = paciente.getCirurgias();
+        Cirurgias.append(cirurgia);
+        paciente.setCirurgias(Cirurgias); 
     }
+
     
-    public void removerCirurgia(String cirurgia, Paciente paciente){
-        ArrayList<String> listaCirurgias = paciente.getCirurgias();
-        listaCirurgias.remove(cirurgia);
-        paciente.setCirurgias(listaCirurgias); 
-    }
-    
-    public void cadastrarProntuario(Paciente paciente, String sintoma, String diagnostico, String tratamento){
+    public void cadastrarProntuario(PacienteCadastrado paciente, String sintoma, String diagnostico, String tratamento){
         // Cadastra um prontuário de um paciente,
         Prontuario prontuarioPaciente = new Prontuario(sintoma, diagnostico, tratamento);
         paciente.setProntuario(prontuarioPaciente);
     }
     
     // Os métodos a seguir permitem a atualização dos dados de um prontuario de um paciente
-    public void atualizarDiagnosticoProntuario(Paciente paciente, String diagonostico){
+    public void atualizarDiagnosticoProntuario(PacienteCadastrado paciente, String diagonostico){
         paciente.getProntuario().setDiagnostico(diagonostico);
     }
     
-    public void atualizarSintomasProntuario(Paciente paciente, String sintomas){
+    public void atualizarSintomasProntuario(PacienteCadastrado paciente, String sintomas){
         paciente.getProntuario().setSintomas(sintomas);
     }
     
-    public void atualizarTratamentoProntuario(Paciente paciente, String tratamento){
+    public void atualizarTratamentoProntuario(PacienteCadastrado paciente, String tratamento){
         paciente.getProntuario().setTratamento(tratamento);
     }
     
-    public void removerProntuario(Paciente paciente){
+    public void removerProntuario(PacienteCadastrado paciente){
         paciente.getProntuario().setDiagnostico(null);
         paciente.getProntuario().setSintomas(null);
         paciente.getProntuario().setTratamento(null);
@@ -178,7 +149,7 @@ public class Medico {
     
     /* Gera um relatório médico do paciente, com seu nome, receita, atestado e declaração de acompanhamento (os dois ultimos
     gerados de forma representativa). Além disso mostra qual é o número do paciente atendido naquele mês.*/
-    public void gerarRelatorioMedico(Paciente paciente){
+    public void gerarRelatorioMedico(PacienteCadastrado paciente){
         this.setNumeroAtendidos();
         System.out.println("Nome do paciente: " + paciente.getNome());
         System.out.println("Receita: " + paciente.getProntuario().getTratamento());
