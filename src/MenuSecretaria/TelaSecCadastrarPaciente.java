@@ -227,7 +227,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Erro!", "Preencha os campos necessários!", JOptionPane.ERROR_MESSAGE);
             }
-        } else { // Se não, um erro aparece na tela
+        } else { // Se não, um erro aparece na telao c
             JOptionPane.showMessageDialog(null, "Erro!", "Já existe um paciente com esse CPF!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotaoCadastrarActionPerformed

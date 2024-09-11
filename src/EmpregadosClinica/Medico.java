@@ -92,7 +92,7 @@ public class Medico {
         em.getTransaction().commit();
     }
     
-    public void atualizarPacienteCpf(boolean bebe, PacienteCadastrado paciente){
+    public void atualizarPacienteBebe(boolean bebe, PacienteCadastrado paciente){
         em.getTransaction().begin();
         paciente.setBebe(bebe); 
         em.getTransaction().commit();
@@ -107,12 +107,6 @@ public class Medico {
     public void atualizarPacienteDiabete(boolean diabete, PacienteCadastrado paciente){
         em.getTransaction().begin();
         paciente.setDiabete(diabete);
-        em.getTransaction().commit();
-    }
-    
-    public void atualizarPacienteBebe(boolean bebe, PacienteCadastrado paciente){
-        em.getTransaction().begin();
-        paciente.setBebe(bebe);
         em.getTransaction().commit();
     }
     
