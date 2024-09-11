@@ -159,6 +159,7 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
     
     
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+        // Pega as informações dos campos e chama o método de cadastro de informações do médico
         boolean diabete = checkboxDiabete.isSelected();
         boolean fuma = checkboxFuma.isSelected();
         boolean bebe = checkboxBebe.isSelected();

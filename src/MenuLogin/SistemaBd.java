@@ -10,9 +10,9 @@ import javax.persistence.Persistence;
 
 public class SistemaBd {
     public static void main(String[] args){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistema-saudePU");
-        EntityManager em = emf.createEntityManager();
-        Login telaInicial = new Login(em);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistema-saudePU"); // Cria um entity manager factory
+        EntityManager em = emf.createEntityManager(); // Cria um entity manager
+        Login telaInicial = new Login(em);  // Cria a tela de login
         telaInicial.setVisible(true);
     }
 }

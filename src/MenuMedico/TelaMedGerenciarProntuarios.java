@@ -136,16 +136,18 @@ public class TelaMedGerenciarProntuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
+        // Voltar para a tela principal do médico
         TelaPrincipalMed telaAnterior = new TelaPrincipalMed(medicoLogado,em);
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoRemoverProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverProntuarioActionPerformed
+       // Remove um prontuario de um paciente
        String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente:");
-       Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente);
+       Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente); // Busca o prontuario do paciente no banco de dados
        if(pacienteProntuario != null){
-            medicoLogado.removerProntuario(cpfPaciente);
+            medicoLogado.removerProntuario(cpfPaciente); // Remove o prontuario do paciente
             JOptionPane.showMessageDialog(null, "Prontuario removido com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "O paciente não possui um prontuário cadastrado", "Prontuario não encontrado", JOptionPane.ERROR_MESSAGE);
@@ -153,28 +155,30 @@ public class TelaMedGerenciarProntuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoRemoverProntuarioActionPerformed
 
     private void botaoCriarProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarProntuarioActionPerformed
+        // Cria um prontuario para um paciente
         String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente:");
-        PacienteCadastrado pacienteCadastrado = em.find(PacienteCadastrado.class, cpfPaciente);
+        PacienteCadastrado pacienteCadastrado = em.find(PacienteCadastrado.class, cpfPaciente); // Busca o paciente no banco de dados
         Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente);
-        if(pacienteCadastrado != null && pacienteProntuario == null){
+        if(pacienteCadastrado != null && pacienteProntuario == null){ // Se o paciente existe e não possui um prontuario
             String sintomas = JOptionPane.showInputDialog(null, "Insira os sintomas:");
             String diagnostico = JOptionPane.showInputDialog(null, "Insira o diagnóstico:");
             String tratamento = JOptionPane.showInputDialog(null, "Insira o tratamento:");
-            medicoLogado.cadastrarProntuario(pacienteCadastrado, sintomas, diagnostico, tratamento);
+            medicoLogado.cadastrarProntuario(pacienteCadastrado, sintomas, diagnostico, tratamento); // Cadastra o prontuario do paciente
             JOptionPane.showMessageDialog(null, "Prontuario criado com sucesso!");
-        } if(pacienteCadastrado == null){
+        } if(pacienteCadastrado == null){ // Se o paciente não existe
             JOptionPane.showMessageDialog(null, "Paciente não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);    
-        } if(pacienteCadastrado != null && pacienteProntuario != null) {
+        } if(pacienteCadastrado != null && pacienteProntuario != null) { // Se o paciente já possui um prontuario
             JOptionPane.showMessageDialog(null, "O paciente já possui um prontuário.", "Erro", JOptionPane.ERROR_MESSAGE);    
         }  
     
     }//GEN-LAST:event_botaoCriarProntuarioActionPerformed
 
     private void botaoAtualizarProntuárioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarProntuárioActionPerformed
+        // Atualiza um prontuario de um paciente
         String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja atualizar o prontuario:");
-        Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente);
-        if(pacienteProntuario != null){
-            TelaMedAtualizarProntuario telaAtualizacao = new TelaMedAtualizarProntuario(medicoLogado, pacienteProntuario, em);
+        Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente); // Busca o prontuario do paciente no banco de dados
+        if(pacienteProntuario != null){ // Se o paciente possui um prontuario
+            TelaMedAtualizarProntuario telaAtualizacao = new TelaMedAtualizarProntuario(medicoLogado, pacienteProntuario, em); // Abre a tela de atualização do prontuario
             telaAtualizacao.setVisible(true);
             this.dispose();
         } else {

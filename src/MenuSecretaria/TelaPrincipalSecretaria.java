@@ -151,26 +151,30 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void BotaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerarRelatorioActionPerformed
+        // Gera o relatório de consultas de um dia específico
         String dataRelatorio = JOptionPane.showInputDialog(null, "Você deseja gerar um relatório de que dia? ");
-        List<List<Consulta>> relatorio = secretariaLogada.gerarRelatorio(dataRelatorio);
-        TelaSecRelatorio telaRelatorio = new TelaSecRelatorio(secretariaLogada, relatorio, em);
+        List<List<Consulta>> relatorio = secretariaLogada.gerarRelatorio(dataRelatorio); // Gera o relatório de consultas de um dia específico
+        TelaSecRelatorio telaRelatorio = new TelaSecRelatorio(secretariaLogada, relatorio, em); // Cria uma tela e mostra o relatório do dia específico
         telaRelatorio.setVisible(true);
     }//GEN-LAST:event_BotaoGerarRelatorioActionPerformed
 
     private void BotaoGerenciarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerenciarPacientesActionPerformed
-        TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente(secretariaLogada, em);
+        // Botão para gerenciar pacientes
+        TelaSecGerenciarPaciente NovaTela = new TelaSecGerenciarPaciente(secretariaLogada, em); // Passa a secretária logada e o EntityManager para a próxima tela
         NovaTela.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_BotaoGerenciarPacientesActionPerformed
 
     private void BotaoGerenciarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerenciarConsultasActionPerformed
-        TelaSecGerenciarConsulta TelaConsulta = new TelaSecGerenciarConsulta(secretariaLogada, em);
+        // Botão para gerenciar consultas
+        TelaSecGerenciarConsulta TelaConsulta = new TelaSecGerenciarConsulta(secretariaLogada, em); // Passa a secretária logada e o EntityManager para a próxima tela
         TelaConsulta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotaoGerenciarConsultasActionPerformed
 
     private void botaoLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLogoutActionPerformed
+        // Botão para fazer logout
         Login telaLogin = new Login(em);
         telaLogin.setVisible(true);
         this.dispose();

@@ -130,11 +130,13 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void BotaoMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoMarcarConsultaActionPerformed
-        TelaSecMarcarConsulta marcarTela = new TelaSecMarcarConsulta(secretariaLogada, em);
+        TelaSecMarcarConsulta marcarTela = new TelaSecMarcarConsulta(secretariaLogada, em); // cria a tela de marcar consulta
         marcarTela.setVisible(true);
     }//GEN-LAST:event_BotaoMarcarConsultaActionPerformed
 
     private void BotaoDesmarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoDesmarcarConsultaActionPerformed
+        
+        // pede as informações da consulta a ser desmarcada
         String medicoConsulta = JOptionPane.showInputDialog(null, "Insira o CRM do médico da consulta: ");
         String diaConsulta = JOptionPane.showInputDialog(null, "Insira a data da consulta:(FORMATO: dd/mm/aaaa)");
         String horaConsulta = JOptionPane.showInputDialog(null, "Insira o horário da consulta:(FORMATO: hh:mm");
@@ -152,13 +154,14 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
             
             idConsulta.append("/");
             idConsulta.append(medicoConsulta);
+            resIdConsulta = idConsulta.toString();
             idConsulta = new StringBuilder(resIdConsulta);
             
             resIdConsulta = idConsulta.toString();
         
-        Consulta consultaDesmarcar = em.find(Consulta.class, resIdConsulta);
-        if(consultaDesmarcar != null){
-            secretariaLogada.removerConsulta(consultaDesmarcar, em);
+        Consulta consultaDesmarcar = em.find(Consulta.class, resIdConsulta); // busca a consulta no banco de dados
+        if(consultaDesmarcar != null){ // se a consulta existe
+            secretariaLogada.removerConsulta(consultaDesmarcar, em); // remove a consulta
             JOptionPane.showMessageDialog(null,"Consulta desmarcada com Sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Consulta não encontrada", "Erro!", JOptionPane.ERROR_MESSAGE);
@@ -166,6 +169,7 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoDesmarcarConsultaActionPerformed
 
     private void BotaoAlterarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAlterarConsultaActionPerformed
+        // pede as informações da consulta a ser alterada
         String medicoConsulta = JOptionPane.showInputDialog(null, "Insira o CRM do médico da consulta: ");
         String diaConsulta = JOptionPane.showInputDialog(null, "Insira a data da consulta:(FORMATO: dd/mm/aaaa)");
         String horaConsulta = JOptionPane.showInputDialog(null, "Insira o horário da consulta:(FORMATO: hh:mm");
@@ -182,11 +186,12 @@ public class TelaSecGerenciarConsulta extends javax.swing.JFrame {
             
             idConsulta.append("/");
             idConsulta.append(medicoConsulta);
+            resIdConsulta = idConsulta.toString();
             idConsulta = new StringBuilder(resIdConsulta);
             
             resIdConsulta = idConsulta.toString();
-        Consulta consultaAlt = em.find(Consulta.class, resIdConsulta);
-        if(consultaAlt != null){
+        Consulta consultaAlt = em.find(Consulta.class, resIdConsulta); // Busca a consulta no banco de dados
+        if(consultaAlt != null){ // Se a consulta existe
             TelaSecAlterarConsulta telaAlterar = new TelaSecAlterarConsulta(secretariaLogada, consultaAlt, em);
             telaAlterar.setVisible(true);
         } else {

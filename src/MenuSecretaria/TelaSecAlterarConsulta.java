@@ -147,6 +147,8 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     public void mostrarInfos(){
+        // Preenche os campos com as informações da consulta
+
         campoData.setText(consulta.getData());
         campoHora.setText(consulta.getHorario());
         campoCRM.setText(consulta.getMedico().getNumeroDeRegistro());
@@ -161,6 +163,8 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
     }
     
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
+        // Atualiza as informações da consulta obtendo os dados dos campos
+        
         secretariaLogada.atualizarConsultaData(campoData.getText(), consulta);
         secretariaLogada.atualizarConsultaHorario(campoHora.getText(), consulta);
         secretariaLogada.atualizarConsultaMedico(em.find(MedicoCadastrado.class, campoCRM.getText()),consulta);
@@ -172,7 +176,7 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
             secretariaLogada.atualizarConsultaTipo("Normal", consulta);
         }
         this.dispose();
-        JOptionPane.showMessageDialog(null, "Secretaria cadastrada com sucesso.");
+        JOptionPane.showMessageDialog(null, "Consulta atualizada com sucesso.");
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed

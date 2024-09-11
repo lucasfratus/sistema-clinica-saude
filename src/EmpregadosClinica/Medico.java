@@ -147,7 +147,7 @@ public class Medico {
 
     
     public void cadastrarProntuario(PacienteCadastrado paciente, String sintoma, String diagnostico, String tratamento){
-        // Cadastra um prontuário de um paciente,
+        // Cadastra um prontuário de um paciente, colocando-o na base de dados
         Prontuario prontuarioPaciente = new Prontuario();
         prontuarioPaciente.setCpfPaciente(paciente.getCpf());
         prontuarioPaciente.setSintomas(sintoma);

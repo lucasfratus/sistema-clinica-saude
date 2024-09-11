@@ -145,6 +145,7 @@ public class TelaMedInfoAdicionalAtualizar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     public void mostrarInfos(){
+        // Obtém as informações do paciente e as exibe nos campos
         checkboxDiabete.setSelected(paciente.isDiabete());
         checkboxFuma.setSelected(paciente.isFuma());
         checkboxBebe.setSelected(paciente.isBebe());
@@ -155,6 +156,7 @@ public class TelaMedInfoAdicionalAtualizar extends javax.swing.JFrame {
     }
     
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
+        // Obtém as informações nos campos e chama os métodos de atualização da Classe Médico
         boolean diabete = checkboxDiabete.isSelected();
         boolean fuma = checkboxFuma.isSelected();
         boolean bebe = checkboxBebe.isSelected();

@@ -45,7 +45,7 @@ public class GerenciadorDeMensagens {
     }
     
     public List<String> enviarMensagens(String dataDeAmanha){
-        // Envia mensagens aos pacientes que possuem email/telefone e possuem uma consulta marcada no próximo dia.
+        // Envia mensagens aos pacientes que possuem email/telefone e possuem uma consulta marcada no dia desejado.
         Query query = em.createNamedQuery("findConsultas");
         query.setParameter("dataAmanha", dataDeAmanha);
         List<Consulta> listaConsultas = query.getResultList(); 

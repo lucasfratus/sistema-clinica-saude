@@ -80,8 +80,10 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void mostrarRelatorio(){
+        // Preenche a caixa de texto com o relatório do médico
         caixaRelatorio.setText(medicoLogado.gerarRelatorioMedico(paciente));
     }
+
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         TelaPrincipalMed telaAnterior = new TelaPrincipalMed(medicoLogado, em);
         telaAnterior.setVisible(true);

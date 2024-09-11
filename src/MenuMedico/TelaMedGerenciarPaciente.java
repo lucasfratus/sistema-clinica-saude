@@ -118,6 +118,7 @@ public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void botaoCadastrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarInfoActionPerformed
+        // Cadastra as informações adicionais de um paciente
         String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja cadastrar informações adicionais: ");
         PacienteCadastrado pacienteAdicionais = em.find(PacienteCadastrado.class, cpfPaciente);
         if(pacienteAdicionais != null){

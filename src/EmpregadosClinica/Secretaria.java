@@ -39,7 +39,7 @@ public class Secretaria {
     }
  
     public PacienteCadastrado cadastrarPaciente(String nome,String cpf, String email, String dataNascimento, String endereco, String telefone, String convenio){
-        // Cadastra as informações basicas de um paciente
+        // Cadastra as informações basicas de um paciente, colocando um objeto da classe POJO PacienteCadastrado no banco de dados.
         em.getTransaction().begin();
         PacienteCadastrado novoPaciente = new PacienteCadastrado();
         novoPaciente.setNome(nome);

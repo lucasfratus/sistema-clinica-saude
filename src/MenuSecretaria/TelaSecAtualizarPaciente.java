@@ -182,42 +182,56 @@ public class TelaSecAtualizarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void NomeAtualizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeAtualizadoActionPerformed
+        // Atualiza o nome do paciente
+
         String nomeAtualizado = JOptionPane.showInputDialog(null, "Insira o novo nome do paciente:");
         secretariaLogada.atualizarPacienteNome(nomeAtualizado, paciente);
         JOptionPane.showMessageDialog(null,"Nome Atualizado!");
     }//GEN-LAST:event_NomeAtualizadoActionPerformed
 
     private void EndereçoAtualizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndereçoAtualizadoActionPerformed
+        // Atualiza o endereço do paciente
+        
         String enderecoAtualizado = JOptionPane.showInputDialog(null, "Insira o novo endereço do paciente:");
         secretariaLogada.atualizarPacienteEndereco(enderecoAtualizado, paciente);
         JOptionPane.showMessageDialog(null,"Endereço Atualizado!");
     }//GEN-LAST:event_EndereçoAtualizadoActionPerformed
 
     private void emailAtualizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailAtualizadoActionPerformed
+        // Atualiza o e-mail do paciente
+        
         String emailAtualizado = JOptionPane.showInputDialog(null, "Insira o novo e-mail do paciente:");
         secretariaLogada.atualizarPacienteEmail(emailAtualizado, paciente);
         JOptionPane.showMessageDialog(null,"E-mail Atualizado!");
     }//GEN-LAST:event_emailAtualizadoActionPerformed
 
     private void telefoneAtualizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneAtualizadoActionPerformed
+        // Atualiza o telefone do paciente
+        
         String telefoneAtualizado = JOptionPane.showInputDialog(null, "Insira o novo telefone do paciente:");
         secretariaLogada.atualizarPacienteTelefone(telefoneAtualizado, paciente);
         JOptionPane.showMessageDialog(null,"Telefone Atualizado!");
     }//GEN-LAST:event_telefoneAtualizadoActionPerformed
 
     private void dataAtualizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAtualizadoActionPerformed
+        // Atualiza a data de nascimento do paciente
+        
         String dataAtualizada = JOptionPane.showInputDialog(null, "Insira o nova data de nascimento do paciente:");
         secretariaLogada.atualizarPacienteDataNascimento(dataAtualizada, paciente);
         JOptionPane.showMessageDialog(null,"Data de nascimento Atualizada!");
     }//GEN-LAST:event_dataAtualizadoActionPerformed
 
     private void convenioAtualizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convenioAtualizadoActionPerformed
+        // Atualiza o convênio do paciente
+        
         String convenioAtualizado = JOptionPane.showInputDialog(null, "Insira o novo convênio do paciente:");
         secretariaLogada.atualizarPacienteConvenio(convenioAtualizado, paciente);
         JOptionPane.showMessageDialog(null,"Convênio Atualizado!");
     }//GEN-LAST:event_convenioAtualizadoActionPerformed
 
     private void BotaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVoltarActionPerformed
+        // Volta para a tela de gerenciamento de pacientes
+        
         TelaSecGerenciarPaciente telaAnterior = new TelaSecGerenciarPaciente(secretariaLogada, em);
         telaAnterior.setVisible(true);
         this.dispose();

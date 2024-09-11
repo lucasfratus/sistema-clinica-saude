@@ -18,6 +18,8 @@ public class TelaSecRelatorio extends javax.swing.JFrame {
         this.em = em;
         this.secretariaLogada = secretariaLogada;
         this.consultasAmanha = consultasAmanha;
+
+        // Preenche as listas
         preencherListaSemContato(consultasAmanha.get(0));
         preencherListaComContato(consultasAmanha.get(1));
     }
@@ -99,6 +101,7 @@ public class TelaSecRelatorio extends javax.swing.JFrame {
 
     
     public void preencherListaSemContato(List<Consulta> consultasAmanha) {
+        // Preenche a lista de consultas sem contato
         List<String> model = new ArrayList<>();
         for (Consulta consulta : consultasAmanha) {
             model.add("Nome: " + consulta.getPaciente().getNome());    
@@ -107,6 +110,7 @@ public class TelaSecRelatorio extends javax.swing.JFrame {
     }
     
     public void preencherListaComContato(List<Consulta> consultasAmanha) {
+        // Preenche a lista de consultas com contato
         List<String> model = new ArrayList<>();
         for (Consulta consulta : consultasAmanha) {
             model.add("Nome:" + consulta.getPaciente().getNome() +", Email: " + consulta.getPaciente().getEmail() + ", Telefone: " + consulta.getPaciente().getTelefone());
