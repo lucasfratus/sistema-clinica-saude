@@ -1,6 +1,7 @@
 package EmpregadosClinica;
 
 import Atendimento.Consulta;
+import Fichas.Prontuario;
 import Sistema.MedicoCadastrado;
 import Sistema.PacienteCadastrado;
 import java.util.ArrayList;
@@ -104,6 +105,10 @@ public class Secretaria {
         PacienteCadastrado paciente = em.find(PacienteCadastrado.class, cpf);
         if(paciente != null){
             em.remove(paciente);
+            Prontuario possivelProntuario = em.find(Prontuario.class, cpf);
+            if(possivelProntuario != null){
+                em.remove(possivelProntuario);
+            }
         }
         em.getTransaction().commit();
     }
