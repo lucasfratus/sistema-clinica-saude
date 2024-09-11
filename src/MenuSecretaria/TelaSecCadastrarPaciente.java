@@ -216,12 +216,19 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         String enderecoPaciente = EnderecoNovoPaciente.getText();
         String convenioPaciente = ConvenioNovoPaciente.getText();
         String nascPaciente = NascNovoPaciente.getText();
-        if(nomePaciente !=  "" && cpfPaciente != "" && nascPaciente != "" && convenioPaciente != "" && enderecoPaciente != "") { // Talvez seja null e nao ""
-            secretariaLogada.cadastrarPaciente(nomePaciente, cpfPaciente, emailPaciente, nascPaciente, enderecoPaciente, telefonePaciente, convenioPaciente);
-            JOptionPane.showMessageDialog(null,"Paciente Cadastrado com sucesso");
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro!", "Preencha os campos necessários!", JOptionPane.ERROR_MESSAGE);
+        
+        PacienteCadastrado pacienteVerificacao = em.find(PacienteCadastrado.class, cpfPaciente); // Busca um paciente com o CPF inserido
+        
+        if(pacienteVerificacao == null){ // Se o paciente buscado for "null" e todos os campos preenchidos, o processo de cadastro pode ser realizado
+            if(nomePaciente !=  "" && cpfPaciente != "" && nascPaciente != "" && convenioPaciente != "" && enderecoPaciente != "") { 
+                secretariaLogada.cadastrarPaciente(nomePaciente, cpfPaciente, emailPaciente, nascPaciente, enderecoPaciente, telefonePaciente, convenioPaciente);
+                JOptionPane.showMessageDialog(null,"Paciente Cadastrado com sucesso");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro!", "Preencha os campos necessários!", JOptionPane.ERROR_MESSAGE);
+            }
+        } else { // Se não, um erro aparece na tela
+            JOptionPane.showMessageDialog(null, "Erro!", "Já existe um paciente com esse CPF!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotaoCadastrarActionPerformed
 
