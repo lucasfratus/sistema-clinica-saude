@@ -6,8 +6,12 @@ import Sistema.PacienteCadastrado;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+@NamedQuery(name = "findConsultas", 
+                query = "select p FROM Consulta p WHERE p.data LIKE :dataAmanha")
 
 @Entity
 @Table(name = "CONSULTA")

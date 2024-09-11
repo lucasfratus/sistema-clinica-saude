@@ -5,6 +5,7 @@ import MenuMedico.TelaPrincipalMed;
 import EmpregadosClinica.GerenciadorDeMensagens;
 import EmpregadosClinica.Medico;
 import EmpregadosClinica.Secretaria;
+import MenuGerenciador.TelaPrincipalGM;
 import Sistema.GerenciadorCadastrado;
 import Sistema.MedicoCadastrado;
 import Sistema.SecretariaCadastrada;
@@ -135,7 +136,7 @@ public class Login extends javax.swing.JFrame {
             SecretariaCadastrada secCred = new SecretariaCadastrada(); // Cria um objeto da classe SecretariaCadastrada
             secCred = em.find(SecretariaCadastrada.class, credenciais);
             if(secCred != null){
-                Secretaria secLogada = new Secretaria(secCred.getNomeFuncionario(), secCred.getCpf());
+                Secretaria secLogada = new Secretaria(secCred.getNomeFuncionario(), secCred.getCpf(), em);
                 TelaPrincipalSecretaria telaSec = new TelaPrincipalSecretaria(secLogada, em);
                 telaSec.setVisible(true);
                 this.dispose();
@@ -148,7 +149,7 @@ public class Login extends javax.swing.JFrame {
                                                                 // para armazenar as credencias do médico que será logado
             medicoCred = em.find(MedicoCadastrado.class, credenciais);
             if (medicoCred != null) {
-                Medico medicoLogado = new Medico(medicoCred.getNome(), medicoCred.getNumeroDeRegistro(), medicoCred.getEspecialidade(), medicoCred.getNumeroDoConsultorio(), medicoCred.getNumeroAtendidos());
+                Medico medicoLogado = new Medico(medicoCred.getNome(), medicoCred.getNumeroDeRegistro(), medicoCred.getEspecialidade(), medicoCred.getNumeroDoConsultorio(), medicoCred.getNumeroAtendidos(), em);
                 TelaPrincipalMed telaMed = new TelaPrincipalMed(medicoLogado, em);
                 telaMed.setVisible(true);
                 this.dispose();
@@ -161,7 +162,7 @@ public class Login extends javax.swing.JFrame {
             gerenciadorCred = em.find(GerenciadorCadastrado.class, credenciais);
             if (gerenciadorCred != null){
                 GerenciadorDeMensagens gerenciadorLogado = new GerenciadorDeMensagens(gerenciadorCred.getCpf(),gerenciadorCred.getNome());
-                // TERMINAR
+                TelaPrincipalGM telaGM = new TelaPrincipalGM(gerenciadorLogado, em);
             }
         }
     }//GEN-LAST:event_EntrarActionPerformed
@@ -177,6 +178,7 @@ public class Login extends javax.swing.JFrame {
             em.getTransaction().begin();
             em.merge(novaSecretaria);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Secretaria cadastrada com sucesso.");
         }
         if((ProfissaoEscolhida.getSelectedItem()).equals("Médico")) {
             String novoMedicoNome = JOptionPane.showInputDialog(null, "Insira o nome do novo Médico: ");
@@ -192,6 +194,7 @@ public class Login extends javax.swing.JFrame {
             novoMedico.setNumeroAtendidos(0);
             em.merge(novoMedico);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Medico cadastrado com sucesso.");
         }
         if ((ProfissaoEscolhida.getSelectedItem()).equals("Gerenciador de Mensagem")) {
             String novoGmCpf = JOptionPane.showInputDialog(null, "Insira o cpf do Gerenciador de Mensagens: ");
@@ -200,6 +203,7 @@ public class Login extends javax.swing.JFrame {
             em.getTransaction().begin();
             em.merge(novoGM);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Gerenciador de mensagens cadastrado com sucesso.");
         }
         
     }//GEN-LAST:event_botaoRegistrarActionPerformed

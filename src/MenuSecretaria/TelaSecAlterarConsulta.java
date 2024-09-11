@@ -18,7 +18,9 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
         this.secretariaLogada = secretariaLogada;
         this.consulta = consulta;
         this.em = em;
+        mostrarInfos();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,51 +49,17 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
 
         jLabel1.setText("Data:");
 
-        campoData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoDataActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Hora:");
-
-        campoHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoHoraActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("CRM do médico:");
 
-        campoCRM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCRMActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("CPF do paciente:");
-
-        campoCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCPFActionPerformed(evt);
-            }
-        });
 
         jLabel5.setText("Tipo de Consulta:");
 
         tipoNormal.setText("Normal");
-        tipoNormal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoNormalActionPerformed(evt);
-            }
-        });
 
         tipoRetorno.setText("Retorno");
-        tipoRetorno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoRetornoActionPerformed(evt);
-            }
-        });
 
         botaoAtualizar.setText("Atualizar");
         botaoAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -176,31 +144,22 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed
+    
+    public void mostrarInfos(){
         campoData.setText(consulta.getData());
-    }//GEN-LAST:event_campoDataActionPerformed
-
-    private void campoHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHoraActionPerformed
         campoHora.setText(consulta.getHorario());
-    }//GEN-LAST:event_campoHoraActionPerformed
-
-    private void campoCRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCRMActionPerformed
         campoCRM.setText(consulta.getMedico().getNumeroDeRegistro());
-    }//GEN-LAST:event_campoCRMActionPerformed
-
-    private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
         campoCPF.setText(consulta.getPaciente().getCpf());
-    }//GEN-LAST:event_campoCPFActionPerformed
-
-    private void tipoNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoNormalActionPerformed
         if (consulta.getTipoConsulta().equals("Normal")) {
             tipoNormal.setSelected(true);
-        }   
-    }//GEN-LAST:event_tipoNormalActionPerformed
-
+        }
+        if (consulta.getTipoConsulta().equals("Retorno")) {
+            tipoRetorno.setSelected(true);
+        }
+        
+    }
+    
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
-        em.flush();
         secretariaLogada.atualizarConsultaData(campoData.getText(), consulta);
         secretariaLogada.atualizarConsultaHorario(campoHora.getText(), consulta);
         secretariaLogada.atualizarConsultaMedico(em.find(MedicoCadastrado.class, campoCRM.getText()),consulta);
@@ -213,12 +172,6 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_botaoAtualizarActionPerformed
-
-    private void tipoRetornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoRetornoActionPerformed
-        if (consulta.getTipoConsulta().equals("Retorno")) {
-            tipoRetorno.setSelected(true);
-        }
-    }//GEN-LAST:event_tipoRetornoActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         this.dispose();

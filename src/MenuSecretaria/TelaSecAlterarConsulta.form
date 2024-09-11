@@ -113,9 +113,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoData">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoDataActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -123,9 +120,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoHora">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoHoraActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -133,9 +127,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoCRM">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCRMActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -143,9 +134,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoCPF">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCPFActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -156,17 +144,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Normal"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipoNormalActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="tipoRetorno">
       <Properties>
         <Property name="text" type="java.lang.String" value="Retorno"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipoRetornoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botaoAtualizar">
       <Properties>

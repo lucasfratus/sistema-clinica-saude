@@ -141,53 +141,45 @@ public class TelaMedGerenciarProntuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoRemoverProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverProntuarioActionPerformed
-       String cpfProntuario = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja remover o prontuário:");
-       PacienteCadastrado pacientePront = em.find(PacienteCadastrado.class, cpfProntuario);
-       if(pacientePront != null){
-            if(pacientePront.getProntuario() != null) {
-                medicoLogado.removerProntuario(pacientePront);
-                JOptionPane.showMessageDialog(null, "Prontuario removido com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(null, "O paciente não possui um prontuário cadastrado", "Prontuario não encontrado", JOptionPane.ERROR_MESSAGE);
-            }
-       } else {
-           JOptionPane.showMessageDialog(null, "CPF inválido/incorreto.", "Paciente não encontrado", JOptionPane.ERROR_MESSAGE);
-       }
+       String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente:");
+       Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente);
+       if(pacienteProntuario != null){
+            medicoLogado.removerProntuario(cpfPaciente);
+            JOptionPane.showMessageDialog(null, "Prontuario removido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "O paciente não possui um prontuário cadastrado", "Prontuario não encontrado", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botaoRemoverProntuarioActionPerformed
 
     private void botaoCriarProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarProntuarioActionPerformed
         String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente:");
-        PacienteCadastrado pacienteProntuario = em.find(PacienteCadastrado.class, cpfPaciente);
-        if(pacienteProntuario != null){
-            if(pacienteProntuario.getProntuario() == null){
-                String sintomas = JOptionPane.showInputDialog(null, "Insira os sintomas:");
-                String diagnostico = JOptionPane.showInputDialog(null, "Insira o diagnóstico:");
-                String tratamento = JOptionPane.showInputDialog(null, "Insira o tratamento:");
-                medicoLogado.cadastrarProntuario(pacienteProntuario, sintomas, diagnostico, tratamento);
-                JOptionPane.showMessageDialog(null, "Prontuario criado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(null, "O paciente já possui um prontuário.", "Erro", JOptionPane.ERROR_MESSAGE);    
-            }   
-        } else {
-            JOptionPane.showMessageDialog(null, "CPF inválido/incorreto.", "Paciente não encontrado", JOptionPane.ERROR_MESSAGE);  
-        }
+        PacienteCadastrado pacienteCadastrado = em.find(PacienteCadastrado.class, cpfPaciente);
+        Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente);
+        if(pacienteCadastrado != null && pacienteProntuario == null){
+            String sintomas = JOptionPane.showInputDialog(null, "Insira os sintomas:");
+            String diagnostico = JOptionPane.showInputDialog(null, "Insira o diagnóstico:");
+            String tratamento = JOptionPane.showInputDialog(null, "Insira o tratamento:");
+            medicoLogado.cadastrarProntuario(pacienteCadastrado, sintomas, diagnostico, tratamento);
+            JOptionPane.showMessageDialog(null, "Prontuario criado com sucesso!");
+        } if(pacienteCadastrado == null){
+            JOptionPane.showMessageDialog(null, "Paciente não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);    
+        } if(pacienteCadastrado != null && pacienteProntuario != null) {
+            JOptionPane.showMessageDialog(null, "O paciente já possui um prontuário.", "Erro", JOptionPane.ERROR_MESSAGE);    
+        }  
+    
     }//GEN-LAST:event_botaoCriarProntuarioActionPerformed
 
     private void botaoAtualizarProntuárioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarProntuárioActionPerformed
         String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja atualizar o prontuario:");
-        PacienteCadastrado pacienteProntuario = em.find(PacienteCadastrado.class, cpfPaciente);
+        Prontuario pacienteProntuario = em.find(Prontuario.class, cpfPaciente);
         if(pacienteProntuario != null){
-            if(pacienteProntuario.getProntuario() != null){
-                Prontuario prontuarioAtualizacao = pacienteProntuario.getProntuario();
-                TelaMedAtualizarProntuario telaAtualizacao = new TelaMedAtualizarProntuario(medicoLogado, prontuarioAtualizacao, em);
-                telaAtualizacao.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "O paciente não possui um prontuário.", "Erro", JOptionPane.ERROR_MESSAGE);    
-            }   
+            TelaMedAtualizarProntuario telaAtualizacao = new TelaMedAtualizarProntuario(medicoLogado, pacienteProntuario, em);
+            telaAtualizacao.setVisible(true);
+            this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "CPF inválido/incorreto.", "Paciente não encontrado", JOptionPane.ERROR_MESSAGE);  
-        }
+            JOptionPane.showMessageDialog(null, "O paciente não possui um prontuário.", "Erro", JOptionPane.ERROR_MESSAGE);    
+        }   
+    
     }//GEN-LAST:event_botaoAtualizarProntuárioActionPerformed
 
 

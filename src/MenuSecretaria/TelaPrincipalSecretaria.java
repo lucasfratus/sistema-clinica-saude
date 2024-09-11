@@ -1,8 +1,10 @@
 package MenuSecretaria;
 
+import Atendimento.Consulta;
 import Atendimento.Paciente;
 import EmpregadosClinica.Secretaria;
 import Sistema.PacienteCadastrado;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
@@ -137,8 +139,10 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void BotaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerarRelatorioActionPerformed
-        StringBuilder relatorio = new StringBuilder();
-        JOptionPane.showMessageDialog(null,relatorio);
+        String dataRelatorio = JOptionPane.showInputDialog(null, "Você deseja gerar um relatório de que dia? ");
+        List<List<Consulta>> relatorio = secretariaLogada.gerarRelatorio(dataRelatorio);
+        TelaSecRelatorio telaRelatorio = new TelaSecRelatorio(secretariaLogada, relatorio, em);
+        telaRelatorio.setVisible(true);
     }//GEN-LAST:event_BotaoGerarRelatorioActionPerformed
 
     private void BotaoGerenciarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoGerenciarPacientesActionPerformed

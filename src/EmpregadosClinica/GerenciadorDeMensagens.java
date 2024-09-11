@@ -3,11 +3,16 @@ package EmpregadosClinica;
 import EmpregadosClinica.Secretaria;
 import Atendimento.Consulta;
 import Atendimento.Paciente;
+import Sistema.PacienteCadastrado;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class GerenciadorDeMensagens {
     private String cpf;
     private String nome;
+    private EntityManager em;
     
     public GerenciadorDeMensagens(String cpf, String nome){
         this.cpf = cpf;
@@ -38,14 +43,17 @@ public class GerenciadorDeMensagens {
     public void mandarSms(String mensagem, String telefone){
         // Representa o envio de um SMS, que possui uma mensagem, ao paciente que possui um telefone.
     }
-    /*
-    public String enviarMensagens(String dataDeAmanha){
+    
+    public List<String> enviarMensagens(String dataDeAmanha){
         // Envia mensagens aos pacientes que possuem email/telefone e possuem uma consulta marcada no próximo dia.
-        ArrayList<Consulta> listaConsultas = new ArrayList();
-        listaConsultas = getPacientesComContato(dataDeAmanha);
+        Query query = em.createNamedQuery("findConsultas");
+        query.setParameter("dataAmanha", dataDeAmanha);
+        List<Consulta> listaConsultas = query.getResultList(); 
        
+        List<String> mensagensEnviadas = new ArrayList<String>();
+        
         for(int i = 0; i < listaConsultas.size(); i++){
-            Paciente paciente = listaConsultas.get(i).getPaciente();
+            PacienteCadastrado paciente = listaConsultas.get(i).getPaciente();
             Consulta consulta = listaConsultas.get(i);
             if ("Nao Informado".equals(paciente.getEmail())) {
                 String mensagem = "Prezado(a) " + paciente.getNome() + " A sua consulta com o(a) Doutor(a) " + consulta.getMedico().getNome() + " eh amanha, as"
@@ -59,9 +67,9 @@ public class GerenciadorDeMensagens {
                 mensagensEnviadas.add("Enviado ao email: " + paciente.getEmail() + "\n" + mensagem);
             }
         }
-        return "Mensagens enviadas com sucesso";   
+        return mensagensEnviadas;   
     }
-    */
+    
     /*
     public String visualizarMensagensEnviadas(){
         // Possibilita a visualização de todas as mensagens enviadas anteriormente,

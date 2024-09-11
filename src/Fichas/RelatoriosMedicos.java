@@ -1,19 +1,27 @@
 package Fichas;
 
 import Atendimento.Paciente;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
 
 public class RelatoriosMedicos {
-    private Paciente paciente;
+    private String cpfPaciente;
     private String receita;
     private String atestado;
     private String declaracaoAcompanhamento;
 
-    public Paciente getPaciente() {
-        return paciente;
+    public String getCpfPaciente() {
+        return cpfPaciente;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setCpfPaciente(String cpfPaciente) {
+        this.cpfPaciente = cpfPaciente;
     }
 
     public String getReceita() {
@@ -39,6 +47,4 @@ public class RelatoriosMedicos {
     public void setDeclaracaoAcompanhamento(String declaracaoAcompanhamento) {
         this.declaracaoAcompanhamento = declaracaoAcompanhamento;
     }
-
-
 }

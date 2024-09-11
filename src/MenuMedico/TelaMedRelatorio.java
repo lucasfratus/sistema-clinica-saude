@@ -14,6 +14,7 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
         this.em = em;
         this.paciente = paciente;
         this.medicoLogado = medicoLogado;
+        mostrarRelatorio();
     }
 
     /**
@@ -99,6 +100,9 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void mostrarRelatorio(){
+        //caixaRelatorio.setText(medicoLogado.gerarRelatorioMedico(paciente));
+    }
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -110,7 +114,7 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void caixaRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caixaRelatorioActionPerformed
-        caixaRelatorio.setText(medicoLogado.gerarRelatorioMedico(paciente));
+
     }//GEN-LAST:event_caixaRelatorioActionPerformed
 
 

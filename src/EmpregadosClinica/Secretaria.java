@@ -3,7 +3,11 @@ package EmpregadosClinica;
 import Atendimento.Consulta;
 import Sistema.MedicoCadastrado;
 import Sistema.PacienteCadastrado;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 
 
 public class Secretaria {
@@ -12,9 +16,10 @@ public class Secretaria {
     private EntityManager em;
 
 
-    public Secretaria(String nomeFuncionario, String cpf) {
+    public Secretaria(String nomeFuncionario, String cpf, EntityManager em) {
         this.nomeFuncionario = nomeFuncionario;
         this.cpf = cpf;
+        this.em = em;
     }
         
     public String getNomeFuncionario() {
@@ -44,6 +49,7 @@ public class Secretaria {
         novoPaciente.setEndereco(endereco);
         novoPaciente.setTelefone(telefone);
         novoPaciente.setConvenio(convenio);
+        em.persist(novoPaciente);
         em.getTransaction().commit();
         return novoPaciente;
     }
@@ -102,7 +108,7 @@ public class Secretaria {
         em.getTransaction().commit();
     }
     
-    public Consulta marcarConsulta(String data, String horario, MedicoCadastrado medico, PacienteCadastrado paciente, String tipoConsulta, EntityManager em){
+    public void marcarConsulta(String data, String horario, MedicoCadastrado medico, PacienteCadastrado paciente, String tipoConsulta, String idConsulta){
         // Marca uma consulta, adicionando ela na base de dados
         em.getTransaction().begin();
         Consulta novaConsulta = new Consulta(); 
@@ -111,9 +117,9 @@ public class Secretaria {
         novaConsulta.setMedico(medico);
         novaConsulta.setPaciente(paciente);
         novaConsulta.setTipoConsulta(tipoConsulta);
+        novaConsulta.setIdConsulta(idConsulta);
         em.persist(novaConsulta);
         em.getTransaction().commit();
-        return novaConsulta;
     }
     
     // Os métodos a seguir atualizam os dados de uma consulta
@@ -153,57 +159,39 @@ public class Secretaria {
         em.remove(consulta);
         em.getTransaction().commit();
     } 
-    /*
-    public ArrayList[] gerarRelatorio(String data){
+    
+    public List<List<Consulta>> gerarRelatorio(String data){
         
-        Gera um relatorio de consultas de uma determinada data.
-        Mostra as informações dessa consultas, como data, horario, medico, paciente, tipo de consulta.
-        Mostra, também, quais pacientes possuem ou não uma forma de contato(email/telefone).
-        Retorna um ArrayList, sendo o primeiro espaço outro ArrayList contendo as consultas que os pacientes
-        não possuem forma de contato. No outro espaço, há outro ArrayList, mas este contém as consultas que os
-        pacientes possuem alguma forma de contato.
+        //Gera um relatorio de consultas de uma determinada data.
+        //Mostra as informações dessa consultas, como data, horario, medico, paciente, tipo de consulta.
+        //Mostra, também, quais pacientes possuem ou não uma forma de contato(email/telefone).
+        //Retorna um ArrayList, sendo o primeiro espaço outro ArrayList contendo as consultas que os pacientes
+        //não possuem forma de contato. No outro espaço, há outro ArrayList, mas este contém as consultas que os
+        //pacientes possuem alguma forma de contato.
         
-        ArrayList<Consulta> relatorioComContato = new ArrayList();
-        ArrayList<Consulta> relatorioSemContato = new ArrayList();
         
-        for(int z = 0; z < listaConsultas.size(); z++)
-            if (listaConsultas.get(z).getData() == data) {
-                if (listaConsultas.get(z).getPaciente().getTelefone() == "Nao Informado" && listaConsultas.get(z).getPaciente().getEmail() == "Nao Informado"){
-                    relatorioSemContato.add(listaConsultas.get(z));
+        Query query = em.createNamedQuery("findConsultas");
+        query.setParameter("dataAmanha", data);
+        
+        List<Consulta> consultasDoDia = query.getResultList();
+        
+        List<Consulta> consultasSemContato = new ArrayList<Consulta>();
+        List<Consulta> consultasComContato = new ArrayList<Consulta>();
+        for(int z = 0; z < consultasDoDia.size(); z++)
+            if (consultasDoDia.get(z).getData() == data) {
+                if (consultasDoDia.get(z).getPaciente().getTelefone() == "Nao Informado" && consultasDoDia.get(z).getPaciente().getEmail() == "Nao Informado"){
+                    consultasSemContato.add(consultasDoDia.get(z));
                 } else {
-                    relatorioComContato.add(listaConsultas.get(z));
+                    consultasComContato.add(consultasDoDia.get(z));
                 }        
             }
         
-        ArrayList<Consulta>[] relatorios = new ArrayList[2];
-        relatorios[0] = relatorioSemContato;
-        relatorios[1] = relatorioComContato;
+        List<List<Consulta>> relatorios = new ArrayList<List<Consulta>>();
+        relatorios.add(consultasSemContato);
+        relatorios.add(consultasComContato);
         
-        System.out.println("---Relatório de Consultas de " + data + "---\n\nCom email/telefone:");
-        for(int i = 0;i < relatorioComContato.size(); i++){
-            System.out.println("Data: " + relatorioComContato.get(i).getData());
-            System.out.println("Horario: " + relatorioComContato.get(i).getHorario());
-            System.out.println("Medico: " + relatorioComContato.get(i).getMedico().getNome());
-            System.out.println("Paciente: " + relatorioComContato.get(i).getPaciente().getNome());
-            System.out.println("Telefone do Paciente: " + relatorioComContato.get(i).getPaciente().getTelefone());
-            System.out.println("E-mail do Paciente: " + relatorioComContato.get(i).getPaciente().getEmail());
-            System.out.println("Tipo de Consulta: " + relatorioComContato.get(i).getTipoConsulta());
-            System.out.println("");  
-        }
-        System.out.println("------------------");
-        System.out.println("Sem e-mail/telefone:");
-        for(int x = 0;x < relatorioSemContato.size(); x++){
-            System.out.println("Data: " + relatorioSemContato.get(x).getData());
-            System.out.println("Horario: " + relatorioSemContato.get(x).getHorario());
-            System.out.println("Medico: " + relatorioSemContato.get(x).getMedico().getNome());
-            System.out.println("Paciente: " + relatorioSemContato.get(x).getPaciente().getNome());
-            System.out.println("Tipo de Consulta: " + relatorioSemContato.get(x).getTipoConsulta());
-            System.out.println("");
-        }
-        System.out.println("------------------");
         return relatorios;
     }
-    */
 }
 
     

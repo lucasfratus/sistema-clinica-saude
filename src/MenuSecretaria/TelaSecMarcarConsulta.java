@@ -5,11 +5,8 @@ import EmpregadosClinica.Secretaria;
 import Sistema.MedicoCadastrado;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucas
- */
 public class TelaSecMarcarConsulta extends javax.swing.JFrame {
     EntityManager em;
     Secretaria secretariaLogada;
@@ -44,6 +41,7 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
         consultaRetorno = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         botaoMarcar = new javax.swing.JButton();
+        botaoSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +68,13 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
             }
         });
 
+        botaoSair.setText("Sair");
+        botaoSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,35 +82,38 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cpfPacienteConsulta)
-                    .addComponent(crmConsulta)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
+                            .addComponent(cpfPacienteConsulta)
+                            .addComponent(crmConsulta)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(dataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(horarioConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jLabel4)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(consultaNormal)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(dataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(horarioConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(45, 45, 45)
+                                                .addComponent(jLabel4)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(consultaRetorno)))))
-                        .addGap(0, 28, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoMarcar)
-                .addGap(196, 196, 196))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(consultaNormal)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(consultaRetorno)))))
+                                .addGap(0, 28, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(botaoSair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoMarcar)
+                        .addGap(196, 196, 196))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +138,9 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
                     .addComponent(consultaNormal)
                     .addComponent(consultaRetorno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(botaoMarcar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoMarcar)
+                    .addComponent(botaoSair))
                 .addContainerGap())
         );
 
@@ -139,10 +149,8 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
 
     private void botaoMarcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMarcarActionPerformed
         String cpfPaciente = cpfPacienteConsulta.getText();
-        PacienteCadastrado pacienteCred = em.find(PacienteCadastrado.class, cpfPaciente);
         
         String crmMedico = crmConsulta.getText();
-        MedicoCadastrado medicoCred = em.find(MedicoCadastrado.class, crmMedico);
         
         String data = dataConsulta.getText();
         String horario = horarioConsulta.getText();
@@ -155,42 +163,47 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
             tipoConsulta = "Retorno";
         }
         
-        if(pacienteCred != null && medicoCred != null && data != null && horario != null & tipoConsulta != "") {
-            // criacao do id da consulta
-            StringBuilder idConsulta = new StringBuilder();
-            idConsulta.append(data);
-            String resIdConsulta = idConsulta.toString().replaceAll("[/]", "");
-            idConsulta = new StringBuilder(resIdConsulta);
-            
-            idConsulta.append("/");
-            idConsulta.append(horario);
-            resIdConsulta = idConsulta.toString().replaceAll("[:]", "");
-            idConsulta = new StringBuilder(resIdConsulta);
-            
-            idConsulta.append("/");
-            idConsulta.append(crmMedico);
-            idConsulta = new StringBuilder(resIdConsulta);
-            
-            resIdConsulta = idConsulta.toString();
-            
-            // Marcando consulta
-            Consulta novaConsulta = new Consulta();
-            novaConsulta.setData(data);
-            novaConsulta.setHorario(horario);
-            novaConsulta.setIdConsulta(resIdConsulta);
-            novaConsulta.setMedico(medicoCred);
-            novaConsulta.setPaciente(pacienteCred);
-            novaConsulta.setTipoConsulta(tipoConsulta);
-            
-            em.getTransaction().begin();
-            em.persist(novaConsulta);
-            em.getTransaction().commit();
+        if(cpfPaciente != "" && crmMedico != "" && data != "" && horario != "" && tipoConsulta != "") {
+            MedicoCadastrado medicoCred = em.find(MedicoCadastrado.class, crmMedico);
+            PacienteCadastrado pacienteCred = em.find(PacienteCadastrado.class, cpfPaciente);
+            if(medicoCred != null && pacienteCred != null) {
+                // criacao do id da consulta
+                StringBuilder idConsulta = new StringBuilder();
+                idConsulta.append(data);
+                String resIdConsulta = idConsulta.toString().replaceAll("[/]", "");
+                idConsulta = new StringBuilder(resIdConsulta);
+
+                idConsulta.append("/");
+                idConsulta.append(horario);
+                resIdConsulta = idConsulta.toString().replaceAll("[:]", "");
+                idConsulta = new StringBuilder(resIdConsulta);
+
+                idConsulta.append("/");
+                idConsulta.append(crmMedico);
+                idConsulta = new StringBuilder(resIdConsulta);
+
+                resIdConsulta = idConsulta.toString();
+
+                // Marcando consulta
+                secretariaLogada.marcarConsulta(data, horario, medicoCred, pacienteCred, tipoConsulta, resIdConsulta);
+                JOptionPane.showMessageDialog(null,"Consulta marcada com Sucesso");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Paciente/Medico não encontrado", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos.", "Erro!", JOptionPane.ERROR_MESSAGE);
         }
-        this.dispose();
+
     }//GEN-LAST:event_botaoMarcarActionPerformed
+
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoSairActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoMarcar;
+    private javax.swing.JButton botaoSair;
     private javax.swing.JRadioButton consultaNormal;
     private javax.swing.JRadioButton consultaRetorno;
     private javax.swing.JTextField cpfPacienteConsulta;

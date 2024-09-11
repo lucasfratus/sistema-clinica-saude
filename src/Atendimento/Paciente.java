@@ -11,14 +11,13 @@ public class Paciente {
     private String endereco;
     private String telefone;
     private String convenio;
-    private Prontuario prontuario;
     private boolean fuma;
     private boolean bebe;
     private boolean colesterolAlto;
     private boolean diabete;
     private boolean doencaCardiaca;
-    private StringBuilder cirurgias;
-    private StringBuilder alergias;
+    private String cirurgias;
+    private String alergias;
       
     public Paciente(){        
     }
@@ -36,8 +35,8 @@ public class Paciente {
     }
     
     public Paciente(String nome, String email, String cpf, String dataNascimento, String endereco, String telefone, String convenio,
-            Prontuario prontuario, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, StringBuilder
-                    cirurgias, StringBuilder alergias){
+            boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, String
+                    cirurgias, String alergias){
         /* Construtor para a instanciação de um objeto Paciente. Consta informações adicionais, além das informações do construtor anterior */
         this.nome = nome;
         this.email = email;
@@ -46,7 +45,6 @@ public class Paciente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.convenio = convenio;
-        this.prontuario = prontuario;
         this.fuma = fuma;
         this.bebe = bebe;
         this.colesterolAlto = colesterolAlto;
@@ -56,13 +54,7 @@ public class Paciente {
         this.alergias = alergias;
         }
     
-    public Prontuario getProntuario() {
-        return prontuario;
-    }
-
-    public void setProntuario(Prontuario prontuario) {
-        this.prontuario = prontuario;
-    }
+ 
     
     public String getNome() {
         return nome;
@@ -160,19 +152,19 @@ public class Paciente {
         this.doencaCardiaca = doencaCardiaca;
     }
 
-    public StringBuilder getCirurgias() {
+    public String getCirurgias() {
         return cirurgias;
     }
 
-    public void setCirurgias(StringBuilder cirurgias) {
+    public void setCirurgias(String cirurgias) {
         this.cirurgias = cirurgias;
     }
 
-    public StringBuilder getAlergias() {
+    public String getAlergias() {
         return alergias;
     }
 
-    public void setAlergias(StringBuilder alergias) {
+    public void setAlergias(String alergias) {
         this.alergias = alergias;
     }
     

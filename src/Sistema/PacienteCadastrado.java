@@ -19,15 +19,13 @@ public class PacienteCadastrado {
     private String endereco;
     private String telefone;
     private String convenio;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Prontuario prontuario;
     private boolean fuma;
     private boolean bebe;
     private boolean colesterolAlto;
     private boolean diabete;
     private boolean doencaCardiaca;
-    private StringBuilder cirurgias;
-    private StringBuilder alergias;
+    private String cirurgias;
+    private String alergias;
 
     public String getNome() {
         return nome;
@@ -85,14 +83,6 @@ public class PacienteCadastrado {
         this.convenio = convenio;
     }
 
-    public Prontuario getProntuario() {
-        return prontuario;
-    }
-
-    public void setProntuario(Prontuario prontuario) {
-        this.prontuario = prontuario;
-    }
-
     public boolean isFuma() {
         return fuma;
     }
@@ -133,19 +123,19 @@ public class PacienteCadastrado {
         this.doencaCardiaca = doencaCardiaca;
     }
 
-    public StringBuilder getCirurgias() {
+    public String getCirurgias() {
         return cirurgias;
     }
 
-    public void setCirurgias(StringBuilder cirurgias) {
+    public void setCirurgias(String cirurgias) {
         this.cirurgias = cirurgias;
     }
 
-    public StringBuilder getAlergias() {
+    public String getAlergias() {
         return alergias;
     }
 
-    public void setAlergias(StringBuilder alergias) {
+    public void setAlergias(String alergias) {
         this.alergias = alergias;
     }
     

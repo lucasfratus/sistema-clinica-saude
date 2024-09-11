@@ -2,6 +2,7 @@ package MenuMedico;
 
 import MenuMedico.TelaMedGerenciarPaciente;
 import EmpregadosClinica.Medico;
+import Fichas.Prontuario;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
@@ -123,17 +124,24 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
     private void botaoGerarRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarRelatoriosActionPerformed
         String cpfPaciente = JOptionPane.showInputDialog(null, "Insira o CPF do paciente que deseja gerar um relatório médico:");
         PacienteCadastrado pacienteRelatorio = em.find(PacienteCadastrado.class, cpfPaciente);
-        if(pacienteRelatorio != null){
+        Prontuario prontuarioPaciente = em.find(Prontuario.class, cpfPaciente);
+        
+        if(pacienteRelatorio != null && prontuarioPaciente != null){
             TelaMedRelatorio telaRelatorio = new TelaMedRelatorio(pacienteRelatorio, medicoLogado, em);
             telaRelatorio.setVisible(true);
-        } else {
+            
+        } if(pacienteRelatorio == null) {
             JOptionPane.showMessageDialog(null, "CPF incorreto/Paciente não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
-        }
         
+        } if(prontuarioPaciente == null){
+            JOptionPane.showMessageDialog(null, "Para gerar relatórios médicos, é necessário que o paciente tenha um prontuario", "Prontuario não encontrado", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botaoGerarRelatoriosActionPerformed
 
     private void botaoGerenciarProntuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerenciarProntuariosActionPerformed
-        // TODO add your handling code here:
+        TelaMedGerenciarProntuarios telaGPront = new TelaMedGerenciarProntuarios(medicoLogado, em);
+        telaGPront.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botaoGerenciarProntuariosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

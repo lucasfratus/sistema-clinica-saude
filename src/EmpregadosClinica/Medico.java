@@ -1,6 +1,7 @@
 package EmpregadosClinica;
 
 import Fichas.Prontuario;
+import Fichas.RelatoriosMedicos;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 
@@ -15,12 +16,13 @@ public class Medico {
     public Medico() {
     }
     
-    public Medico(String nome, String numeroDeRegistro, String especialidade, String numeroDoConsultorio, int numeroAtendidos) {
+    public Medico(String nome, String numeroDeRegistro, String especialidade, String numeroDoConsultorio, int numeroAtendidos, EntityManager em) {
         this.nome = nome;
         this.numeroDeRegistro = numeroDeRegistro;
         this.especialidade = especialidade;
         this.numeroDoConsultorio = numeroDoConsultorio;
         this.numeroAtendidos = numeroAtendidos;
+        this.em = em;
     }
     
     public String getNome() {
@@ -65,7 +67,7 @@ public class Medico {
     
     
     public void cadastrarInformacoesPaciente(PacienteCadastrado paciente, boolean fuma, boolean bebe, boolean colesterolAlto, boolean diabete, boolean doencaCardiaca, 
-            StringBuilder cirurgias, StringBuilder alergias) {
+            String cirurgias, String alergias) {
         // Cadastra as informações adicionais do paciente. Só pode ser realizado pelo médico, diferente do cadastrarPaciente().
         em.getTransaction().begin();
         paciente.setFuma(fuma);
@@ -80,7 +82,7 @@ public class Medico {
     // Os métodos a seguir atualizam e removem as informações adicionais dos Pacientes. 
     public void atualizarPacienteProntuario(Prontuario prontuario, PacienteCadastrado paciente){
         em.getTransaction().begin();
-        paciente.setProntuario(prontuario);
+        prontuario.setCpfPaciente(paciente.getCpf());
         em.getTransaction().commit();
     }
     
@@ -108,19 +110,25 @@ public class Medico {
         em.getTransaction().commit();
     }
     
+    public void atualizarPacienteBebe(boolean bebe, PacienteCadastrado paciente){
+        em.getTransaction().begin();
+        paciente.setBebe(bebe);
+        em.getTransaction().commit();
+    }
+    
     public void atualizarPacienteDoencaCardiaca(boolean doencaCardiaca, PacienteCadastrado paciente){
         em.getTransaction().begin();
         paciente.setDoencaCardiaca(doencaCardiaca);
         em.getTransaction().commit();
     }
     
-    public void atualizarPacienteCirurgias(StringBuilder cirurgias, PacienteCadastrado paciente){
+    public void atualizarPacienteCirurgias(String cirurgias, PacienteCadastrado paciente){
         em.getTransaction().begin();
         paciente.setCirurgias(cirurgias);
         em.getTransaction().commit();
     }
     
-    public void atualizarPacienteAlergias(StringBuilder alergias, PacienteCadastrado paciente){
+    public void atualizarPacienteAlergias(String alergias, PacienteCadastrado paciente){
         em.getTransaction().begin();
         paciente.setAlergias(alergias);
         em.getTransaction().commit();
@@ -128,18 +136,18 @@ public class Medico {
     
     public void adicionarAlergia(String alergia, PacienteCadastrado paciente){
         em.getTransaction().begin();
-        StringBuilder listaAlergias = paciente.getAlergias();
+        StringBuilder listaAlergias = new StringBuilder(paciente.getAlergias());
         listaAlergias.append(", " + alergia);
-        paciente.setAlergias(listaAlergias);
+        paciente.setAlergias(listaAlergias.toString());
         em.getTransaction().commit();
     }
     
     
     public void adicionarCirurgia(StringBuilder cirurgia, PacienteCadastrado paciente){
         em.getTransaction().begin();
-        StringBuilder Cirurgias = paciente.getCirurgias();
-        Cirurgias.append(cirurgia);
-        paciente.setCirurgias(Cirurgias); 
+        StringBuilder Cirurgias = new StringBuilder(paciente.getCirurgias());
+        Cirurgias.append(", " + cirurgia);
+        paciente.setCirurgias(Cirurgias.toString()); 
         em.getTransaction().commit();
     }
 
@@ -149,10 +157,9 @@ public class Medico {
 
         Prontuario prontuarioPaciente = new Prontuario();
         prontuarioPaciente.setDiagnostico(diagnostico);
-        prontuarioPaciente.setPaciente(paciente);
         prontuarioPaciente.setDiagnostico(diagnostico);
+        prontuarioPaciente.setCpfPaciente(paciente.getCpf());
         em.getTransaction().begin();
-        paciente.setProntuario(prontuarioPaciente);
         em.persist(prontuarioPaciente);
         em.getTransaction().commit();
     }
@@ -176,25 +183,35 @@ public class Medico {
         em.getTransaction().commit();
     }
     
-    public void removerProntuario(PacienteCadastrado paciente){
-        paciente.getProntuario().setDiagnostico(null);
-        paciente.getProntuario().setSintomas(null);
-        paciente.getProntuario().setTratamento(null);
+    public void removerProntuario(String cpfPaciente){
+        Prontuario prontuarioRemovido = em.find(Prontuario.class, cpfPaciente);
         em.getTransaction().begin();
-        em.remove(paciente.getProntuario());
+        em.remove(prontuarioRemovido);
         em.getTransaction().commit();
     }
     
     /* Gera um relatório médico do paciente, com seu nome, receita, atestado e declaração de acompanhamento (os dois ultimos
     gerados de forma representativa)*/
+    
     public String gerarRelatorioMedico(PacienteCadastrado paciente){
         this.setNumeroAtendidos();
         StringBuilder buffer = new StringBuilder();
         buffer.append("Nome do paciente: " + paciente.getNome());
-        buffer.append("\nReceita: " + paciente.getProntuario().getTratamento());
-        buffer.append("\nAtestado: (*Documento em pdf*)");
-        buffer.append("\nDeclaração de acompanhamento: (*Documento em pdf*)");
+        buffer.append("; \nReceita: " + em.find(Prontuario.class,paciente.getCpf()).getTratamento());
+        buffer.append("; \nAtestado: (*Documento em pdf*)");
+        buffer.append("; \nDeclaração de acompanhamento: (*Documento em pdf*)");
+        buffer.append("; \nNumero do paciente atendido no mês: " + this.getNumeroAtendidos());
         String bufferString = buffer.toString();
+        
+        RelatoriosMedicos novoRelatorio = new RelatoriosMedicos();
+        novoRelatorio.setCpfPaciente(paciente.getCpf());
+        novoRelatorio.setAtestado("*Documento em pdf*");
+        novoRelatorio.setDeclaracaoAcompanhamento("*Documento em pdf*");
+        novoRelatorio.setReceita(em.find(Prontuario.class,paciente.getCpf()).getTratamento());
+        em.getTransaction().begin();
+        em.persist(novoRelatorio);
+        em.getTransaction().commit();
         return bufferString;
     }
+
 }

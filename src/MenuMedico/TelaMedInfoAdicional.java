@@ -37,6 +37,8 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         botaoCadastrar = new javax.swing.JButton();
         textCirurgias = new javax.swing.JTextField();
         textAlergias = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,11 +52,6 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         checkboxBebe.setText("Bebe");
 
         checkboxDiabete.setText("Possui diabetes");
-        checkboxDiabete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxDiabeteActionPerformed(evt);
-            }
-        });
 
         checkboxColesterol.setText("Possui colesterol alto");
 
@@ -70,6 +67,10 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
                 botaoCadastrarActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Caso não tenha, colocar \"Nenhum\".");
+
+        jLabel5.setText("Caso não tenha, colocar \"Nenhum\".");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,8 +92,14 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
                             .addComponent(checkboxDiabete)
                             .addComponent(checkboxColesterol)
                             .addComponent(checkboxDoencaCardio)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(textAlergias))
                 .addContainerGap())
@@ -113,11 +120,15 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkboxDoencaCardio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textCirurgias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textAlergias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -144,22 +155,18 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void checkboxDiabeteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxDiabeteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkboxDiabeteActionPerformed
-
+    
+    
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         boolean diabete = checkboxDiabete.isSelected();
         boolean fuma = checkboxFuma.isSelected();
         boolean bebe = checkboxBebe.isSelected();
         boolean doenca = checkboxDoencaCardio.isSelected();
         boolean colesterol = checkboxColesterol.isSelected();
-        StringBuilder cirurgias = new StringBuilder(textCirurgias.getText());
-        StringBuilder alergias = new StringBuilder(textAlergias.getText());
-        em.getTransaction().begin();
+        String cirurgias = textCirurgias.getText().toString();
+        String alergias = textAlergias.getText().toString();
+
         medicoLogado.cadastrarInformacoesPaciente(paciente, fuma, bebe, colesterol, diabete, doenca, cirurgias, alergias);
-        em.getTransaction().commit();
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -172,6 +179,8 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField textAlergias;
     private javax.swing.JTextField textCirurgias;

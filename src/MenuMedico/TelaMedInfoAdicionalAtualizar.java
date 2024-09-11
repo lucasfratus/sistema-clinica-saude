@@ -3,17 +3,19 @@ package MenuMedico;
 import EmpregadosClinica.Medico;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 
-public class TelaMedInfoAdicionalCad extends javax.swing.JFrame {
+public class TelaMedInfoAdicionalAtualizar extends javax.swing.JFrame {
     private Medico medicoLogado;
     private PacienteCadastrado paciente;
     private EntityManager em;
 
-    public TelaMedInfoAdicionalCad(EntityManager em, Medico medicoLogado, PacienteCadastrado paciente) {
+    public TelaMedInfoAdicionalAtualizar(EntityManager em, Medico medicoLogado, PacienteCadastrado paciente) {
         initComponents();
         this.em = em;
         this.medicoLogado = medicoLogado;
         this.paciente = paciente;
+        mostrarInfos();
     }
 
     /**
@@ -43,42 +45,17 @@ public class TelaMedInfoAdicionalCad extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         checkboxFuma.setText("Fuma");
-        checkboxFuma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxFumaActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Informações adicionais");
 
         checkboxBebe.setText("Bebe");
-        checkboxBebe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxBebeActionPerformed(evt);
-            }
-        });
 
         checkboxDiabete.setText("Possui diabetes");
-        checkboxDiabete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxDiabeteActionPerformed(evt);
-            }
-        });
 
         checkboxColesterol.setText("Possui colesterol alto");
-        checkboxColesterol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxColesterolActionPerformed(evt);
-            }
-        });
 
         checkboxDoencaCardio.setText("Possui alguma doença cardiaca");
-        checkboxDoencaCardio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxDoencaCardioActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Cirurgias feitas:");
 
@@ -88,18 +65,6 @@ public class TelaMedInfoAdicionalCad extends javax.swing.JFrame {
         botaoAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAtualizarActionPerformed(evt);
-            }
-        });
-
-        textCirurgias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textCirurgiasActionPerformed(evt);
-            }
-        });
-
-        textAlergias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textAlergiasActionPerformed(evt);
             }
         });
 
@@ -176,47 +141,35 @@ public class TelaMedInfoAdicionalCad extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void checkboxDiabeteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxDiabeteActionPerformed
+    
+    public void mostrarInfos(){
         checkboxDiabete.setSelected(paciente.isDiabete());
-    }//GEN-LAST:event_checkboxDiabeteActionPerformed
-
+        checkboxFuma.setSelected(paciente.isFuma());
+        checkboxBebe.setSelected(paciente.isBebe());
+        checkboxColesterol.setSelected(paciente.isColesterolAlto());
+        checkboxDoencaCardio.setSelected(paciente.isDoencaCardiaca());
+        textCirurgias.setText((paciente.getCirurgias()).toString());
+        textAlergias.setText((paciente.getAlergias()).toString());
+    }
+    
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         boolean diabete = checkboxDiabete.isSelected();
         boolean fuma = checkboxFuma.isSelected();
         boolean bebe = checkboxBebe.isSelected();
         boolean doenca = checkboxDoencaCardio.isSelected();
         boolean colesterol = checkboxColesterol.isSelected();
-        StringBuilder cirurgias = new StringBuilder(textCirurgias.getText());
-        StringBuilder alergias = new StringBuilder(textAlergias.getText());
-        em.getTransaction().begin();
-        medicoLogado.cadastrarInformacoesPaciente(paciente, fuma, bebe, colesterol, diabete, doenca, cirurgias, alergias);
-        em.getTransaction().commit();
+        String cirurgias = textCirurgias.getText();
+        String alergias = textAlergias.getText();
+        medicoLogado.atualizarPacienteDiabete(diabete, paciente);
+        medicoLogado.atualizarPacienteFuma(fuma, paciente);
+        medicoLogado.atualizarPacienteBebe(bebe,paciente);
+        medicoLogado.atualizarPacienteAlergias(alergias, paciente);
+        medicoLogado.atualizarPacienteCirurgias(cirurgias, paciente);
+        medicoLogado.atualizarPacienteColesterol(colesterol, paciente);
+        medicoLogado.atualizarPacienteDoencaCardiaca(doenca, paciente);
+        JOptionPane.showMessageDialog(null,"Paciente atualizado com sucesso!");
+        this.dispose();
     }//GEN-LAST:event_botaoAtualizarActionPerformed
-
-    private void checkboxFumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxFumaActionPerformed
-        checkboxFuma.setSelected(paciente.isFuma());
-    }//GEN-LAST:event_checkboxFumaActionPerformed
-
-    private void checkboxBebeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxBebeActionPerformed
-        checkboxBebe.setSelected(paciente.isBebe());
-    }//GEN-LAST:event_checkboxBebeActionPerformed
-
-    private void checkboxColesterolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxColesterolActionPerformed
-        checkboxColesterol.setSelected(paciente.isColesterolAlto());
-    }//GEN-LAST:event_checkboxColesterolActionPerformed
-
-    private void checkboxDoencaCardioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxDoencaCardioActionPerformed
-        checkboxDoencaCardio.setSelected(paciente.isDoencaCardiaca());
-    }//GEN-LAST:event_checkboxDoencaCardioActionPerformed
-
-    private void textCirurgiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCirurgiasActionPerformed
-        textCirurgias.setText((paciente.getCirurgias()).toString());
-    }//GEN-LAST:event_textCirurgiasActionPerformed
-
-    private void textAlergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAlergiasActionPerformed
-        textAlergias.setText((paciente.getAlergias()).toString());
-    }//GEN-LAST:event_textAlergiasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAtualizar;

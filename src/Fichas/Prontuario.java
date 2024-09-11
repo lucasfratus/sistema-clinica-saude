@@ -10,17 +10,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PRONTUARIO")
 public class Prontuario {
-    @Id
-    @OneToOne(cascade = CascadeType.ALL)
-    private PacienteCadastrado paciente;
     private String sintomas;
     private String diagnostico;
     private String tratamento;
-
+    @Id
+    private String cpfPaciente;
     
-    public Prontuario(){
-    }
-
     public String getSintomas() {
         return sintomas;
     }
@@ -45,11 +40,12 @@ public class Prontuario {
         this.tratamento = tratamento;
     }
 
-    public PacienteCadastrado getPaciente() {
-        return paciente;
+    public String getCpfPaciente() {
+        return cpfPaciente;
     }
 
-    public void setPaciente(PacienteCadastrado paciente) {
-        this.paciente = paciente;
-    }    
+    public void setCpfPaciente(String cpfPaciente) {
+        this.cpfPaciente = cpfPaciente;
+    }
+    
 }
