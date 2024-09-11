@@ -14,8 +14,7 @@ public class Prontuario {
     private String diagnostico;
     private String tratamento;
     @Id
-    private String cpfPaciente;
-    
+    private String cpfPaciente; 
     
     public String getSintomas() {
         return sintomas;

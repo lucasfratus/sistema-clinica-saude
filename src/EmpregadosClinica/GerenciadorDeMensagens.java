@@ -13,9 +13,10 @@ public class GerenciadorDeMensagens {
     private String nome;
     private EntityManager em;
     
-    public GerenciadorDeMensagens(String cpf, String nome){
+    public GerenciadorDeMensagens(String cpf, String nome, EntityManager em){
         this.cpf = cpf;
         this.nome = nome;
+        this.em = em;
     }
 
     public String getCpf() {
@@ -50,33 +51,23 @@ public class GerenciadorDeMensagens {
         List<Consulta> listaConsultas = query.getResultList(); 
        
         List<String> mensagensEnviadas = new ArrayList<String>();
-        
-        for(int i = 0; i < listaConsultas.size(); i++){
-            PacienteCadastrado paciente = listaConsultas.get(i).getPaciente();
-            Consulta consulta = listaConsultas.get(i);
-            if ("Nao Informado".equals(paciente.getEmail())) {
-                String mensagem = "Prezado(a) " + paciente.getNome() + " A sua consulta com o(a) Doutor(a) " + consulta.getMedico().getNome() + " eh amanha, as"
-                        + " " + consulta.getHorario() ;
-                mandarSms(mensagem, paciente.getTelefone());
-                mensagensEnviadas.add("Enviado ao numero: " + paciente.getTelefone() + "\n" + mensagem);
-            } else {
-                String mensagem = "Prezado(a) " + paciente.getNome() + " A sua consulta com o(a) Doutor(a) " + consulta.getMedico().getNome() + " eh amanha, as"
-                        + " " + consulta.getHorario() ;
-                mandarEmail(mensagem, paciente.getEmail());
-                mensagensEnviadas.add("Enviado ao email: " + paciente.getEmail() + "\n" + mensagem);
-            }
+        if(mensagensEnviadas.isEmpty() == false){
+            for(int i = 0; i < listaConsultas.size(); i++){
+                PacienteCadastrado paciente = listaConsultas.get(i).getPaciente();
+                Consulta consulta = listaConsultas.get(i);
+                if ("Nao Informado".equals(paciente.getEmail())) {
+                    String mensagem = "Prezado(a) " + paciente.getNome() + " A sua consulta com o(a) Doutor(a) " + consulta.getMedico().getNome() + " eh amanha, as"
+                            + " " + consulta.getHorario() ;
+                    mandarSms(mensagem, paciente.getTelefone());
+                    mensagensEnviadas.add("Enviado ao numero: " + paciente.getTelefone() + "\n" + mensagem);
+                } else {
+                    String mensagem = "Prezado(a) " + paciente.getNome() + " A sua consulta com o(a) Doutor(a) " + consulta.getMedico().getNome() + " eh amanha, as"
+                            + " " + consulta.getHorario() ;
+                    mandarEmail(mensagem, paciente.getEmail());
+                    mensagensEnviadas.add("Enviado ao email: " + paciente.getEmail() + "\n" + mensagem);
+                }
         }
+    }
         return mensagensEnviadas;   
     }
-    
-    /*
-    public String visualizarMensagensEnviadas(){
-        // Possibilita a visualização de todas as mensagens enviadas anteriormente,
-        String buffer = null;
-        for(int x = 0; x < mensagensEnviadas.size(); x++){
-            buffer = buffer + '\n' + mensagensEnviadas.get(x);
-        }
-        return buffer;
-    }
-*/
 }

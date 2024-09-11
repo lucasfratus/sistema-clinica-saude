@@ -157,12 +157,16 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "CRM incorreto/não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
             }
         }
-        if((ProfissaoEscolhida.getSelectedItem()).equals("Gerenciador")){
+        if((ProfissaoEscolhida.getSelectedItem()).equals("Gerenciador de Mensagem")){
             GerenciadorCadastrado gerenciadorCred = new GerenciadorCadastrado();
             gerenciadorCred = em.find(GerenciadorCadastrado.class, credenciais);
             if (gerenciadorCred != null){
-                GerenciadorDeMensagens gerenciadorLogado = new GerenciadorDeMensagens(gerenciadorCred.getCpf(),gerenciadorCred.getNome());
+                GerenciadorDeMensagens gerenciadorLogado = new GerenciadorDeMensagens(gerenciadorCred.getCpf(),gerenciadorCred.getNome(), em);
                 TelaPrincipalGM telaGM = new TelaPrincipalGM(gerenciadorLogado, em);
+                telaGM.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "CPF incorreto/não existe.", "Credenciais não encontradas", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_EntrarActionPerformed
@@ -198,8 +202,10 @@ public class Login extends javax.swing.JFrame {
         }
         if ((ProfissaoEscolhida.getSelectedItem()).equals("Gerenciador de Mensagem")) {
             String novoGmCpf = JOptionPane.showInputDialog(null, "Insira o cpf do Gerenciador de Mensagens: ");
+            String novoGmNome = JOptionPane.showInputDialog(null, "Insira o nome do Gerenciador de Mensagens: ");
             GerenciadorCadastrado novoGM = new GerenciadorCadastrado();
             novoGM.setCpf(novoGmCpf);
+            novoGM.setNome(novoGmNome);
             em.getTransaction().begin();
             em.merge(novoGM);
             em.getTransaction().commit();
