@@ -216,7 +216,7 @@ public class TelaSecCadastrarPaciente extends javax.swing.JFrame {
         String enderecoPaciente = EnderecoNovoPaciente.getText();
         String convenioPaciente = ConvenioNovoPaciente.getText();
         String nascPaciente = NascNovoPaciente.getText();
-        if(nomePaciente !=  "" || cpfPaciente != "" || nascPaciente != "" || convenioPaciente != "" || enderecoPaciente != "") { // Talvez seja null e nao ""
+        if(nomePaciente !=  "" && cpfPaciente != "" && nascPaciente != "" && convenioPaciente != "" && enderecoPaciente != "") { // Talvez seja null e nao ""
             secretariaLogada.cadastrarPaciente(nomePaciente, cpfPaciente, emailPaciente, nascPaciente, enderecoPaciente, telefonePaciente, convenioPaciente);
             JOptionPane.showMessageDialog(null,"Paciente Cadastrado com sucesso");
             this.dispose();

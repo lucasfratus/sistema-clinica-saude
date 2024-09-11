@@ -3,6 +3,7 @@ package MenuSecretaria;
 import Atendimento.Consulta;
 import Atendimento.Paciente;
 import EmpregadosClinica.Secretaria;
+import MenuLogin.Login;
 import Sistema.PacienteCadastrado;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -35,6 +36,7 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
         BotaoGerenciarConsultas = new javax.swing.JButton();
         BotaoGerarRelatorio = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        botaoLogout = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -71,6 +73,13 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Bem vindo(a)!");
 
+        botaoLogout.setText("Logout");
+        botaoLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -86,6 +95,10 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
                     .addComponent(BotaoGerenciarConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                     .addComponent(BotaoGerarRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 107, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(botaoLogout)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +111,9 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
                 .addComponent(BotaoGerenciarConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(BotaoGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addGap(49, 49, 49)
+                .addComponent(botaoLogout)
+                .addContainerGap())
         );
 
         jMenu1.setText("Sistema");
@@ -158,10 +173,17 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BotaoGerenciarConsultasActionPerformed
 
+    private void botaoLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLogoutActionPerformed
+        Login telaLogin = new Login(em);
+        telaLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botaoLogoutActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoGerarRelatorio;
     private javax.swing.JButton BotaoGerenciarConsultas;
     private javax.swing.JButton BotaoGerenciarPacientes;
+    private javax.swing.JButton botaoLogout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

@@ -163,10 +163,11 @@ public class TelaMedInfoAdicional extends javax.swing.JFrame {
         boolean bebe = checkboxBebe.isSelected();
         boolean doenca = checkboxDoencaCardio.isSelected();
         boolean colesterol = checkboxColesterol.isSelected();
-        String cirurgias = textCirurgias.getText().toString();
-        String alergias = textAlergias.getText().toString();
+        String cirurgias = textCirurgias.getText();
+        String alergias = textAlergias.getText();
 
         medicoLogado.cadastrarInformacoesPaciente(paciente, fuma, bebe, colesterol, diabete, doenca, cirurgias, alergias);
+        this.dispose();
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

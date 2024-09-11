@@ -1,7 +1,9 @@
 package MenuGerenciador;
 
 import EmpregadosClinica.GerenciadorDeMensagens;
+import MenuLogin.Login;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 
 public class TelaPrincipalGM extends javax.swing.JFrame {
     EntityManager em;
@@ -24,6 +26,7 @@ public class TelaPrincipalGM extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         botaoEnviar = new javax.swing.JButton();
+        botaoLogout = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -39,6 +42,13 @@ public class TelaPrincipalGM extends javax.swing.JFrame {
         botaoEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEnviarActionPerformed(evt);
+            }
+        });
+
+        botaoLogout.setText("Logout");
+        botaoLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLogoutActionPerformed(evt);
             }
         });
 
@@ -63,14 +73,19 @@ public class TelaPrincipalGM extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(120, Short.MAX_VALUE)
                 .addComponent(botaoEnviar)
                 .addGap(117, 117, 117))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botaoLogout)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +94,9 @@ public class TelaPrincipalGM extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(65, 65, 65)
                 .addComponent(botaoEnviar)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(botaoLogout)
+                .addContainerGap())
         );
 
         pack();
@@ -91,12 +108,20 @@ public class TelaPrincipalGM extends javax.swing.JFrame {
 
     private void botaoEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnviarActionPerformed
         gerenciadorLogado.enviarMensagens("12/09/2024");
+        JOptionPane.showMessageDialog(null, "Mensagens enviadas com sucesso.");
     }//GEN-LAST:event_botaoEnviarActionPerformed
+
+    private void botaoLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLogoutActionPerformed
+        Login telaLogin = new Login(em);
+        telaLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botaoLogoutActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoEnviar;
+    private javax.swing.JButton botaoLogout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

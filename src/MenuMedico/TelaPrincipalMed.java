@@ -3,6 +3,7 @@ package MenuMedico;
 import MenuMedico.TelaMedGerenciarPaciente;
 import EmpregadosClinica.Medico;
 import Fichas.Prontuario;
+import MenuLogin.Login;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         botaoGerenciarP = new javax.swing.JButton();
         botaoGerenciarProntuarios = new javax.swing.JButton();
         botaoGerarRelatorios = new javax.swing.JButton();
+        botaoLogout = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -61,6 +63,13 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
             }
         });
 
+        botaoLogout.setText("Logout");
+        botaoLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLogoutActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Sistema");
 
         jMenuItem1.setText("Sair");
@@ -82,10 +91,6 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(115, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -93,6 +98,15 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
                     .addComponent(botaoGerenciarProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoGerarRelatorios))
                 .addGap(114, 114, 114))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botaoLogout)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +119,9 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
                 .addComponent(botaoGerenciarProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(botaoGerarRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(botaoLogout)
+                .addContainerGap())
         );
 
         pack();
@@ -144,10 +160,17 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botaoGerenciarProntuariosActionPerformed
 
+    private void botaoLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLogoutActionPerformed
+        Login telaLogin = new Login(em);
+        telaLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botaoLogoutActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoGerarRelatorios;
     private javax.swing.JButton botaoGerenciarP;
     private javax.swing.JButton botaoGerenciarProntuarios;
+    private javax.swing.JButton botaoLogout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

@@ -5,6 +5,7 @@ import EmpregadosClinica.Secretaria;
 import Sistema.MedicoCadastrado;
 import Sistema.PacienteCadastrado;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 
 public class TelaSecAlterarConsulta extends javax.swing.JFrame {
     EntityManager em;
@@ -171,6 +172,7 @@ public class TelaSecAlterarConsulta extends javax.swing.JFrame {
             secretariaLogada.atualizarConsultaTipo("Normal", consulta);
         }
         this.dispose();
+        JOptionPane.showMessageDialog(null, "Secretaria cadastrada com sucesso.");
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
