@@ -28,13 +28,11 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
 
         botaoVoltar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        caixaRelatorio = new javax.swing.JTextField();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        caixaRelatorio = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Relatório Médico");
 
         botaoVoltar.setText("Voltar");
         botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -43,30 +41,11 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Relatorio");
+        jLabel3.setText("Relatório Médico");
 
-        caixaRelatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                caixaRelatorioActionPerformed(evt);
-            }
-        });
-
-        jMenu1.setText("Sistema");
-
-        jMenuItem1.setText("Sair");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Sobre");
-        jMenu1.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
+        caixaRelatorio.setColumns(20);
+        caixaRelatorio.setRows(5);
+        jScrollPane1.setViewportView(caixaRelatorio);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +58,7 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(caixaRelatorio)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -88,11 +67,11 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(caixaRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(botaoVoltar)
                 .addContainerGap())
         );
@@ -101,31 +80,20 @@ public class TelaMedRelatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void mostrarRelatorio(){
-        //caixaRelatorio.setText(medicoLogado.gerarRelatorioMedico(paciente));
+        caixaRelatorio.setText(medicoLogado.gerarRelatorioMedico(paciente));
     }
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         TelaPrincipalMed telaAnterior = new TelaPrincipalMed(medicoLogado, em);
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
-    private void caixaRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caixaRelatorioActionPerformed
-
-    }//GEN-LAST:event_caixaRelatorioActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JTextField caixaRelatorio;
+    private javax.swing.JTextArea caixaRelatorio;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -142,7 +142,7 @@ public class TelaPrincipalMed extends javax.swing.JFrame {
         PacienteCadastrado pacienteRelatorio = em.find(PacienteCadastrado.class, cpfPaciente);
         Prontuario prontuarioPaciente = em.find(Prontuario.class, cpfPaciente);
         
-        if(pacienteRelatorio != null && prontuarioPaciente != null){
+        if(pacienteRelatorio != null){
             TelaMedRelatorio telaRelatorio = new TelaMedRelatorio(pacienteRelatorio, medicoLogado, em);
             telaRelatorio.setVisible(true);
             

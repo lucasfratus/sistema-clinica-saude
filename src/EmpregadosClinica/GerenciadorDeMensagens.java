@@ -1,6 +1,5 @@
 package EmpregadosClinica;
 
-import EmpregadosClinica.Secretaria;
 import Atendimento.Consulta;
 import Atendimento.Paciente;
 import Sistema.PacienteCadastrado;

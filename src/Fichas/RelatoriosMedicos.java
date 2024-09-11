@@ -1,16 +1,14 @@
 package Fichas;
 
-import Atendimento.Paciente;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-
+@Entity
+@Table(name = "RELATORIO")
 public class RelatoriosMedicos {
+    @Id
     private String cpfPaciente;
     private String receita;
     private String atestado;

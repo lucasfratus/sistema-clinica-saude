@@ -34,6 +34,7 @@ public class TelaMedGerenciarPaciente extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciador de Pacientes");
 
         botaoCadastrarInfo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         botaoCadastrarInfo.setText("Cadastrar Informações adicionais");

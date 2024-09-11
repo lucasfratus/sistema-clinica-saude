@@ -41,6 +41,7 @@ public class TelaMedGerenciarProntuarios extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciador de Prontuários");
 
         botaoCriarProntuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         botaoCriarProntuario.setText("Criar novo prontuário");

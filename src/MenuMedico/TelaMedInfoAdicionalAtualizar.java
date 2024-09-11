@@ -40,9 +40,11 @@ public class TelaMedInfoAdicionalAtualizar extends javax.swing.JFrame {
         textCirurgias = new javax.swing.JTextField();
         textAlergias = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Atualização de Informações Adicionais");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.setToolTipText("");
 
         checkboxFuma.setText("Fuma");
 

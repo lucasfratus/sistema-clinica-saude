@@ -44,7 +44,8 @@ public class TelaMedAlterarInfo extends javax.swing.JFrame {
         textAlergia = new javax.swing.JTextArea();
         botaoAtualizar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar informações adicionais");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 

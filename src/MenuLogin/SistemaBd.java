@@ -15,5 +15,4 @@ public class SistemaBd {
         Login telaInicial = new Login(em);
         telaInicial.setVisible(true);
     }
-    
 }

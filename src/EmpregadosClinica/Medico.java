@@ -148,11 +148,11 @@ public class Medico {
     
     public void cadastrarProntuario(PacienteCadastrado paciente, String sintoma, String diagnostico, String tratamento){
         // Cadastra um prontuário de um paciente,
-
         Prontuario prontuarioPaciente = new Prontuario();
-        prontuarioPaciente.setDiagnostico(diagnostico);
-        prontuarioPaciente.setDiagnostico(diagnostico);
         prontuarioPaciente.setCpfPaciente(paciente.getCpf());
+        prontuarioPaciente.setSintomas(sintoma);
+        prontuarioPaciente.setDiagnostico(diagnostico);
+        prontuarioPaciente.setTratamento(tratamento);
         em.getTransaction().begin();
         em.persist(prontuarioPaciente);
         em.getTransaction().commit();
@@ -197,14 +197,18 @@ public class Medico {
         buffer.append("; \nNumero do paciente atendido no mês: " + this.getNumeroAtendidos());
         String bufferString = buffer.toString();
         
-        RelatoriosMedicos novoRelatorio = new RelatoriosMedicos();
-        novoRelatorio.setCpfPaciente(paciente.getCpf());
-        novoRelatorio.setAtestado("*Documento em pdf*");
-        novoRelatorio.setDeclaracaoAcompanhamento("*Documento em pdf*");
-        novoRelatorio.setReceita(em.find(Prontuario.class,paciente.getCpf()).getTratamento());
-        em.getTransaction().begin();
-        em.persist(novoRelatorio);
-        em.getTransaction().commit();
+        RelatoriosMedicos possivelRelatorio = em.find(RelatoriosMedicos.class, paciente.getCpf());
+        
+        if(possivelRelatorio == null){
+            RelatoriosMedicos novoRelatorio = new RelatoriosMedicos();
+            novoRelatorio.setCpfPaciente(paciente.getCpf());
+            novoRelatorio.setAtestado("*Documento em pdf*");
+            novoRelatorio.setDeclaracaoAcompanhamento("*Documento em pdf*");
+            novoRelatorio.setReceita(em.find(Prontuario.class,paciente.getCpf()).getTratamento());
+            em.getTransaction().begin();
+            em.persist(novoRelatorio);
+            em.getTransaction().commit();
+        }
         return bufferString;
     }
 

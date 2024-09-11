@@ -43,7 +43,7 @@ public class TelaSecMarcarConsulta extends javax.swing.JFrame {
         botaoMarcar = new javax.swing.JButton();
         botaoSair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("CPF do paciente: (apenas números)");
 

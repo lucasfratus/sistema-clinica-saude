@@ -73,10 +73,6 @@ public class TelaPrincipalGM extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addComponent(botaoEnviar)
-                .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -84,17 +80,20 @@ public class TelaPrincipalGM extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(botaoLogout)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botaoLogout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(botaoEnviar)))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jLabel1)
-                .addGap(65, 65, 65)
+                .addGap(51, 51, 51)
                 .addComponent(botaoEnviar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(botaoLogout)
                 .addContainerGap())
         );
