@@ -13,9 +13,6 @@ public class TelaPrincipalSecretaria extends javax.swing.JFrame {
     Secretaria secretariaLogada;
     EntityManager em;
     
-    /**
-     * Creates new form TelaPrincipal
-     */
     public TelaPrincipalSecretaria(Secretaria secretariaLogada, EntityManager em) {
         initComponents();
         this.secretariaLogada = secretariaLogada;

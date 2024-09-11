@@ -10,10 +10,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@NamedQuery(name = "findConsultas", 
-                query = "select p FROM Consulta p WHERE p.data LIKE :dataAmanha")
+
 
 @Entity
+@NamedQuery(name = "findConsultas", 
+                query = "select p FROM Consulta p WHERE p.data LIKE :dataAmanha")
 @Table(name = "CONSULTA")
 public class Consulta {
     private String data;

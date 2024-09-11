@@ -7,7 +7,6 @@ import Sistema.PacienteCadastrado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.Query;
 
 
@@ -182,15 +181,14 @@ public class Secretaria {
         
         List<Consulta> consultasSemContato = new ArrayList<Consulta>();
         List<Consulta> consultasComContato = new ArrayList<Consulta>();
-        for(int z = 0; z < consultasDoDia.size(); z++)
-            if (consultasDoDia.get(z).getData() == data) {
-                if (consultasDoDia.get(z).getPaciente().getTelefone() == "Nao Informado" && consultasDoDia.get(z).getPaciente().getEmail() == "Nao Informado"){
-                    consultasSemContato.add(consultasDoDia.get(z));
-                } else {
-                    consultasComContato.add(consultasDoDia.get(z));
-                }        
-            }
         
+        for(int z = 0; z < consultasDoDia.size(); z++) {
+            if (consultasDoDia.get(z).getPaciente().getTelefone().isEmpty() && consultasDoDia.get(z).getPaciente().getEmail().isEmpty()){
+                consultasSemContato.add(consultasDoDia.get(z));
+            } else {
+                consultasComContato.add(consultasDoDia.get(z));
+            }        
+        }
         List<List<Consulta>> relatorios = new ArrayList<List<Consulta>>();
         relatorios.add(consultasSemContato);
         relatorios.add(consultasComContato);

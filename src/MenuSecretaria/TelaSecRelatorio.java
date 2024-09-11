@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package MenuSecretaria;
 
 import Atendimento.Consulta;
 import EmpregadosClinica.Secretaria;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.DefaultListModel;
@@ -15,15 +12,14 @@ public class TelaSecRelatorio extends javax.swing.JFrame {
     EntityManager em;
     Secretaria secretariaLogada;
     List<List<Consulta>> consultasAmanha;
-    /**
-     * Creates new form TelaSecRelatorio
-     */
+
     public TelaSecRelatorio(Secretaria secretariaLogada, List<List<Consulta>> consultasAmanha, EntityManager em){
         initComponents();
         this.em = em;
         this.secretariaLogada = secretariaLogada;
         this.consultasAmanha = consultasAmanha;
-        preencherListaSemContato(consultasAmanha);
+        preencherListaSemContato(consultasAmanha.get(0));
+        preencherListaComContato(consultasAmanha.get(1));
     }
 
     /**
@@ -64,33 +60,32 @@ public class TelaSecRelatorio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addComponent(botaoFechar)
+                .addGap(196, 196, 196))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(204, 204, 204)
-                .addComponent(botaoFechar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(botaoFechar)
                 .addGap(15, 15, 15))
         );
@@ -103,17 +98,22 @@ public class TelaSecRelatorio extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoFecharActionPerformed
 
     
-    public void preencherListaSemContato(List<List<Consulta>> consultasAmanha) {
-        DefaultListModel<String> model = new DefaultListModel<>();
-        for (List<Consulta> consultas : consultasAmanha) {
-            for (Consulta consulta : consultas) {
-                if(consulta.getPaciente().getEmail() == "" && consulta.getPaciente().getTelefone() == ""){
-                    model.addElement(consulta.getPaciente().getNome());
-                }
-            }
+    public void preencherListaSemContato(List<Consulta> consultasAmanha) {
+        List<String> model = new ArrayList<>();
+        for (Consulta consulta : consultasAmanha) {
+            model.add("Nome: " + consulta.getPaciente().getNome());    
         }
-        ListaSemContato.setModel(model);
+        ListaSemContato.setListData(model.toArray(new String[model.size()]));
     }
+    
+    public void preencherListaComContato(List<Consulta> consultasAmanha) {
+        List<String> model = new ArrayList<>();
+        for (Consulta consulta : consultasAmanha) {
+            model.add("Nome:" + consulta.getPaciente().getNome() +", Email: " + consulta.getPaciente().getEmail() + ", Telefone: " + consulta.getPaciente().getTelefone());
+        }
+        ListaComContato.setListData(model.toArray(new String[model.size()]));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListaComContato;
     private javax.swing.JList<String> ListaSemContato;
